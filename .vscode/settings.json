@@ -1,0 +1,6 @@
+{
+    "liveSassCompile.settings.includeItems": [
+        "./style.sass",
+        "./scss/custom.scss"
+    ]
+}

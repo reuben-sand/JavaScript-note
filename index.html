@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="note of JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript Note</title>        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="scss/custom.css">
+        <script src="script.js"></script>
+        <script src="bootstrap.bundle.min.js"></script>
+    </head>
+    <body class="text-primary bg-night m-0 position-relative" data-bs-spy="scroll" data-bs-target="#chapter-navbar" data-bs-offset="70">
+        <header class="sticky-top bg-cloud w-100">
+            <nav class="navbar navbar-expand navbar-dark ">
+                <div class="container ">
+                    <a class="text-decoration-none nav-brand fs-5 text-center fw-bold lh-sm" href="/" title="back to the homepage" >Reuben<br>Send&nbsp;Wishes</a>
+                    <div class="navbar-nav justify-content-evenly flex-grow-1 ">
+                            <a class="nav-link" href="">javaScript</a>
+                            <a class="nav-link" href="">javaScript</a>
+                            <a class="nav-link" href="">javaScript</a>
+                            <a class="nav-link" href="">javaScript</a>
+                    </div>
+                    <form>
+                        <input type="text">
+                        <button>search</button>
+                    </form>
+                </div>
+            </nav>   
+        </header>
+        <div class="container mt-3">
+            <div class="row">
+                <aside class="col-2 d-none d-md-block">
+                    <nav id="chapter-navbar" class="navbar sticky-top nav-pills" >
+                        <a class="nav-link" href="#chapter-1">1.Grammar and types</a>
+                        <a class="nav-link" href="#chapter-2">2.在HTML檔案中使用JavaScript</a>
+                        <a class="nav-link" href="#chapter-3">3.JavaScript Modules</a>
+                        <a class="nav-link" href="#chapter-4">4.JavaScript objects</a>
+                    </nav>
+                </aside>
+                <main class="col-12 col-md-10">
+                    <h1>JavaScript Note</h1>
+                    <p>
+                        JavsScript是一種輕量的直譯程式語言，具有一級含數的特性，最廣泛被認為當作網頁的腳本語言，非瀏覽器環境也可使用，如:node.js。JavaScript又稱為vanilla JavaScript，而其典範由ECMA制定，稱為ECMAScript。JavaScript，有相關的變體，並附加其他功能，如:TypeScript。也有幫助開發者更輕鬆，高效構建應用程式的工具，稱為JavaScript框架，是一組預先編譯好的JavaScript程式碼庫，如:Vue.js和React.js。建置工具可將預先處理好的內容轉換成瀏覽器能看懂的東西，如:Webpack,Gulp，npm。讓javaScript可在後端執行的執行環境，node.js，可使用npm和javaScript跟node.js互動。
+                    </p>
+                    <!-- 1.Grammar and types -->
+                    <section id="chapter-1">   
+                        <h2>1.Grammar and types</h2>
+                        <h3>statement</h3>
+                        <p>
+                            在JavaScript中，每個指令被稱為statement(語句)，使用;符號分隔，如果語句寫在單獨一行不需要使用;符號，如果不同語句在同一行，則必須使用;符號。如下所示:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+let x = 8 ; let y = 9<span class="ex-result-cor"> 〇 </span>
+
+let x = 8 
+let y = 9<span class="ex-result-cor"> 〇 </span>
+
+let x = 8 let y = 9<span class="ex-result-err"> ✕ </span></pre>
+                        </div>
+                        <h3>comment</h3>
+                        <p>
+                            在JavaScript中，也可以使用與其他程式語言一樣的comment，comment不會被瀏覽器解析或執行，是可供自己或團隊觀看的註解，很多時候也可以用來測試一段程式碼是否作用。使用//放在comment前方，可用來當作單行註釋，或是使用/*和*/包圍所有comment，可選擇是否在中間每一行開頭加上*，可用來當作單行或多行註釋，在許多的code編輯器中，輸入/**，接著按下enter，可產生JSDoc註解，方便開發者添加該註解下方的變數或參數或返回值等說明，如@param{}參數名稱，{}內可輸入類型，並可在名稱後方增加說明。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+// 這是單行註釋
+
+/* 
+    這是多行註釋<span></span> 
+*/
+
+/**
+* JSDoc註釋
+* @param {number} a 用來執行加法的第一個數字
+* @param {number} b 用來執行加法的第二個數字
+* @returns 
+*/
+function add(a,b){
+    let c = a + b + 1
+    return c 
+}</pre>
+                        </div>    
+                    </section>
+                    <!-- 2.在HTML檔案中使用JavaScript -->
+                    <section id="chapter-2">
+                        <h2>2.在HTML檔案中使用JavaScript</h2>
+                        <p>
+                            在HTML檔案中有兩種方式使用JavaScript程式碼。
+                        </p>
+                        <h3>internal method</h3>
+                        <p>
+                            可在&lt;script&gt;element內，直接輸入要使用的JavaScript code，但需要在與其code關聯的元素下面才能發揮作用。
+                        </p>
+                        <h3>external method</h3>
+                        <p>
+                            HTML檔案可直接連結外部的JavaScript檔案，也須藉由&lt;script&gt;元素連結，在該元素的src屬性輸入要連結的JavaScript檔案路徑。
+                        </p>
+                        <h3>modern JavaScript loading</h3>
+                        <p>
+                            &lt;script&gt;元素有兩個屬性，defer和async，可控制外部JavsScript檔案的加載時機，提高頁面加載速度，一般來說瀏覽器解析HTML檔案時，遇到有外部連結的&lt;script&gt;才會開始裝載，裝載完後開始執行，值到執行完後才會繼續解析HTML檔案。
+                            若使用async，那解析HTML時，遇到&lt;script&gt;時，可並行加載該JavaScript檔案，加載完後才單獨執行JavaScript(停止解析HTML檔案)，最後繼續解析HTML檔案，若是使用defer，也如async可併行加載JavaScript檔案，但將等HTML檔案解析完成才執行，那便可以將有外部連結的&lt;script&gt;元素放在相關的元素前(可放在&lt;head&gt;)。
+                        </p>              
+                        <div class="ex-block ex-process">
+                            <div class="ex-process-headline">
+                                <span>正常狀態</span><span>使用async</span><span>使用defer</span>
+                            </div>
+                            <div class="ex-parsing-html">parsing HTML</div>
+                            <div class="ex-loading-js">loading JavaScript</div>
+                            <div class="ex-execute-js">execute JavaScript</div>
+                            <div class="ex-parsing-html">parsing HTML</div>
+                        </div>
+                    </section>
+                    <!-- 3.JavaScript Modules -->
+                    <section id="chapter-3">
+                        <h2>3.JavaScript Modules</h2>
+                        <p>
+                            在進行複雜專案時，可將JavaScript拆分成modules使用，將一個module的項目導入另外一個，首先使用export statement，可放在要導出的項目(函數、變數、class等)前，不能在函數內使用，需在頂層，也可以將要導出的項目集中直接放在檔案最下方，export statement後接著以逗號分隔的列表。之後在要導進項目的檔案中，使用import statement，接著以逗號分隔的列表，在接著from和module specifier，specifier可以是路徑或是import映射中對應路徑值的屬性名稱。
+                        </p>
+                        <h3>import maps</h3>
+                        <p>
+                            如果import maps內的屬性名稱後面有/，那對應的值也需要有/，並且該屬性值對可以當作路徑前綴，所有有該屬性路徑前綴的specifier，將也可匹配到對應的值當作前綴的路徑，按照此原理，一個specifier，可能匹配兩種以上的路徑，所以瀏覽器會優先選擇長的，可以在json內藉由設定scopes屬性，指定特定的檔案，指定特定的module specifier對應的路徑，若找不到才會使用import屬性內的，值對。
+                        </p>
+                        <h3>將module應用到HTML</h3>
+                        <p>
+                            要應用JavaScript module到HTML檔案，類似正常的應用JavaScript方式，只是需要在&lt;script&gt;內添加type="module"，外部方法和內部方法都可以使用模組，但是內部方法不能導出。加載模組時不需要使用defer屬性，就會自動使用並行載入和延遲執行，模組功能是導入到單一腳本範圍內，在全域範圍不可使用，除非將項目特別宣告在全域範圍內。
+                        </p>
+                    </section>
+                    <!-- 4.JavaScript objects -->
+                    <section id="chapter-4">
+                        <h2>4.JavaScript objects</h2>
+                        <p>
+                            JavaScript是基於物件導向paradigm設計的，物件是一組property的集合，而property是名稱和值之間的關聯，屬性的值若是函數，該函數會稱為method。
+                        </p>
+                        <h3>創造object</h3>
+                        <p>
+                            要創造一個物件可以使用object initializer，或是先創建一個constructor function，接著使用new operator調用該函數實例化一個object。
+                        </p>
+                        <h3>object initializer</h3>
+                        <p>
+                            物件初始化器由0或多個屬性名稱和其關聯值的對組成，這些對以逗號分隔，並用{}包括。屬性名稱和值對中間為:符號，屬性名稱可以是字串，名稱，數字，表達式(需用方括號包括)，每個值都是一個表達式，賦予給該屬性名稱。如果物件出現在需要語句的位置，可能需要將object literal包裹在圓括號中，以免將字面值與區塊語句混淆。
+                        </p>
+                        <h3>使用constructor function</h3>
+                        <p>
+                            有另一個方法創造物件，可以藉由使用constructor function定義物件類型(習慣上開頭字母為大寫)，接著再使用new operator創造物件的實例，要定義一個物件類型，首先要創造一個函數，並在函數中指定名稱、屬性、方法，要設定屬性，在函數宣告塊內輸入this.propertyName1=參數值1，設定method也類似，this.method=function(){ this.propertyName=123 }，接著就可以創造物件，藉由使用new調用該物件類型。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+function Car(color,price){
+    this.color = color ;
+    this.price = price ;
+    this.changeColor = function(color){
+        this.color = color ;
+    }
+}
+const myCar = new Car('red','cheap') ;
+console.log(myCar.color) ;//red
+myCar.changeColor('blue') ;
+console.log(myCar.color) ; //blue</pre>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+        <foorter>
+
+        </foorter>
+    </body>
+</html>
