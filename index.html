@@ -38,6 +38,13 @@
                         <a class="nav-link" href="#chapter-2">2.在HTML檔案中使用JavaScript</a>
                         <a class="nav-link" href="#chapter-3">3.JavaScript Modules</a>
                         <a class="nav-link" href="#chapter-4">4.JavaScript objects</a>
+                        <a class="nav-link" href="#chapter-5">5.Accessing objects</a>
+                        <a class="nav-link" href="#chapter-6">6.object methods</a>
+                        <a class="nav-link" href="#chapter-7">7.using classes</a>
+                        <a class="nav-link" href="#chapter-8">8.Text Formatting</a>
+                        <a class="nav-link" href="#chapter-9">9.Access HTML element</a>
+                        <a class="nav-link" href="#chapter-10">10.Modify element classes</a>
+                        <a class="nav-link" href="#chapter-11">11.Properties related to attributes</a>
                     </nav>
                 </aside>
                 <main class="col-12 col-md-10">
@@ -101,7 +108,7 @@ function add(a,b){
                         </p>
                         <h3>modern JavaScript loading</h3>
                         <p>
-                            &lt;script&gt;元素有兩個屬性，defer和async，可控制外部JavsScript檔案的加載時機，提高頁面加載速度，一般來說瀏覽器解析HTML檔案時，遇到有外部連結的&lt;script&gt;才會開始裝載，裝載完後開始執行，值到執行完後才會繼續解析HTML檔案。
+                            &lt;script&gt;元素有兩個屬性，defer和async，可控制外部JavsScript檔案的加載時機，提高頁面加載速度，一般來說瀏覽器解析HTML檔案時，遇到有外部連結的&lt;script&gt;才會開始裝載，裝載完後開始執行，直到執行完後才會繼續解析HTML檔案。
                             若使用async，那解析HTML時，遇到&lt;script&gt;時，可並行加載該JavaScript檔案，加載完後才單獨執行JavaScript(停止解析HTML檔案)，最後繼續解析HTML檔案，若是使用defer，也如async可併行加載JavaScript檔案，但將等HTML檔案解析完成才執行，那便可以將有外部連結的&lt;script&gt;元素放在相關的元素前(可放在&lt;head&gt;)。
                         </p>              
                         <div class="ex-block ex-process">
@@ -118,7 +125,7 @@ function add(a,b){
                     <section id="chapter-3">
                         <h2>3.JavaScript Modules</h2>
                         <p>
-                            在進行複雜專案時，可將JavaScript拆分成modules使用，將一個module的項目導入另外一個，首先使用export statement，可放在要導出的項目(函數、變數、class等)前，不能在函數內使用，需在頂層，也可以將要導出的項目集中直接放在檔案最下方，export statement後接著以逗號分隔的列表。之後在要導進項目的檔案中，使用import statement，接著以逗號分隔的列表，在接著from和module specifier，specifier可以是路徑或是import映射中對應路徑值的屬性名稱。
+                            在進行複雜專案時，可將JavaScript拆分成modules使用，將一個module的項目導入另外一個，首先使用export statement，可放在要導出的項目(函數、變數、class等)前，不能在函數內使用，需在頂層，也可以將要導出的項目集中直接放在檔案最下方，export statement後接著以逗號分隔大括號包括的列表。之後在要導進項目的檔案中，使用import statement，接著以逗號分隔大括號包括的列表，在接著from和module specifier，specifier可以是路徑或是import映射中對應路徑值的屬性名稱。
                         </p>
                         <h3>import maps</h3>
                         <p>
@@ -161,12 +168,403 @@ console.log(myCar.color) ;//red
 myCar.changeColor('blue') ;
 console.log(myCar.color) ; //blue</pre>
                         </div>
+                        <h3>comparing objects</h3>
+                        <p>
+                            物件屬於reference type，兩個物件永遠不相等，即使擁有相同的屬性，除非比較同一個物件的引用，才會返回true。
+                        </p>
                     </section>
-                </main>
+                    <!-- 5.Accessing objects -->
+                    <section id="chapter-5">
+                        <h2>5.Accessing objects</h2>
+                        <p>
+                            要在瀏覽器中的console訪問物件，可使用console.log(objectName)，也可加入string，如:console.log("object:",objectName)。若要訪問物件的屬性，有兩種語法，點記法(dot notation)和括號記法(bracket notation)，物件屬性名稱可以是任何有效的string或符號，使用點記法需要為有效的JavaScript識別符，若屬性名稱開頭為數字，或是包含空格或連字符，或是存放在變數，需要使用括號記法，若屬性名稱存放在變數，且該變數的值是物件，那該屬性名稱將等於，該物件的toString()返回的值。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const property4="fuck"                               
+const object={
+    property1: true,
+    property2: "ok",
+    property3: 123,
+    [property4]: "no",
+    "property 5": false
+}
+console.log("object property:",object.property1) // object property: true
+console.log("object property",object.property2) // object property: "ok"
+console.log("object property",object.property3) // object property: 123
+console.log("object property",object[property4]) // object property: "no"
+console.log("object property",object["property 5"]) // object property: false</pre>
+                        </div>
+                        <h3>Enumerating properties</h3>
+                        <p>
+                            有三種原生方式，第一種for..in loops，可遍歷物件自身和原型鏈上所有可列舉屬性，第二種Object.keys()，只返回物件自身可列舉屬性，第三種Object.getOwnPropertyNames()，可返回物件自身可列舉和無列舉屬性。Object.hasOwn(obj, propertyName)，可察看物件的屬性是否是自身的而非原型鏈的。可使用delete operator，後接著物件屬性語法。
+                        </p>
+                    </section>
+                    <!-- 6.object methods -->
+                    <section id="chapter-6">
+                        <h2>6.object methods</h2>
+                        <p>
+                            若物件的property值為function，該函數稱為物件的method，函數有兩種方式表達如:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const coolObject={
+    method: function(){
+        return 1;
+    },
+    method2(){
+        return 2; 
+    }
+}
+coolObject.method(); //return 1
+coolObject.method2();//return 2</pre>
+                        </div>
+                        <h3>this</h3>
+                        <p>method裡面的this，會指向擁有該method的物件，除非使用Function.prototype.call(thisObject)或Reflect.apply(function,thisObject,argumentsList)去指定特定函數內this指向的物件。</p>
+                        <h3>getters and setters</h3>
+                        <p>getters和setters都是與屬性相關聯的函數，getter用來獲取property的值，setter用來設置property的值，在物件初始化器中setters和getters設置的方法和普通函數相近(限定無法使用function關鍵字)，除了需要在前方加上關鍵字set或get，若要在以創建好的物件中，新增setters和getters，使用Object.defineProperties()，第一參數為要賦予函數的物件，第二參數為一個物件，該物件的屬性值為要設定的函數名稱，值為另一個物件，該物件包括無名的get或set的函數。get不應該接受參數，且call該函數時，後方不需要加上()。set需接受固定一個參數，且set不能直接call，而是要用賦值的方式，使用如:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const objectA ={
+    name: "fuck" ,
+    get callName(){
+        return this.name;
+    },
+    set prevent(action){
+        this.name= action;
+    }
+}
+console.log(objectA.name); // "fuck"
+objectA.prevent="no fuck"; // 設置name property的值  
+console.log(objectA.name); // "no fuck";
+Object.defineProperties(objectA,{
+    coolset:{
+        get(){
+            return this.name + "gay" ;
+        } 
+    } 
+});
+console.log(objectA.coolset);</pre>
+                        </div>
+                    </section>
+                    <!-- 7.using classes -->
+                    <section id="chapter-7">
+                        <h2>7.using classes</h2>
+                        <p>
+                            class是基於原型的繼承，可使用new operator創作物件，每個物件都可有類別添加的property和method，類別本身也能儲存方法和屬性，通常用於與實例互動，類別本身儲存的方法和屬性稱為靜態屬性，需在設置時在前方加上static關鍵字，static{}可設置靜態初始化代碼，設置當該類別被加載時，執行的動作。class宣告是not hoisted，所以使用前需要先宣告。class可用declaration或是expression，且class的名稱通常使用大寫開頭，如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const People = class{
+    constructor(name,cool){
+        this.name = name ;
+        this.cool = cool ;
+    }
+    age= "secret";
+    changeAge(newAge){
+        this.age = newAge;
+    }
+    static flex(people){
+        return people.cool;
+    }
+    static live= 100;
+} //expression
+class Animal{
+    constructor(name,cool){
+        this.name = name ;
+        this.cool = cool ;
+    }
+    age= "secret";
+    changeAge(newAge){
+        this.age = newAge;
+    }
+    static piss(){
+        return cool;
+    }
+    static live= 20;
+} //declaration
+const reuben = new People("reuben",true);
+console.log(reuben.name); //reuben
+console.log(reuben.cool); //true
+console.log(reuben.age); //"secret"
+reuben.changeAge(123);
+console.log(reuben.age); //123
+console.log(People.flex(reuben)) //true
+console.log(People.live) //100</pre>
+                        </div>
+                        <h3>constructor</h3>
+                        <p>
+                            在class中，實例的創建是由constructor完成的，new operator將返回constructor中this的值，但若是其中return非原始值，將取代this成為返回的值。
+                        </p>
+                        <h3>instance methods</h3>
+                        <p>
+                            通常function，會直接設置在class中的method，並成為實例的method，實際上是存放在實例的原型中，也可以在constructor中建立函數，缺點是建造每個實例時，都需要在創造一次該函數。若是你比較兩個相同類的不同實例的函數，該函數若為在class的method，結果將相同，若在constructor中，結果不同，因為前者不同實例都是引用原型的函數。
+                        </p>
+                        <h3>Private fields</h3>
+                        <p>在物件導向程式設計中，有一種叫做「封裝」的理念，作為類的實作者，一些時候應該隱藏class的內部結構，只讓使用者透過設計好的方式訪問資料，private field是以#為前綴的識別符，#包括在屬性名稱內，所以私有屬性和公共屬性不會有命名衝突，如果用""包括#開頭的屬性名稱，該屬性不會是私有屬性，私有欄位的命名和訪問是靜態的，不能像一般屬性那樣透過動態字串或變數來引用，私有屬性只能透過class設置的內部方法訪問，也可訪問相同class的其他實例的私有屬性，私有欄位無法被刪除，要在class內引用private field，需要在class主體宣告該屬性。有個可在外部訪問私有屬性的例外，在chrome控制台可以訪問class外部的私有屬性，這是開發者工具對於Javascript語法限制的放寬。method，getter和setter也可以是私有的。</p>
+                        <div class="ex-block">
+                            <pre>
+const People= class{
+    #dick="30cm";
+    constructor(name,skin){
+        this.name=name;
+        this.skin=skin;
+    }
+    #cheap(){
+        return "100m";
+    }
+    introduce(boolean){
+        if(boolean){
+            return this.#cheap(); 
+        }else{
+            return this.#dick; 
+        }
+    }
+}
+const reuben=new People("reuben","yellow");
+console.log(reuben.introduce(true));
+console.log(reuben.introduce(false));</pre>
+                        </div>
+                        <h3>Accessor fields</h3>
+                        <p>
+                            Accessor fields，讓我們使用一種類似屬性的方式(getters和setters)，讀取或設置屬性值。
+                        </p>
+                        <h3>Public fields</h3>
+                        <p>
+                            Public fields，就是在類別中直接定義的屬性，Public fields中定義的屬性值會是該屬性的初始值，若與constructor內的屬性賦值的名稱相同，在創造實例時constructor中的賦值將覆蓋該屬性值。
+                        </p>
+                        <h3>Static properties</h3>
+                        <p>
+                            靜態屬性包括靜態方法、靜態getters和setters和靜態fields，靜態代表該特性定義在類別本身，而非該類別的實例上，靜態屬性在定義時，需要加上static關鍵字，其他如同public fields。class還有一個特殊的構造static{}，稱為static initialization block，當類別被引用或實例化時，裡面的動作會自動執行。
+                        </p>
+                        <h3>Extends</h3>
+                        <p>
+                            在JavaScript中，可以將一個class擴展，去創造一個derived class，該class可以有繼承父類別所有Public Properties，子class的constructor可以使用super()，將呼叫父class的constructor初始化this，在呼叫super()前，無法訪問尚未初始化的this，所以若要設置this，需要在super()後。子class也可以重寫父class的Public Properties。子類別中可以使用super去引用父class的Public properties。子class的實例也會是父class的實例。
+                        </p>
+                        <h3>Object Constructor Functions</h3>
+                        <p>
+                            在JavaScript ES6以前(還沒有class)，會使用Object Constructor Function，創造物件實例的模板，宣告一個大寫開頭(慣例)的function，並在函數裡面設定this，如同class中的constructor。
+                        </p>
+                        <h3>why classes?</h3>
+                        <p>
+                            使用class的優點:1.可以進行封裝，也就是將資料和操作資料的方法，綁在一起，提供外部一個清晰地接口與物件互動，並對外部隱藏內部的實現細節。2.類別支持繼承，這使得可以創建新的類別來擴展現有類別的功能，實現代碼重用。這對於大型應用的開發尤其重要。
+                        </p>
+                    </section>
+                    <!-- 8.Text Formatting -->
+                    <section id="chapter-8">
+                        <h2>8.Text Formatting</h2>
+                        <h3>string</h3>
+                        <p>
+                            JavaScript的String類型用來表示文字資料，是一組由16位元無符號整數值(UTF-16編碼單位)組成的元素，第一個元素位於index 0，接下來的元素依次排列，字串的長度是其中字符的數量(有個例外就是一些特殊字符如某些emoji將占用兩個UTF-16編碼單位)。
+                        </p>
+                        <h3>string literal</h3>
+                        <p>
+                            宣告string可使用single quote或double quote包括字符，也可使用escape sequences宣告更進階的string，如十六進位轉義序列"\x"，\x可接十六進位數值(以兩個數值表示1個字符)，並且會轉換成Unicode編碼中代表的字符(最多256個)，但0x00 到 0x1F 這個範圍內。這些控制字符通常在輸出中無法顯示為可見字符，因為它們是為了控制設備或格式而設計的，而不是用來顯示可視內容的字符。Unicode轉義序列"\u"，\u後跟隨四個十六進位數字。而Unicode code點轉義是可添加超過四個十六進位數字，語法相似Unicode轉義序列，但是需使用{}包括數值部分。
+                        </p>
+                        <h3>String object</h3>
+                        <p>
+                            string literal可以使用String object的method，因為JavaScript會將字串文字轉換為臨時的String object，調用完方法後，再丟棄該物件，String 物件有一個屬性 length，用來表示字串中 UTF-16 編碼單元的數量，可以用array語法中的方括號，訪問每個編碼單元代表的值，若字符是由兩個編碼單元組成，則訪問該編碼單元(十六進位)。
+                        </p>
+                        <h3>template literal</h3>
+                        <p>
+                            template literal是一種string literal，允許embedded expression，使用template literal，可以實現多行字串和字串插值的功能，template literal使用backtick(`)包括值，使用換行符可在該字面值作用，不用特殊的額外的語法(\n\)，並且可內嵌表達式，表達式使用${和}包括，若表達式配合一般string literal使用的話，需使用+並且將字串分解成多個。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const stringLiteral = "normal string 
+literal" ; // Invalid or unexpected token
+const templateLiteral = `template 
+literal` ; // not appear error
+
+const abc = 123;
+const templateLiteral = `number:${abc}` ;
+console.log(templateLiteral); //number:123</pre>
+                        </div>
+                        <h3>internationalization</h3>
+                        <p>
+                            Intl物件是ECMAScript國際化API的命名空間，該API提供語言敏感字串的比較、數字格式化、日期和時間格式化功能，Intl.Collator，Intl.NumberFormat，Intl.DateTimeFormat等物件的建構函數為Intl物件的屬性。
+                        </p>
+                        <h3>Intl.DateTimeFormat物件</h3>
+                        <p>
+                            該物件用於格式化日期和時間，在實例化該物件時可設定，格式化時間的格式(第一參數為語言，第二參數為物件包括weekday，year，month等屬性，值可設定long,short等。)，實例化後使用該物件的format method，將要格式化的日期當參數輸入該method，便可返回格式化後的值。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const newNear = new Date("2024-01-01");
+const chineseFormat = new Intl.DateTimeFormat("zh-Hant",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+console.log(chineseFormat.format(newNear))</pre>
+                        </div>
+                        <h3>Intl.NumberFormat物件</h3>
+                        <p>
+                            用於格式化數字，在實例化該物件時可設定，格式化數字的格式(第一參數為語言，第二參數為物件包括style等屬性，若style為currency需要設定currency屬性，也有位數相關設置屬性，minimumFractionDigits設置最小小數位數，minimumFractionDigits設置最小整數位數。)，實例化後使用該物件的format method，將要格式化的數字當參數輸入該method，便可返回格式化後的值。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const TWDFormat = new Intl.NumberFormat("zh-Hant",{style:"currency",currency:"TWD",minimumFractionDigits:2});
+console.log(TWDFormat.format(123456.789));</pre>
+                        </div>
+                        <h3>Intl.Collator物件</h3>
+                        <p>
+                            該物件用於比較和排序字串，在實例化該物件時可設定，如何比較字串(第一參數為語言，第二參數為物件包含多個屬性，可選擇是否要加入參數，但物件只能為第二參數)，實例化後使用該物件的compare method，並放置於array的sort method當作引數，便可排序出新的字串array。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const stringArray= ["1","31","3","11"];
+const sortRule = new Intl.Collator(undefined,{numeric:true});
+console.log(stringArray.sort());
+console.log(stringArray.sort(sortRule.compare));</pre>
+                        </div>
+                    </section>
+                    <!-- 9.Access HTML element -->
+                    <section id="chapter-9">
+                        <h2>Access HTML element</h2>
+                        <p>
+                            要在JavsScript訪問HTML元素可使用document的querySelector method或querySelectorAll method，兩個方法的參數都是使用值為CSS選擇器的字串，去訪問符合條件的元素，前者只能return第一個符合條件的元素，若沒有return null，後者會return包含所有符合條件元素的靜態NodeList(若節點後面有改變，該清單不會動態更改)，NodeList類似array可用方括號包括index訪問其中特定位置元素。
+                        </p>
+                        <h3>Access HTML element older methods</h3>
+                        <p>
+                            訪問HTML元素有較舊的方式，document的getElementSByClassName()和getElementById()，但限定為有class或id的元素，前者的參數為包含該class名稱的字串，將返回HTML集合包含所有符合條件的元素，HTML集合為動態的類似array的資料類型，後者的參數為包含該id名稱的字串，將返回符合條件的元素。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const getFirstDiv = document.querySelector('div'); 
+console.log(getFirstDiv);//return &lt;div&gt;first div&lt;/div&gt;
+const getAllDiv = document.querySelectorAll('div'); 
+console.log(getAllDiv);//return NodeList[123]
+console.log(getAllDiv[0]);//return &lt;div&gt;first div&lt;/div&gt;
+const getAllDivByClassName = document.getElementsByClassName('div-class');
+console.log(getAllDivByClassName);//return HTMLCollection[123]
+console.log(getAllDivByClassName[0]);//return &lt;div&gt;first div&lt;/div&gt;
+const getDivById = document.getElementById('div-id');
+console.log(getDivById);//return &lt;div&gt;first div&lt;/div&gt;</pre>
+                        </div>
+                    </section>
+                    <!-- 10.Modify element classes -->
+                    <section id="chapter-10">
+                        <h2>10.Modify element classes</h2>
+                        <p>
+                            要訪問特定元素的classes，可使用Element.className property或Element.classList property，className的值為該元素的class屬性值，所以若有兩個class，也只會返回一個字串值，其中以空格分離兩個class，該property會命名為className，因為可能會與class關鍵字造成衝突，在react中，className有其他含義需要注意。classList是一個唯讀屬性，返回包括該元素class屬性內容的動態DOMTokenList集合， DOMTokenList有四個method可以使用，便可用來改變class的值，add()該參數設置要加入DOMTokenList的token，可不只一個，按照順序添加到該List的最後方，remove()該參指定要刪除的token，可設置多個參數，刪除多個指定class，replace()該第一個參數為要被取代的class，第二個參數是新的class，若找不到要取代的token，將返回false，且不進行其他動作，toggle()中，第一個參數為要toggle的token，第二個參數為可選的，為布林值，如果是true將新增第一參數的token至list，如果是false將刪除第一參數的token從list，若沒有第二參數將根據指定token是否已在列表去進行刪除或增加，無論有無第二參數，最後結果若為刪除會返回false，若為增加會返回true。
+                        </p>
+                    </section>
+                    <!-- 11.Properties related to attributes -->
+                    <section id="chapter-11">
+                        <h2>11.Properties related to attributes</h2>
+                        <p>
+                            JavaScript中Element有一些property與attributes相關，Element的attributes property會返回一個NamedNodeMap(沒有特定順序，可用index訪問特定attribute。)，為一個包括與該節點相關的所有attribute節點的動態集合，每個節點都是一個鍵值對的表示形式。Element.hasAttribute() method，返回一個布林值，用於表示該元素是否有指定的attribute(用第一參數指定)，Element.getAttribute()將返回該元素指定attribute(第一參數，參數會自動小寫化)的值，若沒有該屬性名稱返回null，若使用該method返回nonce屬性，將自動隱藏成空字串，nonce屬性值需使用nonce property訪問，且該property只能使用於腳本元素，Element.setAttribute()method，可用來設定該元素指定attribute(可新增尚未存在的attribute)的值，第一參數為指定的attribute name會自動轉換成小寫，第二參數為要設定的attribute value，若attribute為boolean attribute，存在元素上時，該值為true，設置時通常將值設為空字串（""）或屬性的名稱，使用null並不會刪除會轉換為字串，也代表true。若要移除attribute使用Element.removeAttribute() method，參數為所指定該元素要刪除的attribute。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+html檔案
+&lt;div data-test-a="a" data-test-b="b" data-test-c="c"&gt;test&lt;/div&gt;
+
+//console
+const testDiv=document.querySelector("div");
+console.log(testDiv.attributes) ;
+/* log:  NamedNodeMap {
+    0: data-test-a, 
+    1: data-test-b, 
+    2: data-test-c, 
+    data-test-a: data-test-a, 
+    data-test-b: data-test-b, 
+    data-test-c: data-test-c, 
+    length: 3}
+*/
+console.log(testDiv.hasAttribute("data-test-b"));// log true
+console.log(testDiv.getAttribute("data-test-b"));// log b
+testDiv.setAttribute("data-test-b","B")
+console.log(testDiv.getAttribute("data-test-b"));// log B
+testDiv.removeAttribute("data-test-b");
+console.log(testDiv.getAttribute("data-test-b"));//log null</pre>
+                        </div>
+                    </section>
+                    <!-- 12.Access element style -->
+                    <section id="chapter-12">
+                        <h2>12.Access element style</h2>
+                        <p>
+                            有兩種方式可以訪問元素的樣式。
+                        </p>
+                        <h3>style property</h3>
+                        <p>
+                            該property是唯讀屬性，會返回一個動態CSSStyleDeclaration物件，該物件包含該元素所有內聯樣式鍵(name)值對的列表，因為在JavaScript的檔案中，所以CSS style property name會轉換成camelCase，沒有設定的CSS inline style property name，也會出現在該列表，但是對應值會是空字串，其中一個property name為cssText，該值會相當於整個style attribute的值，該物件還有length property，會相當於內聯樣式(非簡寫)的數量，並可用index根據寫入的順序訪問特定的property。因為element的style property是唯讀的，所以不能直接賦值在該property，賦值的動作，會更改cssText的值，並影響該元素的內聯樣式，若要設定樣式也可直接設定CSSStyleDeclaration物件的property(對應特定CSS style property)。
+                        </p>
+                        <h3>getComputedStyle method</h3>
+                        <p>
+                            window.getComputedStyle() method，會返回一個動態CSSStyleDeclaration物件，該物件會包含某個元素(該方法第一參數，第二參數為可選的用來指定pseudo element，省略第二參數或設置值為null，代表不是pseudo element)在應用所有積極樣式表，並解析任何基本計算後的所有CSS property，相對的值通常是計算值(百分比尚未轉換為實際渲染的值)，部分CSS property會是使用值(經過所有計算和佈局後的值)。該物件的length也是只計算非簡寫樣式property的數量。若要訪問該物件的特定樣式property，可使用點記法、括號記法，或是使用getPropertyValue()method，將可訪問特定CSS property的值(設為參數)，參數的形式需要為kebab-case形式。
+                        </p>
+                    </section>
+                    <!-- 13.Add DOM elements -->
+                    <section id="chapter-13">
+                        <h2>13.Add DOM elements</h2>
+                        <p>
+                            若是使用template literal，直接添加到其他元素的innerHtml，會覆蓋該元素裡原本的內容，所以可用其他method，添加元素到另一個元素內。Element.append()，可將字串或Node物件(參數，可多個)插入到該Element的最後一個子節點後，該method無返回值，Element.prepend()，可在該元素的第一個子節點前插入字串或Node物件(參數，可多個)，也無返回值。Node.appendChild()該方法可以用來添加節點(參數，只能一個)到指定節點的子節點列表末端，若該節點已經存在於別的位置將移除，並插入到新位置，該method不能附加字串，且會返回插入的節點。Node.insertBefore()，可插入節點(第一參數)到執行該method的物件，並且可設定該插入節點位置在特定節點(第二參數)之前，若第二參數為null，插入節點的位置將會是父節點的子節點列表最後方，雖然沒有insertAfter()method，但可以使用insertBefore()配合Node.nextSibling達到相同效果。Node.replaceChild()method，執行該method的物件，一個指定的子節點(第二參數)皆被替換成新的節點(第一參數)，該method會返回被替換的node，有另一個替換method，為Element.replaceWith()，更為直觀，執行method的元素將被替換成指定node或字串(參數，可多個)，不會返回值。使用Node.removeChild()可以刪除執行該method物件的指定子節點(參數)，若不知道刪除的元素的父節點，可使用parentNode property。Element.insertAdjacentElement() method，會將給定的元素node(第二參數)插入到執行該方法的元素的指定位置(第一參數)，第一參數有四種值，beforebegin表示插入目標元素的前面，afterbegin表示插入目標元素裡第一個子節點之前，beforeend表示插入目標元素內部最後一個子節點之後，afterend插入到目標元素本身後面，會返回插入的node或null。如以下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+HTML檔案
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+    content
+&lt;/div&gt;
+
+//JavaScript
+const myDiv = document.querySelector("div");
+const newHeader = document.createElement("h1");
+const newSubheader = document.createElement("h2");
+newHeader.innerHTML = "cool header";
+const newParagraph = document.createElement("p");
+newParagraph.innerHTML = "cool paragraph";
+const newParagraph2 = document.createElement("p");
+const newParagraph3 = document.createElement("p");
+const newParagraphText = document.createTextNode("one paragraph");
+
+myDiv.prepend(newHeader);
+myDiv.append(newParagraph);
+const myDivState1 = myDiv.cloneNode(true);
+console.log(myDivState1);
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+content
+&lt;p&gt; cool paragraph&lt;/p&gt;
+&lt;/div&gt;
+*/
+myDiv.appendChild(newParagraph3).innerHTML="three paragraph"
+myDiv.insertBefore(newParagraph2,newParagraph3).innerHTML="two paragraph"
+myDiv.insertBefore(newSubheader,newHeader.nextSibling).innerHTML="cool subheader"
+const myDivState2 = myDiv.cloneNode(true);
+console.log(myDivState2);
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+&lt;h2&gt; cool subheader&lt;/h2&gt;
+content
+&lt;p&gt; cool paragraph&lt;/p&gt;
+&lt;p&gt; two paragraph&lt;/p&gt;
+&lt;p&gt; three paragraph&lt;/p&gt;
+&lt;/div&gt;
+*/
+newParagraph.replaceChild(newParagraphText,newParagraph.firstChild);
+newSubheader.replaceWith(newHeader);
+myDiv.removeChild(newParagraph3).innerHTML= "three paragraph out";
+myDiv.insertAdjacentElement("afterend",newParagraph3)
+console.log(document.querySelector("body"));
+
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+content
+&lt;p&gt; one paragraph&lt;/p&gt;
+&lt;p&gt; two paragraph&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt; three paragraph&lt;/p&gt;
+*/</pre>
+</div>
+                    </section>
+                </main> 
             </div>
         </div>
-        <foorter>
+        <footer>
 
-        </foorter>
+        </footer>
     </body>
 </html>
