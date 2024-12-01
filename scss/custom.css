@@ -6121,6 +6121,7 @@ body {
 
 header {
   height: 70px;
+  z-index: 1;
 }
 
 .nav-brand {
@@ -6128,5 +6129,7 @@ header {
 }
 
 #chapter-navbar {
-  top: 70px;
+  top: 80px;
+  height: 80vh;
+  overflow: auto;
 }/*# sourceMappingURL=custom.css.map */
