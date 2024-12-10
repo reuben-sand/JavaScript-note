@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Note of Sass">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sass Note</title>        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/custom.css">
+        <script src="js/script.js" defer></script>
+        <script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    </head>
+</html>
+<body class="bg-fantasy text-primary position-relative" data-bs-target="#chapter-nav" data-bs-spy="scroll" tabindex="0">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-scary text-center">
+            <div class="container">
+                <a class="navbar-brand text-center text-500 h5" href="/">Reuben<br>Send&nbsp;Wishes</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div style="flex-basis:100%" class="collapse navbar-collapse justify-content-center text-center lh-sm" id="navbarCollapse">
+                    <div class="navbar-nav navbar-nav-scroll ">
+                        <a class="nav-link px-xl-3 " aria-current="page" href="/">Home</a>
+                        <a class="nav-link px-xl-3" href="/html-note.html">HTML Note</a>
+                        <a class="nav-link px-xl-3" href="/css-note.html">CSS Note</a>
+                        <a class="nav-link px-xl-3 active" href="/sass-note.html">Sass Note</a>
+                        <a class="nav-link px-xl-3" href="">Bootstrap Note</a>
+                        <a class="nav-link px-xl-3" href="/javascript-note.html">JavaScript Note</a>
+                    </div>
+                </div>
+                <span class="navbar-text text-nowrap">魯本的三明治筆記</span>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-3">
+        <div class="row">
+            <main class="col-12 col-lg-9">
+                <h1>Sass note</h1>
+                <p>
+                    Sass全名為 Syntactically Awesome Style Sheets，是一種CSS預處理器，主要用途是改善CSS的撰寫和維護效率。Sass包含兩種語法，一種是Sass，另一種是SCSS，Sass又稱為indented format，擴展名為.sass，特色為去除分號和大括號，由縮近來表示嵌層關係，普通CSS不能運用在此檔案。而SCSS，仍然保留分號和大括號，100%相容普通CSS。
+                </p>
+                <!-- 1.Sass變數 -->
+                <section id="chapter1">
+                    <h2>1.Sass變數</h2>
+                    <p>
+                        在Sass若要創造變數，使用 $變數名稱:變數值 宣告，在{}外宣告的變數為global變數，在{}內宣告的變數為local變數，若是定義了一個global變數，又在某個宣告塊內重新定義一個同名的local變數，在該宣告塊內local變數會覆蓋global變數，該狀況稱為shadowing。也可以在宣告塊內重新定義global變數，只需要在宣告變數的後面加上!global(該宣告稱為global flag)。在變數名稱中的underscore相當於hyphen，如:$a-b相當於$a_b。
+                    </p>
+                </section>
+                <!-- 2.Sass嵌套語法 -->
+                <section id="chapter2">
+                    <h2>2.Sass嵌套語法</h2>
+                    <p>
+                        在Sass中可以嵌套CSS選擇器，如同html元素的嵌套和視覺層式，由於Sass會編譯成CSS，因此在Sass中使用大量嵌套規則（nested rules）可能會導致編譯生成的 CSS 體積變大，並且增加編譯所需的時間。Sass的選擇器嵌套層次如下所示:
+                    </p>
+                    <pre>
+        header
+            width: 80%
+            margin:0 auto
+        h1    
+            font-size: 50px
+        main
+            width: 80%
+            margin:0 auto
+            h2
+                font-size: 36px
+                margin-bottom:0</pre>
+                </section>
+                <!-- 3.partials -->
+                <section id="chapter3">
+                    <h2>3.partials</h2>
+                    <p>
+                        在Sass中可以建立只包含小片段Sass code的partials，這些partials可用在其他的Sass檔案中，這是模組化Sass的方法，使Sass更有效率，且易於維護，命名partials檔案，需使用_在前方，相較於一般的Sass檔案，如:_partial.sass，讓Sass知道這不需要編譯成CSS。partials與@use rule一起使用，若要在主要的Sass(要編譯成CSS的檔案)引用partials檔案裡的資料，只需要在主要的Sass檔案中，上方輸入 @use(空格)'檔案名稱(不需要副檔名和leading underscore)'，接著就可以在檔案中使用以檔案名稱為基礎命名空間裡的資料(變數、mixins、函數)，也能夠將該命名空間修改為非檔案名稱，只需要使用@use時接著 '檔案名稱' as 自訂名稱。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        //_partial.sass檔案裡
+        
+        $reuben: red
+        
+        body
+            color: $reuben</pre>
+                        <pre>
+        //main.sass檔案裡
+        @use 'partial'
+        
+        h1
+            color: partial.$reuben</pre>
+                    </div>
+                </section>
+                <!-- 4.parent selector -->
+                <section id="chapter4">
+                    <h2>4.parent selector</h2>
+                    <p>
+                        在一個selector裡面，使用selector時，可以利用&符號表示該父選擇器名稱，但當使用該符號時，該選擇器將不會與父選擇器建立嵌套關係。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        //Sass
+        .btn
+            &-success
+                border: 1px solid black
+            :hover 
+                background:black</pre>
+                        <pre>
+        //轉譯後的CSS
+        .btn-success{
+                border: 1px solid black;
+        }
+        .btn:hover{
+                background:black
+        }</pre>
+                    </div>
+                </section>
+                <!-- 5.@mixin -->
+                <section id="chapter5">
+                    <h2>5.@mixin</h2>
+                    <p>
+                        @mixin功能，類似於javascript內的function，但是不能返回值，可設定參數運用於特定的情境，或只是設定一些可重複使用的樣式，使用方式為輸入@mixin mixin名稱($參數1,$參數2){}，也可為參數設立預設值，如:參數1:參數預設值。設定的mixins可使用@include召喚，輸入@include mixin名稱 ，或是@include mixin名稱(引數) ，如以下:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        //Sass
+        @maxin CoolMaxin($cool-color:aquamarine)
+            color: $cool-color
+        h1
+            @include CoolMaxin(pink)</pre>
+                        <pre>
+        //轉譯後的CSS
+        h1{
+            color:pink;
+        }</pre>
+                    </div>
+                </section>
+                <!-- 6.@extend -->
+                <section id="chapter6">
+                    <h2>6.@extend</h2>
+                    <p>
+                        Sass的@extend功能，可將已經創造好的選擇器樣式，直接應用給其他選擇器，在其他選擇器中，輸入@extend 要引用樣式的選擇器名稱。如以下示範:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        //Sass
+        h1
+            color: black
+        h2
+            @extend h1</pre>
+                        <pre>
+        //轉譯後的CSS
+        h1{
+            color:black;
+        }
+        h2{
+            color:black;
+        }</pre>
+                    </div>
+                </section>
+                <!-- 7.interporation-->
+                <section id="chapter7">
+                    <h2>7.interpolation</h2>
+                    <p>
+                        Sass的interpolation功能，允許開發者在Sass表中動態插入變數或表達式，若要在property name、selector name、media feature(值，非名稱)使用Sass變數，需要使用插值才能正確編譯。而在comments中，使用interpolation，該變數值才會被編譯，插值使用#{}包含變數值或表達式，如以下示範:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        //Sass
+        $suc: success
+        $bg: background
+        $width: 768
+        .btn-#{$suc}
+            #{$bg}: black  
+        @media (min-width: #{$width}px) {}</pre>
+                        <pre>
+        //轉譯後的CSS
+        .btn-success{
+            background: black
+        }  
+        @media (min-width: 768px) {}</pre>
+                    </div>
+                </section>
+                <!-- 8.placeholder selector-->
+                <section id="chapter8">
+                    <h2>8.placeholder selector</h2>
+                    <p>
+                        placeholderer selector是一種特殊的選擇器以%後接著選擇器名稱，而該選擇器的樣式規則不會輸出到轉譯後的CSS檔案，但是使用@extend仍然可以將該選擇器的樣式規則，給其他選擇器使用。使用@extend應用的樣式規則，在轉譯後的CSS檔案裡的位置，將會在@extend所指定的選擇器的位置。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        %noInput
+            color:red
+        h1
+            @extend %noInput
+        </pre>
+                        <pre>
+        h1
+            color:red
+        </pre>
+                    </div>
+                </section>
+                <!-- 9.comment -->
+                <section id="chapter9">
+                    <h2>9.comment</h2>
+                    <p>
+                        在Sass檔案中可以使用CSS comments，也就是使用/*和*/等字符包括要評論的內容，若是在多行comment時，開始和結束的星號要水平對齊。也可以使用javascript comment，即在comment內容前加上//符號，但是javascript comments轉譯為CSS檔案後會消失，而CSS comments在轉譯成壓縮模式的CSS才會消失，若要避免在壓縮模式時消失，須在/*後加上!，稱為force publish comment。如以下示範:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        Sass檔案內
+        /* single CSS comment */
+        /*  
+            mutiple CSS comment
+         */
+        // javascript comment
+        /*! force publish comment */</pre>
+                        <pre>
+        CSS檔案內
+        /* single CSS comment */
+        /* mutiple CSS comment 
+        
+         */
+        /*! force publish comment */
+        </pre>
+                        <pre>
+        壓縮模式的CSS檔案內
+        /*! force publish comment */
+        </pre>
+                    </div>
+                </section>
+                <!-- 10.Sass list -->
+                <section id="chapter10">
+                    <h2>10.Sass list</h2>
+                    <p>
+                        在Sass檔案中可以使用list(類似array)儲存多個值，從index 1開始(非常見的index 0開始)，也可以使用負數(從後面開始)，不同值之間可使用逗號或空格分隔，若一個值包含空格需使用quote包括，可以使用()或[]包含所有值，也可不用括號包括，list不可被更改，只能當作原型製作新的list。如以下示範:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        &lt;span class="testColor"&gt;abcd&lt;/span&gt;
+        </pre>
+                        <pre>
+        $listFuck:red ,blue ,green
+        $listFuck2:[green ,red ,blue]
+        $listFuck3:(blue ,green ,red)
+        .testColor
+            color: nth($listFuck,1)
+            background-color: nth($listFuck2,1)
+            border:2px solid nth($listFuck3,1)</pre>  
+                    </div>
+                    <span class="testColor">abcd</span>
+                </section>
+                <!-- 11.Sass list function -->
+                <section id="chapter11">
+                    <h2>11.Sass list function</h2>
+                    <p>
+                        在Sass有提供多種functions，使我們能夠用list撰寫強大的樣式庫，或讓應用程式的樣式表更簡潔，易於維護。length($list)function，將返回該list的長度，nth($list,$n)function，將返回該列表位於index$n的值，set-nth($list,$n,$value)function，將返回一個list的副本其中位於index$n的值由$value取代。index($list,$value)function，將返回該值所位於的index值，若存在於多個位置，以最靠前的為主。append($list,$value[,$separator])function，將返回list的副本，並將$value添加到列表最後方，第三個參數是可選的，代表該list副本的值如何分隔，該值可是auto(預設) or comma or space or slash，auto值代表返回的副本將正本的分隔符號，若正本沒有則使用空格，join($list1,$list2[,$separator,$bracketed])function將返回一個新list，其包含的值為第一列表的值後接著第二列表的值，$separator是可選的，代表該list副本的值如何分隔，該值可是auto(預設) or comma or space or slash，auto值代表返回的副本將正本的分隔符號，若第一列表沒有則使用第二列表，兩者都沒有則使用空格，而$bracketed也是可選的，代表是否使用方括號包括列表，值可以是auto or true or false，若為auto將根據將如同第一列表，zip(list1...)function將返回一個含有子列表的新列表，新列表長度如同引數中最短的列表，引數中不同列表的相同index位置元素，將合併成新列表的子列表，並按照引數順序排列。is-bracketed($list)將返回一個布林值表示該list是否有括號。list-separator($list)，返回該列表使用的分隔符號名稱。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        Sass檔案中
+        $list-test-fuc1:abc ,def
+        $list-test-fuc2:zzz ,xxx
+        /*
+            #{length($list-test-fuc1)}
+            #{nth($list-test-fuc1,2)}
+            #{set-nth($list-test-fuc1,2,hah)}
+            #{index($list-test-fuc1,def)}
+            #{append($list-test-fuc1,ghi,comma)}
+            #{join($list-test-fuc1,$list-test-fuc2,comma,true)}
+            #{zip($list-test-fuc1,$list-test-fuc2)}
+            #{is-bracketed($list-test-fuc1)}
+            #{list-separator($list-test-fuc1)}
+         */</pre>
+                        <pre>
+        CSS檔案中
+        /*  2
+        *  def
+        *  abc, hah
+        *  2
+        *  abc, def, ghi
+        *  [abc, def, zzz, xxx]
+        *  abc zzz, def xxx
+        *  false
+        *  comma
+        * */
+        </pre>
+                    </div>
+                </section>
+                <!-- 12.@each rule -->
+                <section id="chapter12">
+                    <h2>12.@each rule</h2>
+                    <p>
+                        @each rule將給列表每個值賦予一個變數名稱，並運用在後面接著的宣告塊中。如:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        &lt;span class="each-test-grey"&gt;123&lt;/span&gt;
+        &lt;span class="each-test-black"&gt;456&lt;/span&gt;
+        </pre>  
+                        <pre>
+        $each-test:grey ,black
+        @each $btn-type in $each-test
+            .each-test-#{"$btn-type"}
+                background:$btn-type
+        </pre>
+                    </div>
+                    <span class="each-test-grey">123</span>
+                    <span class="each-test-black">456</span>
+                </section>
+                <!-- 13.@for rule -->
+                <section id="chapter13">
+                    <h2>13.@for rule</h2>
+                    <p>
+                        Sass檔案中有@for rule可以迭代數字從小到大或從大到小，會先指定宣告一個本地變數，讓每個數字套用，語法為@for $localvar from 1 to 5(不包含5)，或@for $localvar from 1 through 5(包含5)，如以下示範:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+            &lt;div class="for-test"&gt;
+        &lt;h6&gt;123&lt;/h6&gt;
+        &lt;h4&gt;456&lt;/h4&gt;
+            &lt;/div&gt;
+        </pre>  
+                        <pre>
+        Sass檔案
+        $for-test:grey ,black
+        .for-test
+            @for $i from 4 through 6
+                @if $i != 5 
+                    h#{$i}
+                        font-size: ($i * 6)px
+                        color: nth($for-test,(math.div($i, 2)-1))
+                        margin:0</pre>
+                        <pre>
+        轉譯成CSS
+        .for-test h4 {
+            font-size: 24px;
+            color: grey;
+            margin: 0;
+            }
+            .for-test h6 {
+            font-size: 36px;
+            color: black;
+            margin: 0;
+            }</pre>
+                    </div>
+                    <div class="for-test">
+                        <h6>456</h6>
+                        <h4>123</h4>
+                    </div>
+                </section>
+                <!-- 14.Sass maps -->
+                <section id="chapter14">
+                    <h2>14.Sass maps</h2>
+                    <p>
+                        maps是一種由鍵值對組成的資料結構，但若要在Sass中使用maps模組需先使用@use "sass:map"引用該模組，每個key需要是唯一，value則可重複，maps需要使用()包括，每個map也都是list，也不能被更改，其中的鍵值對相當於子列表，鍵值最好用引號包括，避免被當作非字串的類型。
+                    </p>
+                </section>
+                <!-- 15.maps function -->
+                <section id="chapter15">
+                    <h2>15.maps function</h2>
+                    <p>
+                        Sass中有提供許多配合maps使用的function，map(.or-)get($map,$key)function，將返回特定key對應的value，map(.or-)set($map,$key,$value)function,將返回一個map副本，增加新的鍵值對在後面，若鍵值對已經存在，將替換該值，map(.or-)merge($map1,$map2)function，將創造一個新的map，第二map的最前鍵值對緊接著第一map的最後鍵值對，如果有相同的key，新的map的該key的對應值如同第二map，map.deep-merge($map1,$map2) function，類似merge，但是要合併的map若是有重複的鍵，而對應值是個子map，那將合併子map裡的鍵值對，而不會覆蓋(merge將覆蓋)。map.deep-remove($map,$key[,$keys...]) function，將返回一個新的map，刪除指定的鍵值對，若有三個參數以上，代表嵌層關係，右邊的$keys在左邊的$key對應的值當中，以此類推，所以刪除的鍵值對將根據最右邊的key，map(-or.)remove($map,$key[,$keys...]) function，刪除所有指定key的鍵值對。map(-or.)keys($map) function,將返回一個逗號分隔清單，其中包含該map所有keys。map(-or.)values($map) function，將返回一個逗號分隔清單，其中包含該map所有values。map-has-key($map,$key[,$keys...]) function，將返回布林值，表示該指定的key是否在map中，若有三個參數以上，代表嵌層關係，右邊的$keys在左邊的$key對應的值當中，以此類推，若map不符合參數表示的嵌層結構，也將返回false。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        Sass檔案中
+        $map-test1: (key1: value1, key2: (subKey1: subValue1))
+        $map-test2: (key2: (subKey2: subValue2, subKey3: subValue3), key3: value3)
+        @debug map.get($map-test1,key1)
+        @debug map.set($map-test1,key1,value4)
+        @debug map-merge($map-test1,$map-test2)
+        @debug map.deep-merge($map-test1,$map-test2)
+        @debug map.deep-remove($map-test2,key2,subKey2)
+        @debug map.remove($map-test2,subKey2)
+        @debug map-remove($map-test2,key2)
+        @debug map.keys($map-test1)
+        @debug map.values($map-test1)
+        @debug map.has-key($map-test2,key2,subKey2)</pre>
+                        <pre>
+        output
+        
+        value1
+        (key1: value4, key2: (subKey1: subValue1))
+        (key1: value1, 
+        key2: (subKey2: subValue2, subKey3: subValue3), key3: value3)
+        (key1: value1, 
+        key2: (subKey1: subValue1, subKey2: subValue2, subKey3: subValue3),
+        key3: value3)
+        (key2: (subKey3: subValue3), key3: value3)
+        (key2: (subKey2: subValue2, subKey3: subValue3), key3: value3)
+        (key3: value3)
+        key1, key2
+        value1, (subKey1: subValue1)
+        true
+        </pre>
+                    </div>
+                </section>
+                <!-- 16.maps and @each -->
+                <section id="chapter16">
+                    <h2>16.maps and @each</h2>
+                    <p>
+                        @each也可以用來遍歷maps的每個鍵值對，只需要宣告兩個本地變數供每個鍵值對使用如:
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        &lt;span class="map-each-test1"&gt;123&lt;/span&gt;
+        &lt;span class="map-each-test2"&gt;123&lt;/span&gt;</pre>
+                        <pre>
+        $map-each-test:('map-each-test1':'green','map-each-test2':'red')
+        @each $key, $value in $map-each-test
+            btn-#{$key}
+                color:$value</pre>
+                    </div>
+                    <span class="map-each-test1">123</span>
+                    <span class="map-each-test2">123</span>
+                </section>
+                <!-- 17.arithmetic operator -->
+                <section id="chapter17">
+                    <h2>17.arithmetic operator</h2>
+                    <p>
+                        Sass支援各種運算operator，addition(+)、subtraction(-)、multiplication(*)、remainder(%)，除了/，使用/來表示除法的功能即將移除，目前，雖然 Sass 仍然支持 / 作為除法運算符，但必須有一種方法來區分 / 作為分隔符和 / 作為除法。為了使這一點正常運作，如果兩個數字之間用 / 分隔，Sass 將打印結果為斜線分隔的格式，而不是進行除法，除非滿足以下條件之一：1.任一表達式不是純數字。2.結果被儲存在變數中或由函數返回。3.運算被括號包圍，除非這些括號位於包含該運算的列表之外。4.結果被用作另一個運算的一部分（除了 /）。5.結果被用於一次計算的返回值。若要使用除法，可以使用math.div() function代替，該函數的第一參數代表被除數，第二參數代表被除數，需要先輸入@use 'sass:math'才可以使用。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        Sass檔案中
+        $arithmetic-test:30
+        /*
+            #{$arithmetic-test+1 }
+            #{$arithmetic-test - 1 }
+            #{$arithmetic-test*2 }
+            #{$arithmetic-test/3+1 }
+         */</pre>
+                        <pre>
+        /*  31
+        *  29
+        *  60
+        *  11
+        * */</pre>
+                    </div>
+                </section>
+                <!-- 18.equality operator and relational operator -->
+                <section id="chapter18">
+                    <h2>18.equality operator and relational operator</h2>
+                    <p>
+                        Sass中可使用equality operator and relational operator，用來判斷表達式間的大小關係，equality可以使用==在兩個表達式之間判斷是否相等，或使用!=判斷是否不相等，要判斷相等首先要是同類型的值，而針對不同類型值的有不同的判斷，數值，需有相同單位或是單位轉換後值相同，字串，有沒有引號不影響判斷，顏色，在同一空間有相同通道值，或是在舊版顏色空間具有相同的RGBA通道值，列表，除了值，分隔符號和是否用括號包括(括號類型也需要相等)，也必須一樣，map，鍵值須相等，函數，引數和函數名需要一樣，定義函數的作用域也需相同。
+                    </p>
+                </section>
+                <!-- 19.@if and @else if and @else -->
+                <section id="chapter19">
+                    <h2>19.@if and @else if and @else</h2>
+                    <p>
+                        equality operator and relational operator，常常當作條件語句的執行條件，可配合@if和@else。@if的用法為，輸入@if &lt;expression&gt;換行和縮進再接宣告塊，當表達式為true才執行，宣告塊後還可以接著(與@if垂直對齊)@else和(換行+縮進)另一個宣告塊，代表若前面的表達式為false時，所要執行的動作，也可以使用@else if在中間設立其他的條件，和要執行的動作，用法如同@if。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        &lt;span class="if-test-red"&gt;red&lt;/span&gt;
+        &lt;span class="if-test-green"&gt;green&lt;/span&gt;
+        &lt;span class="if-test-black"&gt;black&lt;/span&gt;</pre>
+                        <pre>
+        $if-test: red , green , black
+        @each $color in $if-test
+            @if $color == red
+                .if-test-#{$color}
+                    color : red
+            @else if color == green
+                .if-test-#{$color} 
+                    color : green
+            @else
+                .if-test-#{$color} 
+                    color : black</pre>
+                    </div>
+                    <span class="if-test-red">red</span>
+                    <span class="if-test-green">green</span>
+                    <span class="if-test-black">black</span>
+                </section>
+                <!-- 20.color module -->
+                <section id="chapter20">
+                    <h2>20.color module</h2>
+                    <p>
+                        Sass有很多顏色相關功能，需要添加color模組才能使用，輸入@use 'sass:color'，有很多顏色相關的內建函數，color.adjust()function，color.change()function，color.scale()function，這三種函數的參數，第一參數為需要改變或取代的顏色值，後面的參數為要改變的通道值對和指定空間，通道可以是:$red、$green、$blue、$hue、$saturation、$lightness、$whiteness、$blackness、$x、$y、$z、$chrome、$alpha，$space其值可以用來指定空間。color.adjust()function，是將原本值根據提供值增加或減少。color.change()function，是以提供值取代原本值。color.scale()function，是以原本值加上原本值*提供值。若要查看特定channel的值，使用color.channel()function，第一參數為要查看的顏色值，第二參數為要查看的channel名稱，第三參數是可選的，為指定色彩空間。以下三種function，不需添加在色彩模組，顏色值需要在舊版顏色空間，darken()function，可以使顏色變暗，第一參數為顏色值，第二為要降低的明度量(1~100%)，(相當於hsl空間的lightness頻道)。lighten()function，可以使顏色變亮， 第一參數為顏色值，第二為要增加的明度量(1~100%)，(相當於hsl空間的lightness頻道)。transparentize()function，第一參數為顏色值，第二參數為要減少的透明度(相當於alpha頻道，0~1)。
+                    </p>
+                    <div class="flex-container">
+                        <pre>
+        &lt;span class="color-test1"&gt;original purple&lt;/span&gt;
+        &lt;span class="color-test2"&gt;adjust red&lt;/span&gt;
+        &lt;span class="color-test3"&gt;change green&lt;/span&gt;
+        &lt;span class="color-test4"&gt;scale blue&lt;/span&gt;
+        &lt;span class="color-test5"&gt;adjust hue&lt;/span&gt;
+        &lt;span class="color-test6"&gt;change saturation&lt;/span&gt;
+        &lt;span class="color-test7"&gt;scale lightness&lt;/span&gt;
+        &lt;span class="color-test8"&gt;transparentize&lt;/span&gt;
+        </pre>
+                        <pre>
+        @use 'sass:color'
+        .color-test1
+            color: purple
+        @for $i from 2 through 7
+            color-test#{$i}
+                @if ($i % 3) == 2
+                    @if ($i &lt; 5) 
+                        color : color.adjust(purple,$red,-50)
+                    @else 
+                        color : color.adjust(purple,$hue,-50)
+                @else if ($i % 3) == 0
+                    @if ($i &lt; 5) 
+                        color : color.change(purple,$green,50)
+                    @else 
+                        color : color.change(purple,$saturation,20%)
+                @else ($i % 3) == 1
+                    @if ($i &lt; 5) 
+                        color : color.scale(purple,$blue,50)
+                    @else 
+                        color : color.scale(purple,$lightness,20%)
+        .color-test8
+            color : transparentize(purple,0.5)
+        </pre>
+                    </div>
+                    <div class="container-color-test">
+                        <span class="color-test1">original purple</span>
+                        <span class="color-test2">adjust red</span>
+                        <span class="color-test3">change green</span>
+                        <span class="color-test4">scale blue</span>
+                        <span class="color-test5">adjust hue</span>
+                        <span class="color-test6">change saturation</span>
+                        <span class="color-test7">scale lightness</span>
+                        <span class="color-test8">transparentize</span>
+                    </div>
+                </section>
+            </main>
+            <aside class="d-none d-lg-block col-lg-3">
+                <nav id="chapter-nav" class="nav nav-pills flex-column flex-nowrap align-items-start justify-content-start sticky-top overflow-auto fs-7">
+                    <a class="nav-link" href="#chapter1">1.Sass變數</a>
+                    <a class="nav-link" href="#chapter2">2.Sass嵌套語法</a>
+                    <a class="nav-link" href="#chapter3">3.partials</a>
+                    <a class="nav-link" href="#chapter4">4.parent selector</a>
+                    <a class="nav-link" href="#chapter5">5.@mixin</a>
+                    <a class="nav-link" href="#chapter6">6.@extend</a>
+                    <a class="nav-link" href="#chapter7">7.interporation</a>
+                    <a class="nav-link" href="#chapter8">8.placeholder selector</a>
+                    <a class="nav-link" href="#chapter9">9.comment</a>
+                    <a class="nav-link" href="#chapter10">10.Sass list</a>
+                    <a class="nav-link" href="#chapter11">11.Sass list function</a>
+                    <a class="nav-link" href="#chapter12">12.@each rule</a>
+                    <a class="nav-link" href="#chapter13">13.@for rule</a>
+                    <a class="nav-link" href="#chapter14">14.Sass maps</a>
+                    <a class="nav-link" href="#chapter15">15.maps function</a>
+                    <a class="nav-link" href="#chapter16">16.maps and @each</a>
+                    <a class="nav-link" href="#chapter17">17.arithmetic operator</a>
+                    <a class="nav-link" href="#chapter18">18.equality operator and relational operator</a>
+                    <a class="nav-link" href="#chapter19">19.@if and @else if and @else</a>
+                    <a class="nav-link" href="#chapter20">20.color module</a>
+
+                </nav>
+            </aside>
+        </div>
+    </div>  
+</body>

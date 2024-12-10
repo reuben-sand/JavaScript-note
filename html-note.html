@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Note of HTML">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>HTML Note</title>        
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/custom.css">
+		<script src="js/script.js" defer></script>
+		<script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>
+	</head>
+  	<body class="bg-fantasy text-primary position-relative" data-bs-spy="scroll" data-bs-target="#chapter-navbar" tabindex="0">
+    	<header class="sticky-top">
+      		<nav class="navbar navbar-expand-lg navbar-dark bg-scary text-center">
+          		<div class="container">
+              	<a class="navbar-brand text-center text-500 h5" href="/">Reuben<br>Send&nbsp;Wishes</a>
+              	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                  	<span class="navbar-toggler-icon "></span>
+              	</button>
+              	<div style="flex-basis:100%" class="collapse navbar-collapse justify-content-center text-center lh-sm" id="navbarCollapse">
+                	<div class="navbar-nav navbar-nav-scroll ">
+                      	<a class="nav-item nav-link px-xl-3" aria-current="page" href="/">Home</a>
+                      	<a class="nav-item nav-link px-xl-3 active" href="/html-note.html">HTML Note</a>
+                      	<a class="nav-item nav-link px-xl-3" href="/css-note.html">CSS Note</a>
+                      	<a class="nav-item nav-link px-xl-3" href="/sass-note.html">Sass Note</a>
+                      	<a class="nav-item nav-link px-xl-3" href="">Bootstrap Note</a>
+                      	<a class="nav-item nav-link px-xl-3" href="/javascript-note.html">JavaScript Note</a>
+                  	</div>
+              	</div>
+              	<span class="navbar-text text-nowrap">魯本的三明治筆記</span>
+          		</div>
+      		</nav>
+  		</header>
+		<div class="container mt-3">
+			<div class="row">
+				<main class="col-12 col-lg-9">
+					<!--1.HTML的語法-->
+					<section id="chapter1">
+						<h2>1.HTML的語法</h2>
+							<h4>html中需用使用元素來定義網站各個部分</h4>
+						<p>
+							html語言的元素構成，以open tag開頭，以close tag結尾 (部分元素沒有close tag)，open tag使用<code>&lt;&gt;</code>包括元素的名稱，如:<code>&lt;p&gt;</code>，而close tag使用<code>&lt;&#47; &gt; </code>包括元素的名稱。如:<code>&lt;&#47;p&gt;</code>在open tag和close tag之間可放置元素的內容。如:文字或其他元素。
+						</p>
+						<h4>HTML的元素結構</h4>
+						<p>
+							前面提及html語言的元素中可以包括其他元素，形成嵌套結構，而瀏覽器會分析html檔案的元素結構，組成DOM(Document Object Model) tree，可以在developer tool查看，並會根據DOM tree，創建 accessibility tree。
+						</p>
+					</section>
+					<hr>
+					<!--2.段落元素-->
+					<section id="chapter2">
+						<h2>2.段落元素</h2>
+						<h4>什麼是段落元素?</h4>
+						<p>
+							段落元素是用來表示一段文字區塊的元素。從新的一行開始，是block元素。以word p當作element名稱。如: <code>&lt;p&gt;</code>content of element<code>&lt;&#47;p&gt;</code>
+						</p>
+					</section>
+					<hr>
+					<!--3.標題元素-->
+					<section id="chapter3">
+					  	<h2>3.標題元素</h2>
+					  	<h4>什麼是標題元素?</h4>
+					  	<p>
+							headline元素是用來表示網站中的標題或是子標題，預設為粗體，有6種元素可以表示。從語意的重要性大到小排列為<code>&lt;h1&gt;</code>headline 1<code>&lt;&#47;h1&gt;</code>到<br/><code>&lt;h6&gt;</code>headline 6<code>&lt;&#47;h6&gt;</code>，視覺上h1元素最大，h6元素最小。如:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;h1&gt;headline 1&lt;&#47;h1&gt;
+&lt;h2&gt;headline 2&lt;&#47;h2&gt;
+&lt;h3&gt;headline 3&lt;&#47;h3&gt;
+&lt;h4&gt;headline 4&lt;&#47;h4&gt;
+&lt;h5&gt;headline 5&lt;&#47;h5&gt;
+&lt;h6&gt;headline 6&lt;&#47;h6&gt;</pre>
+						---渲染後---
+							<div>
+								<h1>headline 1</h1>
+								<h2>headline 2</h2>
+								<h3>headline 3</h3>
+								<h4>headline 4</h4>
+								<h5>headline 5</h5>
+								<h6>headline 6</h6>
+							</div>
+						</div>
+					</section>
+					<hr>
+					<!--4.粗體與斜體-->
+					<section id="chapter4">
+					  	<h2>4.粗體與斜體</h2>
+					  	<h4>如何標記粗體?</h4>
+					  	<p>
+							有兩種元素可以把文字標記成粗體，分別是<code>&lt;strong&gt;&lt;&#47;strong&gt;</code>以及<code>&lt;b&gt;&lt;&#47;b&gt;</code>但兩者語意上有差別strong元素的語意有強調的意思，而b元素則沒有，會影響到無障礙設備的讀取。
+					 	</p>
+					  	<div class="displayEx">
+							<pre>&lt;strong&gt;bold&lt;&#47;strong&gt;</pre>---<strong>bold</strong>
+					  	</div>
+					  	<div class="displayEx">
+					  		<pre>&lt;b&gt;bold&lt;&#47;b&gt;</pre>---<strong>bold</strong>
+					  	</div>
+					  	<h4>如何標記斜體?</h4>
+					  	<p>
+							有兩種元素可以把文字標記成斜體，分別是<code>&lt;em&gt;&lt;&#47;em&gt;</code>以及<code>&lt;i&gt;&lt;&#47;i&gt;</code>但兩者語意上有差別em元素的語意有強調的意思，而i元素則沒有，會影響到無障礙設備的讀取。
+					  	</p>
+					  	<div class="displayEx">
+							<code>&lt;em&gt;italic&lt;&#47;em&gt;</code>---<em>italic</em>
+					  	</div>
+					  	<div class="displayEx">
+							<pre>&lt;i&gt;italic&lt;&#47;i&gt;</pre>---<i>italic</i>
+					  	</div>
+					</section>
+					<hr>
+					<!--5.無序清單和有序清單-->
+					<section id="chapter5">
+					  	<h2>5.無序清單和有序清單</h2>
+					  	<h4>無序清單</h4>
+					  	<p>
+							HTML有三種清單元素，標記不同類型的清單，第一種為無序清單 unorder list，表示清單內的項目沒有順序關係，清單預設padding-inline-start:20px，每個清單項目前會有預設點項目符號，無序清單以<code>&lt;ul&gt;&lt;&#47;ul&gt;</code>標記，包括所有list item，而清單中的每個list item以<code>&lt;li&gt;&lt;&#47;li&gt;</code>標記，如以下示範:
+					  	</p>
+					  	<div class="displayEx" >
+							<pre>
+&lt;ul&gt;
+&lt;li&gt;item1&lt;&#47;li&gt;
+&lt;li&gt;item2&lt;&#47;li&gt;
+&lt;li&gt;item3&lt;&#47;li&gt;         
+&lt;&#47;ul&gt;</pre>
+						---渲染後---
+						<ul>
+						  <li>item1</li>
+						  <li>item2</li>
+						  <li>item3</li>
+						</ul>
+					</div>
+					<h4>有序清單</h4>
+					<p>
+						第二種清單為無序清單 order list，表示清單內的項目有順序關係，每個清單項目前會有預設數字項目符號，清單預設padding-inline-start:20px，有序清單以<code>&lt;ol&gt;&lt;&#47;ol&gt;</code>標記，包括所有list item，而清單中的每個list item以<code>&lt;li&gt;&lt;&#47;li&gt;</code>標記，如以下示範:
+					</p>
+					<div class="displayEx" >
+						<pre>
+&lt;ol&gt;
+	&lt;li&gt;item1&lt;&#47;li&gt;
+	&lt;li&gt;item2&lt;&#47;li&gt;
+	&lt;li&gt;item3&lt;&#47;li&gt;         
+&lt;&#47;ol&gt;</pre>
+						---渲染後---
+						<ol>
+						  <li>item1</li>
+						  <li>item2</li>
+						  <li>item3</li>
+						</ol>
+					</div>
+					<h4>描述清單</h4>
+					<p>
+					第三種清單為描述清單 description list，表示該清單的項目包含術語 definition term和描述 definition description，描述清單以&lt;dl&gt;&lt;&#47;dl&gt;</code>標記，包括所有術語和描述，而清單中的每個術語以<code>&lt;dt&gt;&lt;&#47;dt&gt;標記，每個描述以&lt;dt&gt;&lt;&#47;dt&gt;標記，如以下示範:
+					</p>
+					<div class="displayEx" >
+						<pre>
+&lt;dl&gt;
+&lt;dt&gt;term1&lt;&#47;dt&gt;
+&lt;dd&gt;description1&lt;&#47;dd&gt;
+&lt;dt&gt;term2&lt;&#47;dt&gt;
+&lt;dd&gt;description2&lt;&#47;dd&gt;
+&lt;&#47;dl&gt;</pre>
+						---渲染後---
+						<dl>
+						  <dt>term1</dt>
+						  <dd>description1</dd>
+						  <dt>term2</dt>
+						  <dd>description2</dd>
+						</dl>    
+					  </div>
+					</section>
+					<hr>
+					<!--6.引文元素-->
+					<section id="chapter6">
+					  	<h2>6.引文元素</h2>
+					  	<h4>如何標記段落引文?</h4>
+					  	<p>
+							有兩種元素，可以標記引文，第一種是blockquote元素，屬於block元素，用來以&lt;blockquote&gt;&lt;&#47;blockquote&gt;標記段落式引文，並在視覺上預設有縮進，可以搭配cite屬性提供來源的url，或cite元素標記引文的來源，如:   
+					  	</p>
+					  	<div class="displayEx">
+							<pre style="white-space: pre-wrap; width:50%;">
+&lt;blockquote&gt;
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto vel dolor sunt distinctio, reprehenderit natus tempore laborum autem impedit iure ipsa sint ratione harum unde nihil id ab dolorem blanditiis!
+&lt;&#47;blockquote&gt;
+&lt;cite&gt;fucker&lt;&#47;cite&gt;</pre>
+						---渲染後---
+							<div style="width:30%;">
+						  		<blockquote>
+									Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto vel dolor sunt distinctio, reprehenderit natus tempore laborum autem impedit iure ipsa sint ratione harum unde nihil id ab dolorem blanditiis!
+						  		</blockquote>
+						  		<cite>fucker</cite>
+							</div>
+					  	</div>
+					  	<h4>如何標記短句引文?</h4>
+					  	<p>
+							第二種是q元素，屬於inline類元素，用來以<code>&lt;q&gt;&lt;&#47;q&gt;</code> 標記短句引文，並在視覺上預設有引號，可以搭配cite屬性提供來源的url，如:   
+					  	</p>
+					  	<div class="displayEx">
+							&lt;q cite="url"&gt;iamman&lt;&#47;q&gt;---渲染後---<q>iamman</q>
+					  	</div>
+					</section>
+					<hr>
+				  	<!-- 7.時間和日期 -->
+					<section id="chapter7">
+					<h2>7.時間和日期</h2>
+					<h4>如何標記時間?</h4>
+					<p>
+						要標記時間相關內容，使用<code>&lt;time&gt;&lt;&#47;time&gt;</code>，並且搭配datatime屬性，用特定格式的屬性值，讓電腦能解析時間，以下將舉幾種值:<br><small>(Y=year M=month D=day h=hour(24hour) W=week m=minute s=second d=millisecond)</small><br>
+					</p>
+					<div class="time-grid" style="color:hsl(30, 70%, 70%);">
+					  	<ol>
+							<h5>日期</h5>
+							<li>YYYY</li>
+							<li>YYYY-MM</li>
+							<li>YYYY-MM-DD</li>
+							<li>MM-DD</li>
+							<li>(mistake)YYYY-DD</li>
+							<li>YYYY-WWW</li>
+					  	</ol>
+					  	<ol>
+							<h5>時間</h5>
+							<li>hh:mm</li>
+							<li>hh:mm:ss</li>
+							<li>hh:mm:ss.ddd</li>
+							<li>(mistake)hh:ss</li>
+							<li>(mistake)mm:ss</li>
+					  	</ol>
+					  	<ol>
+							<h5>日期加時間</h5>
+							<li>date(no space)time</li>
+							<li>date time</li>
+							<li>dateTtime</li>
+					  	</ol>
+					  	<ol>
+							<h5>時區偏移，放置在時間日期後</h5>
+							<li>+hhmm</li>
+							<li>+hh:mm</li>
+							<li>-hhmm</li>
+							<li>-hh:mm</li>
+					  	</ol>
+					</div>
+					<div class="displayEx">
+						&lt;time datetime=&quot;1999-02-11T19:05:11.251+08:00&quot;&gt;</code>我長的特帥的那天<code>&lt;&#47;time&gt;
+						---渲染成---
+						<time datetime="1999-02-11T19:05:11.251+08:00">我長的特帥的那天</time>
+					</div>
+					</section>
+					<!-- 8.網頁上的code呈現 -->
+					<section id="chapter8">
+					  	<h2>8.網頁上的code呈現</h2>
+					  	<h4>什麼是code元素?</h4>
+					  	<p>
+							code元素用來標記一段程式碼，賦予該字段等寬字體及程式碼的樣式，預設大小為13px,使用<code>&lt;code&gt;&lt;&#47;code&gt;</code>標記該段程式碼，可配合html實體 HTML entities表示一些特殊符號，HTML entities不會在渲染前被當作程式碼的字符，而是渲染後才變成特殊字符，使用&和;包括一些特定的字符，如&amp;lt;將輸出成&lt;，而code元素的示範如下:
+					  	</p>
+					  	<div class="displayEx">
+						  	&lt;code&gt;&amp;lt;code&amp;gt;&amp;lt;&amp;#47;code&amp;gt;&lt;&#47;code&gt;---渲染後--- style="font-weight:normal; color:black;">&lt;code&gt;&lt;&#47;code&gt;
+					  	</div>
+					  	<h4>什麼是pre元素?</h4>
+					  	<p>
+							pre元素用來標記一段預格式化的文字，使用<code>&lt;pre&gt;&lt;&#47;pre&gt;</code>包括，保留文字原本的格式，空格和換行不會被壓縮，常被用來與code元素搭配表示程式碼，示範如下:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;pre&gt;
+&lt;code&gt;
+function sayHello() {              
+console.log("Hello, World!");
+}
+&lt;&#47;code&gt;
+&lt;&#47;pre&gt;</pre>
+						---渲染成---
+							<pre>
+function sayHello() {
+console.log("Hello, World!");
+}</pre>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 9.換行和分隔線 -->
+					<section id="chapter9">
+					  	<h2>9.換行和主題分隔</h2>
+					  	<h4>什麼是換行元素?</h4>
+					  	<p>
+							有時需要在文本中設定特別的換行位置，可能是因為一些格式需求，這時可以使用br元素，在視覺上指定位置換行，但是沒有任何語意，所以過度濫用對於螢幕閱讀器，而不是使用不同元素區隔，可能造成無障礙問題，br元素以單個tag<code>&lt;br&gt;</code>表示如:   
+					  	</p>
+					  	<div class="displayEx">
+							&lt;p&gt;abcd&lt;br&gt;abcd&lt;&#47;p&gt;
+						  ---渲染成---
+						  	<p>abcd<br>abcd</p>
+					  	</div>
+					  	<h4>什麼是主題分隔元素?</h4>
+					  	<p>
+							主題分隔元素用來標記不同段落間主題的轉換，視覺上是一條水平線，hr元素以單個tag<code>&lt;hr&gt;</code>表示如:   
+					  	</p>
+					  	<div class="displayEx" >
+							<pre>
+&lt;p&gt;
+abcd
+&lt;&#47;p&gt;
+&lt;hr&#47;&gt;
+&lt;p&gt;
+efgh
+&lt;&#47;p&gt;</pre>
+						---渲染成---
+							<div>
+								<p>abcd</p>
+								<hr>
+								<p>efgh</p>
+							</div>   
+					  	</div>
+					</section>
+					<!-- 10.上標、下標和側邊註解 -->
+					<section id="chapter10">
+					  	<h2 id="idName">10.上標、下標和側邊註解</h2>
+					  	<h4>什麼是上標元素?</h4>
+					  	<p>
+							上標元素用來標記應被以上標(基線較高)方式表示的內聯文本，基於印刷原因，使用<code>&lt;sup&gt;&lt;&#47;sup&gt;</code>包括，如以下:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;p&gt;X&lt;sup&gt;2&lt;&#47;sup&gt;&lt;&#47;p&gt;
+							---渲染成---
+							<p>X<sup>2</sup></p>
+					  	</div>
+					  	<h4>什麼是下標元素?</h4>
+					  	<p>
+							下標元素用來標記應被以下標(基線較低)方式表示的內聯文本，使用<code>&lt;sub&gt;&lt;&#47;sub&gt;</code>包括，如以下:
+						</p>
+					  	<div class="displayEx">
+							&lt;p&gt;H&lt;sub&gt;2&lt;&#47;sub&gt;O&lt;&#47;p&gt;
+							---渲染成---
+							<p>H<sub>2</sub>O</p>
+					  	</div>
+					  	<h4>什麼是側邊註解元素?</h4>
+					  	<p>
+							側邊註解元素，用來標記側邊註解或是較小的印刷文字，使用<code>&lt;small&gt;&lt;&#47;small&gt;</code>包括，如以下:
+						</p>
+					  	<div class="displayEx">
+							<div style="flex-basis:50%;">
+								&lt;p&gt;test:&lt;small&gt;The content is licensed under a Creative Commons Attribution-ShareAlike 2.5 Generic License.&lt;&#47;small&gt;&lt;&#47;p&gt;</code>
+							</div>
+							---渲染成---
+							<p> 
+								test:<small>The content is licensed under a Creative Commons Attribution-ShareAlike 2.5 Generic License.</small>
+							</p>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 11.常見的全域屬性 -->
+					<section id="chapter11">
+					  	<h2 >11.常見的全域屬性</h2>
+					  	<h4>元素添加類別</h4>
+					  	<p>
+							全域屬性可以使用在各種元素，常使用的其中之一為class 屬性，用來將不同元素添加到同一自定義類別，方便利用該class定義樣式，屬性將放置在open tag裡，如<code>&lt;tagName class="className" &gt;</code>，以下為應用範例:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;p class="className"&gt;
+							content
+						  &lt;&#47;p&gt;
+						  .className{color:red;}
+						---渲染後---
+							<p style="color:red;">content</p>
+					  	</div>
+					  	<h4>元素添加id</h4>
+					  	<p>
+							還有另外一個可添加元素到一自定義類別的方式，就是id屬性，與class差別在與一個id名稱只能適用一個元素，常用來將特定元素與特定id元素匹配，也常用在targeted link，如<code>&lt;tagName id="idName" &gt;</code>，以下為應用範例:
+					  	</p>
+					  	<div class="displayEx" >
+							<pre>
+&lt;h2 id="idName"&gt;
+10.上標、下標和側邊註解
+&lt;&#47;h2&gt;
+&lt;a href="#idName"&gt;
+連結到10.上標、下標和側邊註解
+&lt;&#47;a&gt;</pre>
+						---該連結渲染後---
+							<a href="#idName">連結到10.上標、下標和側邊註解</a>
+					  	</div>
+					  	<h4>語言屬性</h4>
+					  	<p>
+							全域屬性之一lang，用來定義網頁的language，有助於瀏覽器、螢幕閱讀器以及搜尋引擎等工具正確地呈現和處理語言內容，通常放置在html元素的tag內。常用的lang屬性值有，"zh-Hant"繁體中文，"en"英文，"zh-CN"中文。
+					  	</p>
+					  	<h4>方向屬性</h4>
+					  	<p>
+							全域屬性之一dir，用來定義文本的direction，定義文本是ltr(left to right) or rtl(right to left)，一些時候影響到對齊屬性。
+					  	</p>
+					  	<h4>內容可編輯屬性</h4>
+					  	<p>
+							全域屬性之一contenteditable，用來指定元素是否可被使用者直接編輯，根據boolean值決定。
+					  	<div class="displayEx" >
+							&lt;div contenteditable="true" style="border:3px solid black;width:100px;height:100px;"&gt;
+						  可編輯內容
+							&lt;&#47;div&gt;
+							<div contenteditable="true" style="border:3px solid black;width:100px;height:100px;">
+								可編輯內容
+							</div>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 12.aria-role attribute -->
+					<section id="chapter11">
+					  	<h2 >12.aria-role屬性</h2>
+					  	<h4>什麼是aria-role屬性?</h4>
+					  	<p>
+							browser會根據DOM tree建立accessibility tree，當html語言的元素的可訪問性不足，使用aria-role屬性提升可訪問性accessibility，aria屬性有aria-hidden(在accessibility tree隱藏元素)，aria-label(讓無障礙設備讀取特定內容)...等，以下為應用範例:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;button aria-label="搜尋"&gt;<br>&lt;img src="search-icon.png" alt="" &gt;&lt;&#47;button&gt;</code>
+						其中因為圖片的alt沒有說明圖片，但藉由按鈕的aria-label="搜尋"，讓螢幕閱讀器可得知該按鈕作用。
+					  	</div>
+					</section>
+					<hr>
+					<!-- 13.註解 -->
+					<section id="chapter13">
+					  	<h2 >13.註解</h2>
+					  	<h4>如何添加註解?</h4>
+					  	<p>
+							在html中可利用添加註解的方式，提供內容讓開發者閱讀，而不會被渲染在網頁上，一些時候註解也用來偵錯或測試，使用&lt;!--和--&gt;包括註解，如:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;!--comment--&gt;
+							不會被渲染
+					  	</div>
+					</section>
+					<hr>
+					<!-- 14.錨點元素 -->
+					<section id="chapter14">
+					  	<h2>14.錨點元素</h2>
+					  	<h4>什麼是錨點元素?</h4>
+					  	<p>
+							錨點元素用來標記連結(文字或圖片)，需配合href(hypertext reference)屬性，提供連結位置的url，視覺樣式預設為有底線的藍色文字，使用&lt;a&gt;&lt;&#47;a&gt;包括，如:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;a href="url"&gt;link&lt;&#47;a&gt;
+							---渲染成---
+							<a href="#" style="color:blue;">link</a>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 15.URL的類型 -->
+					<section id="chapter15">
+					  	<h2>15.URL的類型</h2>
+					  	<h4>絕對URL是什麼?</h4>
+					  	<p>
+							絕對url需要包含http or https，不會因為不同上下文，傳送到不同的位置，例如 :https://www.google.com/ 是google的絕對url。
+					  	</p>
+					  	<h4>相對URL是什麼?</h4>
+					  	<p>
+							相對url不需包含http or https，因為是相對位置，所以根據不同的html檔案使用相同路徑，可能會連結到不同的位置，例如 /style.css , 這裡的initial/代表 go root level，若以../ 起頭代表go up a level，而其他的/ 代表查看裡面。
+					  	</p>
+					</section>
+					<hr>
+					<!-- 16.圖像嵌入元素 -->
+					<section id="chapter16">
+					  	<h2>16.圖像嵌入元素</h2>
+					  	<h4>圖像嵌入元素是什麼?</h4>
+					  	<p>
+							圖像嵌入元素使用&lt;img&gt;標記，需要配合四個屬性，src、alt、height、width，src的值為圖片的來源(url)，alt的值是圖像的文本描述，可提供給螢幕閱讀器，width和height的值設定圖片展示的大小(若值沒有單位預設為pixel)，在網頁裝載中時便可以預留該大小空間，img元素如以下示範:
+					  	</p>
+					  	<div class="displayEx">
+							&lt;img alt="hole" src="image/img-ex.png" width="300" height="300"&gt;
+						---渲染成---
+							<img alt="hole" src="image/img-ex.png" width="300" height="300">
+					  	</div>
+					</section>
+					<hr>
+					<!-- 17.圖片元素 -->
+					<section id="chapter17">
+					  	<h2>17.圖片元素</h2>
+					  	<h4>圖片元素是什麼?</h4>
+					  	<p>
+							圖片元素使用&lt;picture&gt;&lt;&#47;picture&gt;包括一個<img>元素和多個<pitcure>元素，為不同裝置或狀況，提供不同的圖片資源，瀏覽器會考慮其中最匹配的元素，可達成responsive design，在每個<source>元素中可用media屬性設定不同條件，或是只是使用不同格式的圖片檔案，以下範例:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;picture&gt;
+&lt;source src="url" media="(min-width:600px)"&gt;
+&lt;img  src="image/img-ex.png" width="300" height="300" &gt;
+&lt;&#47;picture&gt;</pre>
+						---渲染後---
+							<picture>
+						  		<source src="image/img-ex-mobile.png" media="(min-width:600px)"> 
+						  		<img src="image/img-ex.png" width="300" height="300" > 
+							</picture>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 18.可選標題的圖形元素 -->
+					<section id="chapter18">
+					  	<h2>18.可選標題的圖形元素</h2>
+					  	<h4>可選標題的圖形元素是什麼?</h4>
+					  	<p>
+							可選標題的圖形元素，通常用來標記figure或帶有說明的插圖，特色是文字和圖片配對使用，使用&lt;figure&gt;&lt;&#47;figure&gt;包括img元素和標題，標題使用&lt;figcaption&gt;&lt;&#47;figcaption&gt;，如以下示範:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;figure&gt;
+&lt;img alt="hole" src="image/img-ex.png" width="300" height="300"&gt;
+&lt;figcaption&gt;洞洞真酷&lt;&#47;figcaption&gt;
+&lt;&#47;figure&gt;</pre>
+						---渲染成---
+							<figure> 
+								<img alt="hole" src="image/img-ex.png" width="300" height="300"> 
+								<figcaption>洞洞真酷</figcaption> 
+							</figure>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 19.嵌入音訊元素 -->
+					<section id="chapter19">
+						<h2>19.嵌入音訊元素</h2>
+						<h4>什麼是嵌入音訊元素?</h4>
+						<p>
+							嵌入音訊元素，使用&lt;audio&gt;&lt;&#47;audio&gt;標記，搭配src屬性提供音訊來源的url，需要使用controls屬性才能展示播放器，還有一些可選的屬性如loop屬性能夠循環播放，autoplay屬性能夠在頁面裝載完成後，自動播放，以下示範:
+						</p>
+						<div class="displayEx">
+							&lt;audio  controls src="audio-test.m4a"&gt;
+							&lt;&#47;audio&gt;
+							---渲染後---
+							<audio  controls src="audio/audio-test.m4a">123</audio>
+						</div>
+						<h4>在嵌入音訊元素內包含多個檔案</h4>
+						<p>
+							若要包含多個不同格式的音訊來源以供備用，url不用放在audio tag內，應該用&lt;audio&gt;元素包括多個&lt;source&gt;元素，source元素中可使用type和src屬性設定來源和格式，並且若是檔案都不能夠裝載，將會出現留下的文字，如:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;audio controls&gt;
+&lt;source type="audio/mp3" src="audio/audio-test.mp3" &gt;
+&lt;source type="audio/m4a" src="audio/audio-test.m4a" &gt;
+不能裝載啦，混蛋   
+&lt;&#47;audio&gt;</pre>
+							---渲染成---
+							<audio controls> 
+								<source type="audio/mp3" src="audio/audio-test.mp3" > 
+								<source type="audio/m4a" src="audio/audio-test.m4a" >
+								不能裝載啦，混蛋
+							</audio>
+						</div>
+					</section>
+					<hr>
+					<!-- 20.影片嵌入元素 -->
+					<section id="chapter20">
+						<h2>20.影片嵌入元素</h2>
+						<h4>影片嵌入元素是什麼?</h4>
+						<p>
+							影片嵌入元素用於在網頁嵌入影片播放器，使用&lt;video&gt;&lt;&#47;video&gt;標記，搭配src的屬性提供影片檔案的來源路徑，
+							或是以&lt;video&gt;元素包括&lt;source&gt;提供不同格式的檔案和文字，當作備用，類似&lt;audio&gt;的用法。也需要使用controls才能顯示播放器，示範如下:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;video controls&gt;
+&lt;source type="video/mp4" src="video/video-ex.mp4" &gt;
+&lt;source type="video/webm" src="video/video-ex.mp4" &gt;
+不能裝載啦，混蛋   
+&lt;&#47;video&gt;</pre>
+							---渲染後---
+							<video controls width="400"> 
+								<source type="video/mp4" src="video/video-ex.mp4" > 
+								<source type="video/webm" src="video/video-ex.mp4" >
+								不能裝載啦，混蛋
+							</video>
+						</div>
+					</section>
+					<hr>
+					<!-- 21.嵌入軌道文字元素 -->
+					<section id="chapter21">
+						<h2>21.嵌入文字軌道元素</h2>
+						<h4>什麼是嵌入文字軌道元素?</h4>
+						<p>
+							嵌入文字軌道元素使用&lt;track&gt;標記，被用來當作media元素(audio or video)的子元素，該元素用來指定與media元素同時展示的定時文字軌道，例如subtitles或是captions，使用src屬性值指定文字軌道的來源，來源檔案需要是webvtt格式。&lt;track&gt;可配合一些屬性值設定， 如default 預設字幕，kind 設定track是屬於captions or subtitles or chapters or descriptions，srclang 設定track屬於什麼語言，如以下示範:<small style="display:block;text-align:end;">補充:captions屬於原始字幕，subtitles意旨翻譯字幕。</small>
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;video controls&gt;
+	&lt;track src="track-en-ex.vtt" default kind="captions" srclang="en" &gt; 
+	&lt;track src="track-ex.vtt"  kind="subtitles" srclang="zh-Hant" &gt;
+	&lt;source type="video/mp4" src="video/video-ex.mp4" &gt;
+	&lt;source type="video/webm" src="video/video-ex.webm" &gt;
+		不能裝載啦，混蛋   
+	&lt;&#47;video&gt;</pre>
+						---渲染成---
+							<video controls width="300">
+								<track src="track-en-ex.vtt" default kind="captions" srclang="en" > 
+								<track src="track-ex.vtt"  kind="subtitles" srclang="zh-Hant" >
+								<source type="video/mp4" src="video/video-ex.mp4" >
+								<source type="video/webm" src="video/video-ex.webm" >
+								不能裝載啦，混蛋   
+							</video>
+					  	</div>
+					</section>
+					<hr>  
+					<!-- 22.字元集屬性 -->
+					<section id="chapter22">
+						<h2>22.字元集屬性</h2>
+						<h4>什麼是字元集屬性?</h4>
+						<p>
+							人類語言由各種字元組成，有許多種字元集可供使用，但現在網頁標準是使用Unicode字元集，在網頁上需要聲明字元集的編碼方式，使用charset屬性在&lt;meta&gt;元素中，設定值為"UTF-8"(html5中唯一有效編碼)，如下:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;&#47;head&gt;
+</pre>
+						不會被渲染
+					  	</div>
+					</section>
+					<hr>
+					<!-- 23.無語意元素 -->
+					<section id="chapter23">
+						<h2>23.無語意元素</h2>
+						<h4>什麼是內容劃分元素?</h4>
+						<p>
+							內容劃分元素以&lt;div&gt;&lt;&#47;div&gt;標記，當作flow內容的通用容器，屬於block元素，沒有語意，通常用來當作CSS或是javascript的目標，如:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;div class="fuck"&gt;
+fuck
+&lt;&#47;div&gt;</pre>
+							<pre>
+.fuck{
+color:red;
+}</pre>
+						---渲染後---
+							<div style="color:red;padding-left:10px;">
+							fuck
+							</div>
+						</div>
+						<h4>什麼是內容跨度元素?</h4>
+						<p>
+							內容跨度元素以&lt;span&gt;&lt;&#47;span&gt;標記，當作短語內容的通用容器，屬於inline元素，沒有語意，通常用來當作CSS或是javascript的目標，如:  
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;p&gt;
+1234&lt;span class="fuck"&gt;fuck&lt;&#47;span&gt;1234
+&lt;&#47;p&gt;
+</pre>
+							<pre>
+.fuck{
+color:red;
+}></pre>
+						---渲染後---
+							<p>
+							1234<span style="color:red;">fuck</span>1234 
+							</p>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 24.建立html檔案必要的元素 -->
+					<section id="chapter24">
+					  	<h2>24.建立html檔案必要的元素</h2>
+					  	<h4>html檔案的構成</h4>
+					  	<p>
+							html檔案的構成，首先需要在最上方宣告html檔案的時代，使用&lt;!doctype html&gt;tag，接著使用&lt;html&gt;元素包含所有元素，在&lt;html&gt;元素中再分成&lt;head&gt;元素和&lt;body&gt;元素，用來包括不同目的的元素，&lt;head&gt;&lt;&#47;head&gt;用來包括瀏覽器需要知道的資訊，而&lt;body&gt;&lt;&#47;body&gt;用來包括展示在頁面的元素。
+					  	</p>
+					  	<h4>head元素的構成</h4>
+						<p>
+							head元素的構成，通常包括以下幾種元素和屬性值:
+						</p>
+						<ul class="bodyElement" style="display:grid; grid-template-columns:repeat(2,1fr);align-items: start;">
+							<li>
+							<h5>&lt;meta charset="UTF-8"&gt;</h5>
+							<p>定義字元的編碼方式</p>
+							</li>
+							<li>
+							<h5>&lt;title&gt;網頁標題&lt;&#47;title&gt;</h5>
+							<p>該標題將顯示在瀏覽器tab、書籤以及搜尋引擎的結果標題，或是任何瀏覽器引用該網頁的地方。</p>
+							</li>
+							<li>
+							<h5>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</h5>
+							<p>代表該頁面可適用任何大小螢幕，width=device-width 將使視窗的寬度等於設備的寬度，initial-scale=1.0 指定頁面的初始縮放比例為1.0，確保頁面在加載時以原始比例顯示，用戶可以自由縮放。</p>
+							</li>
+							<li>
+							<h5>&lt;meta name="description" content="a description of this site that will show up in search engine result"&gt;</h5>
+							<p>該content值代表在搜尋引擎的結果中的網站描述。</p>
+							</li>
+							<li>
+							<h5>&lt;link rel="stylesheet" href="style.css"&gt;</h5>
+							<p>想要載入網頁的一系列其他資源，例如CSS檔案、字體和網站圖示。rel屬性用於告訴瀏覽器它是哪種資源。</p>
+							</li>
+							<li>
+							<h5>&lt;script src="script.js" &gt;&lt;&#47;script&gt;</h5>
+							<p>(可選)導入javascript檔案，使用src屬性提供js檔案的路徑。</p>
+							</li>
+							<li>
+							<h5>&lt;link rel="icon" href="favicon.ico" type="image/x-icon" &gt;</h5>
+							<p>(可選)定義網站的圖示，通常顯示在瀏覽器標籤或書籤中。</p>
+							</li>
+						</ul>
+					  	<h4>body元素的構成</h4>
+					  	<p>
+							在&lt;body&gt;中有六種重要元素，如下:
+					  	</p>
+						<ul class="bodyElement" style="display:grid; grid-template-columns:repeat(2,1fr);align-items: start;">
+							<li>
+								<h5>&lt;header&gt;&lt;&#47;header&gt;</h5>
+								<p>&lt;header&gt;元素包括網頁的標題</p>
+							</li>
+							<li>
+								<h5>&lt;footer&gt;&lt;&#47;footer&gt;</h5>
+								<p>&lt;footer&gt;元素包括網頁的額外資訊</p>
+							</li>
+							<li>
+								<h5>&lt;article&gt;&lt;&#47;article&gt;</h5>
+								<p>&lt;article&gt;元素表示文檔、頁面、應用程式或網站中的一個獨立的內容組成部分，該元素的內容設計為可以被獨立地發佈或重用。</p>
+							</li>
+							<li>
+								<h5>&lt;main&gt;&lt;&#47;main&gt;</h5>
+								<p>&lt;main&gt;元素在每個頁面只能使用一次，被用來標記主要的內容。</p>
+							</li>
+							<li>
+								<h5>&lt;section&gt;&lt;&#47;section&gt;</h5>
+								<p>&lt;section&gt;元素用來包括頁面中一個通用的獨立部分，當沒有元素的語意可代表該部分便可以使用，若該部分可以被單獨取出仍然有意義，則使用&lt;article&gt;元素更適當。</p>
+							</li>
+							<li>
+								<h5>&lt;aside&gt;&lt;&#47;aside&gt;</h5>
+								<p>&lt;aside&gt;元素用來表示不與main元素直接相關的頁面部分，常常以sidebars or call-out boxes的形式出現。</p>
+							</li>
+						</ul>
+					</section>
+					<hr>
+					<!-- 25.表單元素 -->
+					<section id="chapter25">
+					  	<h2>25.html中的表單</h2>
+					  	<h4>表單元素是什麼?</h4>
+						<p>
+							表單元素標記包含用來提交資訊的互動控制項的檔案部分，使用&lt;form&gt;&lt;&#47;form&gt;標記，可搭配action屬性，設定處理表單提交到的url，可搭配method屬性，設定提交的方式(post,get預設,dialog)，當method是dialog時action不作用，表單內的每個互動控制項可用&lt;div&gt;元素區分，分別包括&lt;input&gt;，並利用&lt;label&gt;&lt;&#47;label&gt;標記&lt;input&gt;元素在使用者介面標題，如:
+						</p>
+						<h4>輸入元素是什麼?</h4>
+						<p>
+							輸入元素用來創造用於網頁表單的互動控制項，為了從使用者方接收資料，使用&lt;input&gt;標記，搭配type屬性(預設為text)，設定輸入資料類型，有不同小工具可使用，依賴user agent和設備，可搭配name屬性，作為該互動控制項的名稱，會和使用者輸入的值成為name/value pair，設定required 屬性，可讓該控制項為空白時，不能提交，設定value屬性，該內容將自動出現在該控制項，並可以更改，設定placeholder屬性，該內容將自動出現在該控制項，當輸入內容時消失，並可設定id值，讓label可以匹配，增加無障礙功能，表單元素示範如:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;form action="" method="get"&gt;
+&lt;div&gt;
+&lt;label for="inputId1" &gt;Name:&lt;&#47;label&gt;
+&lt;input value="fuck" id="inputId1" type="text" name="name" required&gt;
+&lt;&#47;div&gt;
+&lt;div&gt;
+&lt;label for="inputId2" &gt;email:&lt;&#47;label&gt;
+&lt;input placeholder="fuck" id="inputId2" type="email" name="email" required&gt;
+&lt;&#47;div&gt;
+&lt;input type="submit" value="the submit btn" &gt;
+&lt;&#47;form&gt;</pre>
+							<form action="" method="get">
+								<div>
+									<label for="inputId1" >Name:</label>
+									<input value="fuck" id="inputId1" type="text" name="name" required>
+								</div>
+						  		<div>
+									<label for="inputId2" >email:</label>
+									<input placeholder="fuck" id="inputId2" type="email" name="email" required>
+								</div>
+						  		<input type="submit" value="the submit btn" > 
+							</form>
+					  	</div>
+					  	<h4>複選框和單選按鈕</h4>
+					  	<p>
+							&lt;input&gt;其中有checkbox(複選框)和radio(單選按鈕)類型，當需要為多個複選框或是單選按鈕，設定成一個組別，可使用&lt;fieldset&gt;&lt;&#47;fieldset&gt;包括，並使用子元素&lt;legend&gt;&lt;&#47;legend&gt;標記該組別標題。兩種類型都可使用checked屬性，設定當頁面裝載後，預設勾選的輸入，同一組別的單選按鈕name值需要一樣，範例如下:
+					  	</p>
+					 	<div class="displayEx">
+							<pre>
+&lt;form action="" method="get"&gt;
+&lt;fieldset&gt;
+&lt;legend&gt;checkbox set&lt;/legend&gt;
+&lt;div&gt;
+&lt;label for="checkbox1">checkbox1&lt;/label&gt;
+&lt;input id="checkbox1" name="checkbox1" type="checkbox"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;label for="checkbox2">checkbox2&lt;/label&gt;
+&lt;input id="checkbox2" name="checkbox2" type="checkbox"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;label for="checkbox3"&gt;checkbox3&lt;/label&gt;
+&lt;input id="checkbox3" name="checkbox3" type="checkbox" checked&gt;
+&lt;/div&gt;
+&lt;/fieldset&gt;
+&lt;fieldset&gt;
+&lt;legend&gt;radio set&lt;/legend&gt;
+&lt;div&gt;
+&lt;label for="radio1">radio1&lt;/label&gt;
+&lt;input id="radio1" name="radio1" type="radio"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;label for="radio2">radio2&lt;/label&gt;
+&lt;input id="radio2" name="radio2" type="radio"&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;label for="radio3"&gt;radio3&lt;/label&gt;
+&lt;input id="radio3" name="radio3" type="radio" checked&gt;
+&lt;/div&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+						---渲染後---
+							<form action="" method="get"style="padding-left:10px;">
+								<fieldset>
+									<legend>checkbox set</legend>
+									<div>
+									<label for="checkbox1">checkbox1</label>
+									<input id="checkbox1" name="checkbox1" type="checkbox">
+									</div>
+									<div>
+									<label for="checkbox2">checkbox2</label>
+									<input id="checkbox2" name="checkbox2" type="checkbox">
+									</div>
+									<div>
+									<label for="checkbox3">checkbox3</label>
+									<input id="checkbox3" name="checkbox3" type="checkbox" checked>
+									</div>
+								</fieldset>
+								<fieldset>
+									<legend>checkbox set</legend>
+									<div>
+										<label for="radio1">radio1</label>
+										<input id="radio1" name="radio" type="radio" >
+									</div>
+									<div>
+										<label for="radio2">radio2</label>
+										<input id="radio2" name="radio" type="radio" >
+									</div>
+									<div>
+									<label for="radio3">radio3</label>
+									<input id="radio3" name="radio" type="radio" checked>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+						<h4>選項選單</h4>
+						<p>
+							若要設置選項選單的控制項，需使用&lt;select&gt;&lt;&#47;select&gt;標記，取代&lt;input&gt;元素，與&lt;label&gt;元素搭配，並設定子元素&lt;option&gt;&lt;&#47;option&gt;標記每個選項，每個選項可設置各自的value屬性，第一個選項是預設首先選取，可藉由添加selected屬性在選項，決定哪個選項首先選取，首先選取選項若是用來提醒選擇選項，被選取沒有意義，可設置value=""，若是不想要讓選項可選取，可添加disabled屬性，該選項將不會接受browsing event，選項選單的設置如以下示範:
+						</p>
+						<div class="displayEx">
+							<pre>
+&lt;form action="" method="get"&gt;  
+    &lt;label for="selectEx"&gt;這是一個酷選單&lt;&#47;label&gt;
+    &lt;select name="selectEx" id="selectEx"&gt;
+    	&lt;option value="" selected disabled&gt;please select&lt;&#47;option&gt;
+     	&lt;option value="option1" &gt;option1&lt;&#47;option&gt;
+     	&lt;option value="option2" &gt;option2&lt;&#47;option>
+     	&lt;option value="option3" &gt;option3&lt;&#47;option>
+  	&lt;&#47;select&gt;
+    &lt;button type="submit"&gt;click me submit&lt;&#47;button&gt;
+&lt;&#47;form&gt;</pre>
+						---渲染後---
+							<form action="" method="get">  
+								<label for="selectEx">這是一個酷選單</label>
+								<select name="selectEx" id="selectEx">
+									<option value="" selected disabled>please select</option>
+									<option value="option1" >option1</option>
+									<option value="option2" >option2</option>
+									<option value="option3" >option3</option>
+								</select>
+						  		<button type="submit">click me submit</button>
+							</form>
+					  	</div>
+					  	<h4>多行純文本編輯控制項</h4>
+					  	<p>
+							若要讓用戶在表單中，可輸入自由格式的大量段落文字，可使用&lt;textarea&gt;元素取代&lt;input&gt;元素，&lt;textarea&gt;元素表示多行純文本編輯控制項，可配合cols(預設20平均字元寬度)和rows(預設2)屬性設置大小，兩者屬性值為數字，無單位，如以下示範:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;form&gt;
+&lt;label for="textareaId"&gt;textarea:&lt;&#47;label&gt;
+&lt;textarea id="textareaId" name="textarea" cols="30" rows="5"&gt;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;placeholder&lt;&#47;textarea&gt;
+&lt;&#47;form&gt;</pre>
+						---渲染後---
+							<form>
+							<label for="textareaId">textarea:</label>
+							<textarea id="textareaId" name="textarea" cols="30" rows="5">placeholder</textarea>
+							</form>
+					  	</div>
+					</section>
+					<hr>
+					<!-- 26.表格元素 -->
+					<section id="chapter26">
+					  	<h2>26.表格元素</h2>
+					  	<h4>表格元素是什麼?</h4>
+					  	<p>
+							表格元素使用&lt;table&gt;&lt;&#47;table&gt;標記表格資料，表格資料為由包含資料的cells的欄和列組成的二維表格，表格資訊使用在當需要查看一些有連結點的資料，將資料整理並進行比較時。表格元素內可分為四部分，第一為顯示在表格外的表格標題，使用&lt;caption&gt;標記，剩下三個為表格內的部分，分別是&lt;thead&gt;、&lt;tbody&gt;、&lt;tfoot&gt;，&lt;封裝不同部分的table rows，&lt;thead&gt;的rows中通常是column headers，&lt;tbody&gt;的rows中是主要資料，&lt;tfoot&gt;的rows中是帶有column資訊的表格底下部分，通常是摘要，table rows以&lt;tr&gt;&lt;&#47;tr&gt;標記，其子元素為&lt;td&gt;標記普通table cell，或是&lt;th&gt;為一組cells的標題cell，可用scope屬性去定義它為所屬row or col(or rowgroup or colgroup)的標題，如以下示範:
+					  	</p>
+					  	<div class="displayEx">
+							<pre>
+&lt;table&gt;
+&lt;caption&gt;table example&lt;/caption&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;th&gt;姓名&lt;&#47;th&gt;
+		&lt;th&gt;身高&lt;&#47;th&gt;
+		&lt;th&gt;體重&lt;&#47;th&gt;
+	&lt;&#47;tr&gt;
+	&lt;&#47;thead&gt;
+	&lt;tbody&gt;
+	&lt;tr&gt;
+		&lt;th&gt;chicken&lt;&#47;th&gt;
+		&lt;th&gt;140cm&lt;&#47;th&gt;
+		&lt;th&gt;50kg&lt;&#47;th&gt;
+	&lt;&#47;tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;bitch&lt;&#47;th&gt;
+		&lt;th&gt;150cm&lt;&#47;th&gt;
+		&lt;th&gt;50kg&lt;&#47;th&gt;
+	&lt;&#47;tr&gt;
+	&lt;&#47;tbody&gt;
+	&lt;tfoot&gt;
+	&lt;tr&gt;
+		&lt;th&gt;總量&lt;&#47;th&gt;
+		&lt;th&gt;290cm&lt;&#47;th&gt;
+		&lt;th&gt;100kg&lt;&#47;th&gt;
+	&lt;&#47;tr&gt;
+	&lt;&#47;tfoot&gt;
+&lt;&#47;table&gt;</pre>
+						---渲染成---
+							<table>
+								<caption>table example</caption>
+								<thead>
+									<tr>
+										<th>姓名</th>
+										<th>身高</th>
+										<th>體重</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>chicken</th>
+										<td>140cm</td>
+										<td>50kg</td>
+									</tr>
+									<tr>
+										<th>bitch</th>
+										<td>150cm</td>
+										<td>50kg</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>總量</th>
+										<td>290cm</td>
+										<td>100kg</td>
+									</tr>
+								</tfoot>
+							</table>
+					  	</div>
+					</section>  
+				</main>
+				<aside class="d-none d-lg-block col-lg-3">
+					<nav id="chapter-nav" class="nav flex-column flex-nowrap align-items-start  justify-content-start sticky-top nav-pills overflow-auto fs-7">
+						<a class="nav-link" href="#chapter1">1.HTML的語法</a>
+						<a class="nav-link" href="#chapter2">2.段落元素</a>
+						<a class="nav-link" href="#chapter3">3.標題元素</a>
+						<a class="nav-link" href="#chapter4">4.粗體與斜體</a>
+						<a class="nav-link" href="#chapter5">5.無序清單和有序清單</a>
+						<a class="nav-link" href="#chapter6">6.引文元素</a>
+						<a class="nav-link" href="#chapter7">7.時間和日期</a>
+						<a class="nav-link" href="#chapter8">8.網頁上的code呈現</a>
+						<a class="nav-link" href="#chapter9">9.換行和分隔線</a>
+						<a class="nav-link" href="#chapter10">10.上標、下標和側邊註解</a>
+						<a class="nav-link" href="#chapter11">11.常見的全域屬性</a>
+						<a class="nav-link" href="#chapter12">12.aria-role attribute</a>
+						<a class="nav-link" href="#chapter13">13.註解</a>
+						<a class="nav-link" href="#chapter14">14.錨點元素</a>
+						<a class="nav-link" href="#chapter15">15.URL的類型</a>
+						<a class="nav-link" href="#chapter16">16.圖像嵌入元素</a>
+						<a class="nav-link" href="#chapter17">17.圖片元素</a>
+						<a class="nav-link" href="#chapter18">18.可選標題的圖形元素</a>
+						<a class="nav-link" href="#chapter19">19.嵌入音訊元素</a>
+						<a class="nav-link" href="#chapter20">20.影片嵌入元素</a>
+						<a class="nav-link" href="#chapter21">21.嵌入軌道文字元素</a>
+						<a class="nav-link" href="#chapter22">22.字元集屬性</a>
+						<a class="nav-link" href="#chapter23">23.無語意元素</a>
+						<a class="nav-link" href="#chapter24">24.建立html檔案必要的元素</a>
+						<a class="nav-link" href="#chapter25">25.表單元素</a>
+						<a class="nav-link" href="#chapter26">26.表格元素</a>
+					</nav>
+				</aside>
+			</div>	
+		</div>
+  	</body>
+</html>

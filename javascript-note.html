@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Note of JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript Note</title>        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/custom.css">
+        <script src="js/script.js" defer></script>
+        <script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    </head>
+    <body class="text-primary bg-fantasy position-relative" data-bs-spy="scroll" data-bs-target="#chapter-navbar" tabindex="0">
+        <header class="sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-scary text-center ">
+                <div class="container">
+                    <a class="navbar-brand text-center text-500 h5 mb-0" href="/">Reuben<br>Send&nbsp;Wishes</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                    <div style="flex-basis:100%" class="collapse navbar-collapse justify-content-center text-center lh-sm" id="navbarCollapse">
+                        <div class="navbar-nav navbar-nav-scroll ">
+                            <a class="nav-link px-xl-3 " aria-current="page" href="/">Home</a>
+                            <a class="nav-link px-xl-3" href="/html-note.html">HTML Note</a>
+                            <a class="nav-link px-xl-3" href="/css-note.html">CSS Note</a>
+                            <a class="nav-link px-xl-3" href="/sass-note.html">Sass Note</a>
+                            <a class="nav-link px-xl-3" href="">Bootstrap Note</a>
+                            <a class="nav-link px-xl-3 active" href="/javascript-note.html">JavaScript Note</a>
+                        </div>
+                    </div>
+                    <span class="navbar-text text-nowrap">魯本的三明治筆記</span>
+                </div>
+            </nav>
+        </header>
+        <div class="container mt-3">
+            <div class="row">
+                <main class="col-12 col-lg-9">
+                    <h1>JavaScript Note</h1>
+                    <p>
+                        JavsScript是一種輕量的直譯程式語言，具有一級含數的特性，最廣泛被認為當作網頁的腳本語言，非瀏覽器環境也可使用，如:node.js。JavaScript又稱為vanilla JavaScript，而其典範由ECMA制定，稱為ECMAScript。JavaScript，有相關的變體，並附加其他功能，如:TypeScript。也有幫助開發者更輕鬆，高效構建應用程式的工具，稱為JavaScript框架，是一組預先編譯好的JavaScript程式碼庫，如:Vue.js和React.js。建置工具可將預先處理好的內容轉換成瀏覽器能看懂的東西，如:Webpack,Gulp，npm。讓javaScript可在後端執行的執行環境，node.js，可使用npm和javaScript跟node.js互動。
+                    </p>
+                    <!-- 1.Grammar and types -->
+                    <section id="chapter-1" class="mb-5">   
+                        <h2>1.Grammar and types</h2>
+                        <h3>statement</h3>
+                        <p>
+                            在JavaScript中，每個指令被稱為statement(語句)，使用;符號分隔，如果語句寫在單獨一行不需要使用;符號，如果不同語句在同一行，則必須使用;符號。如下所示:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+let x = 8 ; let y = 9<span class="ex-result-cor"> 〇 </span>
+
+let x = 8 
+let y = 9<span class="ex-result-cor"> 〇 </span>
+
+let x = 8 let y = 9<span class="ex-result-err"> ✕ </span></pre>
+                        </div>
+                        <h3>comment</h3>
+                        <p>
+                            在JavaScript中，也可以使用與其他程式語言一樣的comment，comment不會被瀏覽器解析或執行，是可供自己或團隊觀看的註解，很多時候也可以用來測試一段程式碼是否作用。使用//放在comment前方，可用來當作單行註釋，或是使用/*和*/包圍所有comment，可選擇是否在中間每一行開頭加上*，可用來當作單行或多行註釋，在許多的code編輯器中，輸入/**，接著按下enter，可產生JSDoc註解，方便開發者添加該註解下方的變數或參數或返回值等說明，如@param{}參數名稱，{}內可輸入類型，並可在名稱後方增加說明。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+// 這是單行註釋
+
+/* 
+    這是多行註釋<span></span> 
+*/
+
+/**
+* JSDoc註釋
+* @param {number} a 用來執行加法的第一個數字
+* @param {number} b 用來執行加法的第二個數字
+* @returns 
+*/
+function add(a,b){
+    let c = a + b + 1
+    return c 
+}</pre>
+                        </div>    
+                    </section>
+                    <!-- 2.在HTML檔案中使用JavaScript -->
+                    <section id="chapter-2" class="mb-5">
+                        <h2>2.在HTML檔案中使用JavaScript</h2>
+                        <p>
+                            在HTML檔案中有兩種方式使用JavaScript程式碼。
+                        </p>
+                        <h3>internal method</h3>
+                        <p>
+                            可在&lt;script&gt;element內，直接輸入要使用的JavaScript code，但需要在與其code關聯的元素下面才能發揮作用。
+                        </p>
+                        <h3>external method</h3>
+                        <p>
+                            HTML檔案可直接連結外部的JavaScript檔案，也須藉由&lt;script&gt;元素連結，在該元素的src屬性輸入要連結的JavaScript檔案路徑。
+                        </p>
+                        <h3>modern JavaScript loading</h3>
+                        <p>
+                            &lt;script&gt;元素有兩個屬性，defer和async，可控制外部JavsScript檔案的加載時機，提高頁面加載速度，一般來說瀏覽器解析HTML檔案時，遇到有外部連結的&lt;script&gt;才會開始裝載，裝載完後開始執行，直到執行完後才會繼續解析HTML檔案。
+                            若使用async，那解析HTML時，遇到&lt;script&gt;時，可並行加載該JavaScript檔案，加載完後才單獨執行JavaScript(停止解析HTML檔案)，最後繼續解析HTML檔案，若是使用defer，也如async可併行加載JavaScript檔案，但將等HTML檔案解析完成才執行，那便可以將有外部連結的&lt;script&gt;元素放在相關的元素前(可放在&lt;head&gt;)。
+                        </p>              
+                        <div class="ex-block ex-process">
+                            <div class="ex-process-headline">
+                                <span>正常狀態</span><span>使用async</span><span>使用defer</span>
+                            </div>
+                            <div class="ex-parsing-html">parsing HTML</div>
+                            <div class="ex-loading-js">loading JavaScript</div>
+                            <div class="ex-execute-js">execute JavaScript</div>
+                            <div class="ex-parsing-html">parsing HTML</div>
+                        </div>
+                    </section>
+                    <!-- 3.JavaScript Modules -->
+                    <section id="chapter-3" class="mb-5">
+                        <h2>3.JavaScript Modules</h2>
+                        <p>
+                            在進行複雜專案時，可將JavaScript拆分成modules使用，將一個module的項目導入另外一個，首先使用export statement，可放在要導出的項目(函數、變數、class等)前，不能在函數內使用，需在頂層，也可以將要導出的項目集中直接放在檔案最下方，export statement後接著以逗號分隔大括號包括的列表。之後在要導進項目的檔案中，使用import statement，接著以逗號分隔大括號包括的列表，在接著from和module specifier，specifier可以是路徑或是import映射中對應路徑值的屬性名稱。
+                        </p>
+                        <h3>import maps</h3>
+                        <p>
+                            如果import maps內的屬性名稱後面有/，那對應的值也需要有/，並且該屬性值對可以當作路徑前綴，所有有該屬性路徑前綴的specifier，將也可匹配到對應的值當作前綴的路徑，按照此原理，一個specifier，可能匹配兩種以上的路徑，所以瀏覽器會優先選擇長的，可以在json內藉由設定scopes屬性，指定特定的檔案，指定特定的module specifier對應的路徑，若找不到才會使用import屬性內的，值對。
+                        </p>
+                        <h3>將module應用到HTML</h3>
+                        <p>
+                            要應用JavaScript module到HTML檔案，類似正常的應用JavaScript方式，只是需要在&lt;script&gt;內添加type="module"，外部方法和內部方法都可以使用模組，但是內部方法不能導出。加載模組時不需要使用defer屬性，就會自動使用並行載入和延遲執行，模組功能是導入到單一腳本範圍內，在全域範圍不可使用，除非將項目特別宣告在全域範圍內。
+                        </p>
+                    </section>
+                    <!-- 4.JavaScript objects -->
+                    <section id="chapter-4" class="mb-5">
+                        <h2>4.JavaScript objects</h2>
+                        <p>
+                            JavaScript是基於物件導向paradigm設計的，物件是一組property的集合，而property是名稱和值之間的關聯，屬性的值若是函數，該函數會稱為method。
+                        </p>
+                        <h3>創造object</h3>
+                        <p>
+                            要創造一個物件可以使用object initializer，或是先創建一個constructor function，接著使用new operator調用該函數實例化一個object。
+                        </p>
+                        <h3>object initializer</h3>
+                        <p>
+                            物件初始化器由0或多個屬性名稱和其關聯值的對組成，這些對以逗號分隔，並用{}包括。屬性名稱和值對中間為:符號，屬性名稱可以是字串，名稱，數字，表達式(需用方括號包括)，每個值都是一個表達式，賦予給該屬性名稱。如果物件出現在需要語句的位置，可能需要將object literal包裹在圓括號中，以免將字面值與區塊語句混淆。
+                        </p>
+                        <h3>使用constructor function</h3>
+                        <p>
+                            有另一個方法創造物件，可以藉由使用constructor function定義物件類型(習慣上開頭字母為大寫)，接著再使用new operator創造物件的實例，要定義一個物件類型，首先要創造一個函數，並在函數中指定名稱、屬性、方法，要設定屬性，在函數宣告塊內輸入this.propertyName1=參數值1，設定method也類似，this.method=function(){ this.propertyName=123 }，接著就可以創造物件，藉由使用new調用該物件類型。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+function Car(color,price){
+    this.color = color ;
+    this.price = price ;
+    this.changeColor = function(color){
+        this.color = color ;
+    }
+}
+const myCar = new Car('red','cheap') ;
+console.log(myCar.color) ;//red
+myCar.changeColor('blue') ;
+console.log(myCar.color) ; //blue</pre>
+                        </div>
+                        <h3>comparing objects</h3>
+                        <p>
+                            物件屬於reference type，兩個物件永遠不相等，即使擁有相同的屬性，除非比較同一個物件的引用，才會返回true。
+                        </p>
+                    </section>
+                    <!-- 5.Accessing objects -->
+                    <section id="chapter-5" class="mb-5">
+                        <h2>5.Accessing objects</h2>
+                        <p>
+                            要在瀏覽器中的console訪問物件，可使用console.log(objectName)，也可加入string，如:console.log("object:",objectName)。若要訪問物件的屬性，有兩種語法，點記法(dot notation)和括號記法(bracket notation)，物件屬性名稱可以是任何有效的string或符號，使用點記法需要為有效的JavaScript識別符，若屬性名稱開頭為數字，或是包含空格或連字符，或是存放在變數，需要使用括號記法，若屬性名稱存放在變數，且該變數的值是物件，那該屬性名稱將等於，該物件的toString()返回的值。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const property4="fuck"                               
+const object={
+    property1: true,
+    property2: "ok",
+    property3: 123,
+    [property4]: "no",
+    "property 5": false
+}
+console.log("object property:",object.property1) // object property: true
+console.log("object property",object.property2) // object property: "ok"
+console.log("object property",object.property3) // object property: 123
+console.log("object property",object[property4]) // object property: "no"
+console.log("object property",object["property 5"]) // object property: false</pre>
+                        </div>
+                        <h3>Enumerating properties</h3>
+                        <p>
+                            有三種原生方式，第一種for..in loops，可遍歷物件自身和原型鏈上所有可列舉屬性，第二種Object.keys()，只返回物件自身可列舉屬性，第三種Object.getOwnPropertyNames()，可返回物件自身可列舉和無列舉屬性。Object.hasOwn(obj, propertyName)，可察看物件的屬性是否是自身的而非原型鏈的。可使用delete operator，後接著物件屬性語法。
+                        </p>
+                    </section>
+                    <!-- 6.object methods -->
+                    <section id="chapter-6" class="mb-5">
+                        <h2>6.object methods</h2>
+                        <p>
+                            若物件的property值為function，該函數稱為物件的method，函數有兩種方式表達如:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const coolObject={
+    method: function(){
+        return 1;
+    },
+    method2(){
+        return 2; 
+    }
+}
+coolObject.method(); //return 1
+coolObject.method2();//return 2</pre>
+                        </div>
+                        <h3>this</h3>
+                        <p>method裡面的this，會指向擁有該method的物件，除非使用Function.prototype.call(thisObject)或Reflect.apply(function,thisObject,argumentsList)去指定特定函數內this指向的物件。</p>
+                        <h3>getters and setters</h3>
+                        <p>getters和setters都是與屬性相關聯的函數，getter用來獲取property的值，setter用來設置property的值，在物件初始化器中setters和getters設置的方法和普通函數相近(限定無法使用function關鍵字)，除了需要在前方加上關鍵字set或get，若要在以創建好的物件中，新增setters和getters，使用Object.defineProperties()，第一參數為要賦予函數的物件，第二參數為一個物件，該物件的屬性值為要設定的函數名稱，值為另一個物件，該物件包括無名的get或set的函數。get不應該接受參數，且call該函數時，後方不需要加上()。set需接受固定一個參數，且set不能直接call，而是要用賦值的方式，使用如:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const objectA ={
+    name: "fuck" ,
+    get callName(){
+        return this.name;
+    },
+    set prevent(action){
+        this.name= action;
+    }
+}
+console.log(objectA.name); // "fuck"
+objectA.prevent="no fuck"; // 設置name property的值  
+console.log(objectA.name); // "no fuck";
+Object.defineProperties(objectA,{
+    coolset:{
+        get(){
+            return this.name + "gay" ;
+        } 
+    } 
+});
+console.log(objectA.coolset);</pre>
+                        </div>
+                    </section>
+                    <!-- 7.using classes -->
+                    <section id="chapter-7" class="mb-5">
+                        <h2>7.using classes</h2>
+                        <p>
+                            class是基於原型的繼承，可使用new operator創作物件，每個物件都可有類別添加的property和method，類別本身也能儲存方法和屬性，通常用於與實例互動，類別本身儲存的方法和屬性稱為靜態屬性，需在設置時在前方加上static關鍵字，static{}可設置靜態初始化代碼，設置當該類別被加載時，執行的動作。class宣告是not hoisted，所以使用前需要先宣告。class可用declaration或是expression，且class的名稱通常使用大寫開頭，如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const People = class{
+    constructor(name,cool){
+        this.name = name ;
+        this.cool = cool ;
+    }
+    age= "secret";
+    changeAge(newAge){
+        this.age = newAge;
+    }
+    static flex(people){
+        return people.cool;
+    }
+    static live= 100;
+} //expression
+class Animal{
+    constructor(name,cool){
+        this.name = name ;
+        this.cool = cool ;
+    }
+    age= "secret";
+    changeAge(newAge){
+        this.age = newAge;
+    }
+    static piss(){
+        return cool;
+    }
+    static live= 20;
+} //declaration
+const reuben = new People("reuben",true);
+console.log(reuben.name); //reuben
+console.log(reuben.cool); //true
+console.log(reuben.age); //"secret"
+reuben.changeAge(123);
+console.log(reuben.age); //123
+console.log(People.flex(reuben)) //true
+console.log(People.live) //100</pre>
+                        </div>
+                        <h3>constructor</h3>
+                        <p>
+                            在class中，實例的創建是由constructor完成的，new operator將返回constructor中this的值，但若是其中return非原始值，將取代this成為返回的值。
+                        </p>
+                        <h3>instance methods</h3>
+                        <p>
+                            通常function，會直接設置在class中的method，並成為實例的method，實際上是存放在實例的原型中，也可以在constructor中建立函數，缺點是建造每個實例時，都需要在創造一次該函數。若是你比較兩個相同類的不同實例的函數，該函數若為在class的method，結果將相同，若在constructor中，結果不同，因為前者不同實例都是引用原型的函數。
+                        </p>
+                        <h3>Private fields</h3>
+                        <p>在物件導向程式設計中，有一種叫做「封裝」的理念，作為類的實作者，一些時候應該隱藏class的內部結構，只讓使用者透過設計好的方式訪問資料，private field是以#為前綴的識別符，#包括在屬性名稱內，所以私有屬性和公共屬性不會有命名衝突，如果用""包括#開頭的屬性名稱，該屬性不會是私有屬性，私有欄位的命名和訪問是靜態的，不能像一般屬性那樣透過動態字串或變數來引用，私有屬性只能透過class設置的內部方法訪問，也可訪問相同class的其他實例的私有屬性，私有欄位無法被刪除，要在class內引用private field，需要在class主體宣告該屬性。有個可在外部訪問私有屬性的例外，在chrome控制台可以訪問class外部的私有屬性，這是開發者工具對於Javascript語法限制的放寬。method，getter和setter也可以是私有的。</p>
+                        <div class="ex-block">
+                            <pre>
+const People= class{
+    #dick="30cm";
+    constructor(name,skin){
+        this.name=name;
+        this.skin=skin;
+    }
+    #cheap(){
+        return "100m";
+    }
+    introduce(boolean){
+        if(boolean){
+            return this.#cheap(); 
+        }else{
+            return this.#dick; 
+        }
+    }
+}
+const reuben=new People("reuben","yellow");
+console.log(reuben.introduce(true));
+console.log(reuben.introduce(false));</pre>
+                        </div>
+                        <h3>Accessor fields</h3>
+                        <p>
+                            Accessor fields，讓我們使用一種類似屬性的方式(getters和setters)，讀取或設置屬性值。
+                        </p>
+                        <h3>Public fields</h3>
+                        <p>
+                            Public fields，就是在類別中直接定義的屬性，Public fields中定義的屬性值會是該屬性的初始值，若與constructor內的屬性賦值的名稱相同，在創造實例時constructor中的賦值將覆蓋該屬性值。
+                        </p>
+                        <h3>Static properties</h3>
+                        <p>
+                            靜態屬性包括靜態方法、靜態getters和setters和靜態fields，靜態代表該特性定義在類別本身，而非該類別的實例上，靜態屬性在定義時，需要加上static關鍵字，其他如同public fields。class還有一個特殊的構造static{}，稱為static initialization block，當類別被引用或實例化時，裡面的動作會自動執行。
+                        </p>
+                        <h3>Extends</h3>
+                        <p>
+                            在JavaScript中，可以將一個class擴展，去創造一個derived class，該class可以有繼承父類別所有Public Properties，子class的constructor可以使用super()，將呼叫父class的constructor初始化this，在呼叫super()前，無法訪問尚未初始化的this，所以若要設置this，需要在super()後。子class也可以重寫父class的Public Properties。子類別中可以使用super去引用父class的Public properties。子class的實例也會是父class的實例。
+                        </p>
+                        <h3>Object Constructor Functions</h3>
+                        <p>
+                            在JavaScript ES6以前(還沒有class)，會使用Object Constructor Function，創造物件實例的模板，宣告一個大寫開頭(慣例)的function，並在函數裡面設定this，如同class中的constructor。
+                        </p>
+                        <h3>why classes?</h3>
+                        <p>
+                            使用class的優點:1.可以進行封裝，也就是將資料和操作資料的方法，綁在一起，提供外部一個清晰地接口與物件互動，並對外部隱藏內部的實現細節。2.類別支持繼承，這使得可以創建新的類別來擴展現有類別的功能，實現代碼重用。這對於大型應用的開發尤其重要。
+                        </p>
+                    </section>
+                    <!-- 8.Text Formatting -->
+                    <section id="chapter-8" class="mb-5">
+                        <h2>8.Text Formatting</h2>
+                        <h3>string</h3>
+                        <p>
+                            JavaScript的String類型用來表示文字資料，是一組由16位元無符號整數值(UTF-16編碼單位)組成的元素，第一個元素位於index 0，接下來的元素依次排列，字串的長度是其中字符的數量(有個例外就是一些特殊字符如某些emoji將占用兩個UTF-16編碼單位)。
+                        </p>
+                        <h3>string literal</h3>
+                        <p>
+                            宣告string可使用single quote或double quote包括字符，也可使用escape sequences宣告更進階的string，如十六進位轉義序列"\x"，\x可接十六進位數值(以兩個數值表示1個字符)，並且會轉換成Unicode編碼中代表的字符(最多256個)，但0x00 到 0x1F 這個範圍內。這些控制字符通常在輸出中無法顯示為可見字符，因為它們是為了控制設備或格式而設計的，而不是用來顯示可視內容的字符。Unicode轉義序列"\u"，\u後跟隨四個十六進位數字。而Unicode code點轉義是可添加超過四個十六進位數字，語法相似Unicode轉義序列，但是需使用{}包括數值部分。
+                        </p>
+                        <h3>String object</h3>
+                        <p>
+                            string literal可以使用String object的method，因為JavaScript會將字串文字轉換為臨時的String object，調用完方法後，再丟棄該物件，String 物件有一個屬性 length，用來表示字串中 UTF-16 編碼單元的數量，可以用array語法中的方括號，訪問每個編碼單元代表的值，若字符是由兩個編碼單元組成，則訪問該編碼單元(十六進位)。
+                        </p>
+                        <h3>template literal</h3>
+                        <p>
+                            template literal是一種string literal，允許embedded expression，使用template literal，可以實現多行字串和字串插值的功能，template literal使用backtick(`)包括值，使用換行符可在該字面值作用，不用特殊的額外的語法(\n\)，並且可內嵌表達式，表達式使用${和}包括，若表達式配合一般string literal使用的話，需使用+並且將字串分解成多個。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const stringLiteral = "normal string 
+literal" ; // Invalid or unexpected token
+const templateLiteral = `template 
+literal` ; // not appear error
+
+const abc = 123;
+const templateLiteral = `number:${abc}` ;
+console.log(templateLiteral); //number:123</pre>
+                        </div>
+                        <h3>internationalization</h3>
+                        <p>
+                            Intl物件是ECMAScript國際化API的命名空間，該API提供語言敏感字串的比較、數字格式化、日期和時間格式化功能，Intl.Collator，Intl.NumberFormat，Intl.DateTimeFormat等物件的建構函數為Intl物件的屬性。
+                        </p>
+                        <h3>Intl.DateTimeFormat物件</h3>
+                        <p>
+                            該物件用於格式化日期和時間，在實例化該物件時可設定，格式化時間的格式(第一參數為語言，第二參數為物件包括weekday，year，month等屬性，值可設定long,short等。)，實例化後使用該物件的format method，將要格式化的日期當參數輸入該method，便可返回格式化後的值。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const newNear = new Date("2024-01-01");
+const chineseFormat = new Intl.DateTimeFormat("zh-Hant",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+console.log(chineseFormat.format(newNear))</pre>
+                        </div>
+                        <h3>Intl.NumberFormat物件</h3>
+                        <p>
+                            用於格式化數字，在實例化該物件時可設定，格式化數字的格式(第一參數為語言，第二參數為物件包括style等屬性，若style為currency需要設定currency屬性，也有位數相關設置屬性，minimumFractionDigits設置最小小數位數，minimumFractionDigits設置最小整數位數。)，實例化後使用該物件的format method，將要格式化的數字當參數輸入該method，便可返回格式化後的值。如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const TWDFormat = new Intl.NumberFormat("zh-Hant",{style:"currency",currency:"TWD",minimumFractionDigits:2});
+console.log(TWDFormat.format(123456.789));</pre>
+                        </div>
+                        <h3>Intl.Collator物件</h3>
+                        <p>
+                            該物件用於比較和排序字串，在實例化該物件時可設定，如何比較字串(第一參數為語言，第二參數為物件包含多個屬性，可選擇是否要加入參數，但物件只能為第二參數)，實例化後使用該物件的compare method，並放置於array的sort method當作引數，便可排序出新的字串array。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const stringArray= ["1","31","3","11"];
+const sortRule = new Intl.Collator(undefined,{numeric:true});
+console.log(stringArray.sort());
+console.log(stringArray.sort(sortRule.compare));</pre>
+                        </div>
+                    </section>
+                    <!-- 9.Access HTML element -->
+                    <section id="chapter-9" class="mb-5">
+                        <h2>9.Access HTML element</h2>
+                        <p>
+                            要在JavsScript訪問HTML元素可使用document的querySelector method或querySelectorAll method，兩個方法的參數都是使用值為CSS選擇器的字串，去訪問符合條件的元素，前者只能return第一個符合條件的元素，若沒有return null，後者會return包含所有符合條件元素的靜態NodeList(若節點後面有改變，該清單不會動態更改)，NodeList類似array可用方括號包括index訪問其中特定位置元素。
+                        </p>
+                        <h3>Access HTML element older methods</h3>
+                        <p>
+                            訪問HTML元素有較舊的方式，document的getElementSByClassName()和getElementById()，但限定為有class或id的元素，前者的參數為包含該class名稱的字串，將返回HTML集合包含所有符合條件的元素，HTML集合為動態的類似array的資料類型，後者的參數為包含該id名稱的字串，將返回符合條件的元素。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const getFirstDiv = document.querySelector('div'); 
+console.log(getFirstDiv);//return &lt;div&gt;first div&lt;/div&gt;
+const getAllDiv = document.querySelectorAll('div'); 
+console.log(getAllDiv);//return NodeList[123]
+console.log(getAllDiv[0]);//return &lt;div&gt;first div&lt;/div&gt;
+const getAllDivByClassName = document.getElementsByClassName('div-class');
+console.log(getAllDivByClassName);//return HTMLCollection[123]
+console.log(getAllDivByClassName[0]);//return &lt;div&gt;first div&lt;/div&gt;
+const getDivById = document.getElementById('div-id');
+console.log(getDivById);//return &lt;div&gt;first div&lt;/div&gt;</pre>
+                        </div>
+                    </section>
+                    <!-- 10.Modify element classes -->
+                    <section id="chapter-10" class="mb-5">
+                        <h2>10.Modify element classes</h2>
+                        <p>
+                            要訪問特定元素的classes，可使用Element.className property或Element.classList property，className的值為該元素的class屬性值，所以若有兩個class，也只會返回一個字串值，其中以空格分離兩個class，該property會命名為className，因為可能會與class關鍵字造成衝突，在react中，className有其他含義需要注意。classList是一個唯讀屬性，返回包括該元素class屬性內容的動態DOMTokenList集合， DOMTokenList有四個method可以使用，便可用來改變class的值，add()該參數設置要加入DOMTokenList的token，可不只一個，按照順序添加到該List的最後方，remove()該參指定要刪除的token，可設置多個參數，刪除多個指定class，replace()該第一個參數為要被取代的class，第二個參數是新的class，若找不到要取代的token，將返回false，且不進行其他動作，toggle()中，第一個參數為要toggle的token，第二個參數為可選的，為布林值，如果是true將新增第一參數的token至list，如果是false將刪除第一參數的token從list，若沒有第二參數將根據指定token是否已在列表去進行刪除或增加，無論有無第二參數，最後結果若為刪除會返回false，若為增加會返回true。
+                        </p>
+                    </section>
+                    <!-- 11.Properties related to attributes -->
+                    <section id="chapter-11" class="mb-5">
+                        <h2>11.Properties related to attributes</h2>
+                        <p>
+                            JavaScript中Element有一些property與attributes相關，Element的attributes property會返回一個NamedNodeMap(沒有特定順序，可用index訪問特定attribute。)，為一個包括與該節點相關的所有attribute節點的動態集合，每個節點都是一個鍵值對的表示形式。Element.hasAttribute() method，返回一個布林值，用於表示該元素是否有指定的attribute(用第一參數指定)，Element.getAttribute()將返回該元素指定attribute(第一參數，參數會自動小寫化)的值，若沒有該屬性名稱返回null，若使用該method返回nonce屬性，將自動隱藏成空字串，nonce屬性值需使用nonce property訪問，且該property只能使用於腳本元素，Element.setAttribute()method，可用來設定該元素指定attribute(可新增尚未存在的attribute)的值，第一參數為指定的attribute name會自動轉換成小寫，第二參數為要設定的attribute value，若attribute為boolean attribute，存在元素上時，該值為true，設置時通常將值設為空字串（""）或屬性的名稱，使用null並不會刪除會轉換為字串，也代表true。若要移除attribute使用Element.removeAttribute() method，參數為所指定該元素要刪除的attribute。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+html檔案
+&lt;div data-test-a="a" data-test-b="b" data-test-c="c"&gt;test&lt;/div&gt;
+
+//console
+const testDiv=document.querySelector("div");
+console.log(testDiv.attributes) ;
+/* log:  NamedNodeMap {
+    0: data-test-a, 
+    1: data-test-b, 
+    2: data-test-c, 
+    data-test-a: data-test-a, 
+    data-test-b: data-test-b, 
+    data-test-c: data-test-c, 
+    length: 3}
+*/
+console.log(testDiv.hasAttribute("data-test-b"));// log true
+console.log(testDiv.getAttribute("data-test-b"));// log b
+testDiv.setAttribute("data-test-b","B")
+console.log(testDiv.getAttribute("data-test-b"));// log B
+testDiv.removeAttribute("data-test-b");
+console.log(testDiv.getAttribute("data-test-b"));//log null</pre>
+                        </div>
+                    </section>
+                    <!-- 12.Access element style -->
+                    <section id="chapter-12" class="mb-5">
+                        <h2>12.Access element style</h2>
+                        <p>
+                            有兩種方式可以訪問元素的樣式。
+                        </p>
+                        <h3>style property</h3>
+                        <p>
+                            該property是唯讀屬性，會返回一個動態CSSStyleDeclaration物件，該物件包含該元素所有內聯樣式鍵(name)值對的列表，因為在JavaScript的檔案中，所以CSS style property name會轉換成camelCase，沒有設定的CSS inline style property name，也會出現在該列表，但是對應值會是空字串，其中一個property name為cssText，該值會相當於整個style attribute的值，該物件還有length property，會相當於內聯樣式(非簡寫)的數量，並可用index根據寫入的順序訪問特定的property。因為element的style property是唯讀的，所以不能直接賦值在該property，賦值的動作，會更改cssText的值，並影響該元素的內聯樣式，若要設定樣式也可直接設定CSSStyleDeclaration物件的property(對應特定CSS style property)。
+                        </p>
+                        <h3>getComputedStyle method</h3>
+                        <p>
+                            window.getComputedStyle() method，會返回一個動態CSSStyleDeclaration物件，該物件會包含某個元素(該方法第一參數，第二參數為可選的用來指定pseudo element，省略第二參數或設置值為null，代表不是pseudo element)在應用所有積極樣式表，並解析任何基本計算後的所有CSS property，相對的值通常是計算值(百分比尚未轉換為實際渲染的值)，部分CSS property會是使用值(經過所有計算和佈局後的值)。該物件的length也是只計算非簡寫樣式property的數量。若要訪問該物件的特定樣式property，可使用點記法、括號記法，或是使用getPropertyValue()method，將可訪問特定CSS property的值(設為參數)，參數的形式需要為kebab-case形式。
+                        </p>
+                    </section>
+                    <!-- 13.Add DOM elements -->
+                    <section id="chapter-13" class="mb-5">
+                        <h2>13.Add DOM elements</h2>
+                        <p>
+                            若是使用template literal，直接添加到其他元素的innerHtml，會覆蓋該元素裡原本的內容，所以可用其他method，添加元素到另一個元素內。Element.append()，可將字串或Node物件(參數，可多個)插入到該Element的最後一個子節點後，該method無返回值，Element.prepend()，可在該元素的第一個子節點前插入字串或Node物件(參數，可多個)，也無返回值。Node.appendChild()該方法可以用來添加節點(參數，只能一個)到指定節點的子節點列表末端，若該節點已經存在於別的位置將移除，並插入到新位置，該method不能附加字串，且會返回插入的節點。Node.insertBefore()，可插入節點(第一參數)到執行該method的物件，並且可設定該插入節點位置在特定節點(第二參數)之前，若第二參數為null，插入節點的位置將會是父節點的子節點列表最後方，雖然沒有insertAfter()method，但可以使用insertBefore()配合Node.nextSibling達到相同效果。Node.replaceChild()method，執行該method的物件，一個指定的子節點(第二參數)皆被替換成新的節點(第一參數)，該method會返回被替換的node，有另一個替換method，為Element.replaceWith()，更為直觀，執行method的元素將被替換成指定node或字串(參數，可多個)，不會返回值。使用Node.removeChild()可以刪除執行該method物件的指定子節點(參數)，若不知道刪除的元素的父節點，可使用parentNode property。Element.insertAdjacentElement() method，會將給定的元素node(第二參數)插入到執行該方法的元素的指定位置(第一參數)，第一參數有四種值，beforebegin表示插入目標元素的前面，afterbegin表示插入目標元素裡第一個子節點之前，beforeend表示插入目標元素內部最後一個子節點之後，afterend插入到目標元素本身後面，會返回插入的node或null。如以下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+HTML檔案
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+    content
+&lt;/div&gt;
+
+//JavaScript
+const myDiv = document.querySelector("div");
+const newHeader = document.createElement("h1");
+const newSubheader = document.createElement("h2");
+newHeader.innerHTML = "cool header";
+const newParagraph = document.createElement("p");
+newParagraph.innerHTML = "cool paragraph";
+const newParagraph2 = document.createElement("p");
+const newParagraph3 = document.createElement("p");
+const newParagraphText = document.createTextNode("one paragraph");
+
+myDiv.prepend(newHeader);
+myDiv.append(newParagraph);
+const myDivState1 = myDiv.cloneNode(true);
+console.log(myDivState1);
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+content
+&lt;p&gt; cool paragraph&lt;/p&gt;
+&lt;/div&gt;
+*/
+myDiv.appendChild(newParagraph3).innerHTML="three paragraph"
+myDiv.insertBefore(newParagraph2,newParagraph3).innerHTML="two paragraph"
+myDiv.insertBefore(newSubheader,newHeader.nextSibling).innerHTML="cool subheader"
+const myDivState2 = myDiv.cloneNode(true);
+console.log(myDivState2);
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+&lt;h2&gt; cool subheader&lt;/h2&gt;
+content
+&lt;p&gt; cool paragraph&lt;/p&gt;
+&lt;p&gt; two paragraph&lt;/p&gt;
+&lt;p&gt; three paragraph&lt;/p&gt;
+&lt;/div&gt;
+*/
+newParagraph.replaceChild(newParagraphText,newParagraph.firstChild);
+newSubheader.replaceWith(newHeader);
+myDiv.removeChild(newParagraph3).innerHTML= "three paragraph out";
+myDiv.insertAdjacentElement("afterend",newParagraph3)
+console.log(document.querySelector("body"));
+
+/* log
+&lt;div style="background-color: aqua; color:black; padding: 10px; width: 50px;"&gt;
+&lt;h1&gt; cool header&lt;/h1&gt;
+content
+&lt;p&gt; one paragraph&lt;/p&gt;
+&lt;p&gt; two paragraph&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt; three paragraph&lt;/p&gt;
+*/</pre>
+</div>
+                    </section>
+                    <!-- 14.Variables -->
+                    <section id="chapter-14" class="mb-5">
+                        <h2>14.Variable</h2>
+                        <p>
+                            有三種變數宣告方式，關鍵字var variableName，可宣告一個變數，可選擇是否初始化為某個值(使用=)，關鍵字let variableName，宣告一個區塊作用域的本地變數，並可選擇性的初始化為某個值(使用=)，關鍵字const variableName，宣告一個區塊作用域的唯讀命名常數，因為是常數，所以不能先宣告在賦值，也就是var和let在宣告時，可決定是否使用初始化器(=content)，若宣告時沒有使用初始化器，會先定義賦值undefined，const不能。var語法可根據執行環境宣告本地或全域變數，let or const 可用於宣告區塊作用域的本地變數。若使用{}包括variableName 可以賦值一個物件同名屬性的值給該變數。不能在相同作用域中宣告相同名稱的函數或變數，但是var可以重複宣告。
+                        </p>
+                        <h3>var</h3>
+                        <p>
+                            使用var宣告的變數，作用域會為以下最接近包括該var聲明的花括號包圍語法，function body or Static initialization block，若非上述兩者，當檔案是腳本模式時，為全域作用域，並且為window的property，當檔案是模組模式時，為模組作用域。var宣告的變數會被hoisted，可在該變數作用域的任何地方引用該變數，即使在宣告語句之前，也可引用，在宣告之前訪問變數，該值為undefined，因為只有變數的宣告和預設初始化會被提升，而不會提升其賦值，與函數不同，函數的宣告會完全提升。
+                        </p>
+                        <h3>let</h3>
+                        <p>
+                            使用let宣告的變數，作用域會在最接近包括該let聲明的{}包圍區塊內，若沒有在{}內宣告，當檔案是腳本模式時，為全域作用域，當檔案是模組模式時，為模組作用域。
+                        </p>
+                        <h3>const</h3>
+                        <p>
+                            使用const宣告的常數，作用域會在最接近包括該const聲明的{}包圍區塊內，若沒有在{}內宣告，當檔案是腳本模式時，為全域作用域，當檔案是模組模式時，為模組作用域。const會阻止re-assignments,不能阻止mutations，若常數賦值一個物件或array，更改該物件或是array，並不會被阻止。
+                        </p>
+                        <h3>global variables</h3>
+                        <p>
+                            global variables實際上是global物件的properties，在網頁中全域物件是window，所以要讀取全域變數可使用window.variableName。全域屬性中的globalThis可在不同環境中引用全域物件。
+                        </p>
+                    </section>
+                    <!-- 15.Arrays -->
+                    <section id="chapter-15" class="mb-5">
+                        <h2>15.array</h2>
+                        <p>
+                            array是按照index排序的資料集合(列表)，可以透過array名稱和索引引用該列表，JavaScript沒有明確的數組資料類型，然而可以使用預定義的Array object和method來操作array。有多種方式可創造array，第一使用new operator接著Array()，實例化Array物件(將數列要包括的元素當作引數輸入)，第二直接使用Array()，(將數列要包括的元素當作引數輸入)，第三使用方括號語法(也稱為array initializer or array literal)，用方括號包圍所有以逗號分隔的元素。第一和第二種語句，要注意若參數只有一個數值，將不是指派數列元素的值，而是該數列的長度，若是該數值不是整數會拋出錯誤，若要創造單個元素的數列可使用array的static method Array.of()。
+                        </p>
+                        <h3>referring to array elements</h3>
+                        <p>
+                            array elements也是屬性，能夠使用property accessors，利用index(屬性名稱)去訪問，因為index是數字，所以只能用括號記法。可藉由訪問元素重新指派值，但若使用非整數值當作訪問的屬性，所賦予的值將不是對於元素，而是表示該array的物件的屬性值，
+                        </p>
+                        <h3>array length</h3>
+                        <p>
+                            array的length property是特殊的，它的值總是正整數，並且因為index是從0開始，所以會大於陣列中最後一個元素的index，如果直接指派值給length property，若該值大於原本的元素量，會自動填上未定義值的元素，若該值小於原本的元素量，會刪除超過該數量長度位置的元素。
+                        </p>
+                        <h3>iterating over arrays</h3>
+                            若要遍歷array可以使用array原型的方法forEach()，該參數為一個函數，讓該數列的每個元素按照index順序去執行該函數(未賦值的元素會跳過，若該元素值是undefined，但是手動賦予該值，也不會跳過)，作為該函數的引數使用，除了拋出錯誤，沒有方法會中斷該迭代，forEach()第二個參數可以設定第一個參數函數中的this值(除非該函數是箭頭函數)。由於 JavaScript array的元素是作為標準物件屬性儲存的，因此不建議使用 for...in 迴圈來遍歷 JavaScript 陣列，因為這樣會列出正常的元素以及所有可枚舉的屬性。
+
+                        </p>
+                        <h3>Array method</h3>
+                        <p>
+                            有一些常見的Array.prototype方法，concat()返回一個合併數列，執行該method的數列元素緊接著另一個數列的元素或值(參數)，參數量可多個。join()會返回一個字串，將執行該method的array所有元素值連結，中間以逗號分隔(預設)，或是指定符號(參數)。push()將指定的元素(參數，可多個)按照順序添加到陣列的末尾，並返回陣列添加元素完的長度。pop()將刪除執行該method數列的最後一個元素，並返回該刪除的元素。shift()會移除執行該method的數列中的第一個元素，再將後續索引值的元素向前移動，並且返回該元素，如果沒有元素可以移出返回undefined。unshift()會增加指定的元素(參數，可多個)到執行該method的數列的最前方，若同時傳送多個元素，它會把這些要插入的元素當作一個整體，從前方放置，所以結果會跟分成多次插入，不一樣。slice()會選取執行該方法的數列中的指定範圍，進行淺拷貝做為新的數列返回。指定的範圍索引由start(第一參數)到end(第二參數)-1，參數可為負數，若為小數去除小數點後數字取整數，若start的負索引小於數列起始位置或未指定，start等於0，若沒有超過start等於負值加上數列長度，若start或等於數列長度，返回空數列，若end的負索引沒有小於數列起始位置，end等於負值加上數列長度，如果end的負索引小於數列起始位置，則使用0，如果end>=數列長度或未指定，end=array.length，如果end小於或等於start，返回空字串。at()返回執行該函數的數列特定位置(參數)的元素值，參數可用正index或負index，若為小數去除小數點後數字取整數，若超出數列範圍，返回undefined，該方法的好處只有能使用負index。splice()從數列中(可選的)刪除元素，(可選的)換成其他元素，並返回刪除的元素(如果沒有返回空數列)，第一個參數代表刪除範圍的起點，可使用負索引，start大於等於數列長度，不會刪除數列，若值為undefined會轉換成0，第二個參數代表要刪除的數量，若數量大於start後(包括start)的所有元素量，或是沒有設定該參數，就把後面元素全刪了，如果數字為0或負數，就別刪了，但是需要指定第三參數(或更多參數)添加新的元素，要添加的元素，一般狀況是可以選擇不添加的。reverse()用於原地反轉數列，第一個元素與最後一個元素對調，第二個元素與倒數第二個對調，以此類推，並且返回該數列。flat()會返回一個新數列，該數列將是執行該方法的數列根據指定深度(參數，預設1)拼接子數列元素後的結果，總之展平深度就是刪除除了最外層的括號序數(從外到裡計算)，就是當被展平的陣列是稀疏陣列時，空slot會被刪除。sort()會原地對數列的元素進行排序，並返回該數列的引用，預設的排序順序為ascending order，將元素轉換為字串，根據UTF-16編碼單位順序進行比較，先比較第一個字符，若相同才比較第二個，可在參數放置比較函數，該函數會有兩個預設參數a、b可使用，若該函數返回負值表示a應該排在b前，正值表示a應該排在b後，0 or NaN表示a和b視為相等。indexOf()該方法用來搜尋執行該方法數列的具有指定值(第一參數)的元素，並返回第一個指定匹配元素的位置(index)，若找不到則返回-1，第二參數可以決定從數列的哪個位置(index可負值)開始搜尋。lastIndexOf()該方法indexOf()的後方搜尋版本。map()將讓呼叫該方法的數列每個元素執行指定的函數(第一參數)，並將每次執行的結果構建成一個新的數列返回，第二個參數是可選的，可以指定第一參數函數中的this值。flapMap()相當於先執行map()再接著flat(1)。filter()會讓call該方法的數列的每個元素執行特定函數(第一參數)，將執行函數且返回true(即使不是布林值也換轉換類型)的元素進行淺拷貝並返回，第二參數用來指定this值。find()會讓call該方法的數列按照順序執行函數(第一參數)，只要執行函數時某個元素的結果返回true，便返回該元素，停止讓後面的元素繼續執行，如果沒有任何結果返回true，返回undefined。findLast()相當於從數列後面開始執行函數的find()版本。 findIndex()返回find()返回元素的index。findLastIndex()返回findLast()返回元素的index。every()會讓call該方法的數列元素按照順序執行函數(第一參數)，若有任何元素執行函數結果返回false，便停止最終結果返回false，全部結果都是true，最終才會返回true，第二參數可以設定函數內部的this。some()會將call該方法的數列的元素按照順序執行特定函數(第一參數)，直到函數執行結果為true，會停止後面的元素繼續執行函數，並返回true，若全部都返回false，便返回false。reduce()會讓call該方法的數列每個元素都執行特定函數(reduce()的第一參數)，但是若沒有設定初始值(reduce()第二參數)便會跳過第一個元素，每次執行特定函數的return值，將成為下次執行特定函數的accumulator參數(特定函數的第一參數)，第一次執行特定函數的accumulator會取用初始值，而特定參數的第二參數會為當前值，所以若有初始值當前值會為index0的元素，但若沒有初始值，第一次的accumulator會等於index0的元素，而當前值會等於index1的元素，最後會return 最後一個元素的return值。reduceRight()方法類似於reduce()，但是從數列後方開始，
+                        </p>
+                        <h3>Grouping the element of an array</h3>
+                        <p>
+                            使用Objects.groupBy() method。讓每個可更迭物件的元素執行特定函數(參數)，該函數返回的字串，代表屬於該元素的組別名稱，藉此把數列元素分組，最後會返回一個物件，該物件的property name代表組別名稱，property value為一個數列包括屬於該類的元素， 
+                        </p>
+                        <h3>Sparse arrays</h3>
+                        <p>
+                            數列可以包含空slot，不是直接賦予undefined的方式，有幾種方式創建，第一Array()包含一個數值。第二在array literal的slot不輸入元素。第三賦值在一個比原array最後一個slot的index大至少2的slot，賦值的slot前的slot還未定義。第四設定該數列長度大於有定義值的元素長度。第五使用delete刪除元素。在一些操作中，空slot的行為就像是它們被填充undefined一樣，第一使用index訪問該空slot。第二使用for...of迴圈，使用[...arr](spreading)。但在許多array iteration methods，空slot會被跳過，map()，forEach()，filter()，some()，Object.keys()，for...in迴圈，使用{...arr}(spreading)，
+                        </p>
+                        <h3>Multi-dimensional arrays</h3>
+                        <p>
+                            數列可以有嵌層式結構，利用JavaScript的這一特性，搭配迭代語句，可以創造多維的數列。如下:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const multiDArr = Array(4);
+for(let i=0; i &lt; 4 ;i++){
+    multiDArr[i] = Array(4);
+    for(let j=0; j &lt; 4 ;j++){
+        multiDArr[i][j]=`[${i},${j}]`;
+    }
+}
+console.log(multiDArr[3][3]); //[3,3]</pre>
+                        </div>
+                        <h3>Working with array-like objects</h3>
+                        <p>
+                            對於一些類似array的物件，可能不能使用Array.prototype.method，這個時候可搭配Function.prototype.call()，第一參數可設定該函數實例的this值，這時可設為類似array的物件，後面的參數為函數實例需要的引數。
+                        </p>
+                    </section>
+                    <!-- 16.Functions -->
+                    <section id="chapter-16" class="mb-5">
+                        <h2>16.Functions</h2>
+                        <p>
+                            functions類似於一個程序，由一組執行任務或計算某值的語句組成。
+                        </p>
+                        <h3>Defining function</h3>
+                        <p>
+                            要宣告函數可以使用function declaration，也就是function關鍵字後接著functionName(){}，小括號內可放置參數，在該函數要執行的動作中使用，也就是花括號內的語句。若參數傳遞的是普通的值類型，字串或數值，在函數內重新賦值參數，不會對外部有啥影響，但若是傳遞物件或是數列，這個值會指向物件和數列的記憶體參考，因此若函數內部改變該值，會影響到該外部物件或數列。宣告函數也可使用function expression，將創造一個匿名函數，但是需要在不能接受語句的上下文中，例如:給一個變數賦值，或直接輸入在某個函數的引數中，當作參數輸入。語法為function(){}匿名函數，或function functionName(){}，若有函數名字，可在自身函數塊中引用，
+                        </p>
+                        <h3>calling function</h3>
+                        <p>
+                            定義一個函數並不會執行它，需要呼叫該函數，並傳入指定的參數，才會執行定義的動作。函數在呼叫時必須處於作用範圍，但函數declaration能被提升，函數宣告的作用域會為它被宣告時在的函數內，若宣告在最外層作用域為整個程式，函數expression沒有辦法提升。
+                        </p>
+                        <h3>Scope and the function stack</h3>
+                        <p>
+                            若函數想要在自身區塊內呼叫自己，有三種方式，第一使用函數本身名稱，第二指向該函數的變數名稱，第三argument.callee，一個函數呼叫自己本身就稱為遞歸函數。嵌層函數只能從外部函數的語句訪問，外部函數外無法訪問，嵌層函數形成一個閉包。嵌層函數裡面可以使用外部函數的參數和變數，外部函數中(嵌層函數外)不能使用嵌層函數的變數和參數，若要在外部函數中使用嵌層函數裡的值，只能執行嵌層函數，並且嵌層函數要return該值。若一個外部函數包括一個嵌層函數，可以利用多個()在最外部指定嵌層函數的參數，最左方()內的參數代表最外部，這是因為外部函數return嵌層函數時，若嵌層函數引用該外部函數的參數，該閉包會儲存當時的值，值到該嵌層函數的結果返回。若在不同作用域中，發生變數名稱衝突，會優先以內部範圍定義的值為主，要查詢一個引用的變數，會從內部作用域向外部作用域查詢，形成了作用域鏈。 
+                        </p>
+                        <h3>Closures</h3>
+                        <p>
+                            閉包就是內部函數可以完全訪問外部函數內部定義的所有變數和函數（以及外部函數可訪問的所有其他變數和函數），而外部函數無法訪問內部函數中定義的變數和函數。這為內部函數的變數提供了一種封裝。由於內部函數可以訪問外部函數的作用域，如果內部函數成功地存活過外部函數的執行週期，那麼外部函數中定義的變數和函數將會比外部函數的執行時間更長。當內部函數以某種方式被暴露給外部作用域時，便會創建一個閉包。
+                        </p>
+                        <h3>Using the arguments object</h3>
+                        <p>
+                            函數的arguments會保存在arguments object(類似數列的物件)中，若要在函數內部訪問特定的引數，如同訪問數列的特定元素，使用其序號(從0開始是第一個引數)和屬性訪問器，若要得知引數的數量，可查看其length property，在函數內部使用該物件的時機為，當你不知道要多少設置參數時，若使用該物件，就不需要在定義函數時，使用固定的參數去設置引數的位置。
+                        </p>
+                        <h3>function parameter</h3>
+                        <p>
+                            函數參數有兩個特別的語法，預設參數和剩餘參數，函數參數的預設值為undefined，所以若在呼叫函數時，沒有使用引數賦值給參數，該參數值將為undefined，一些時候會造成錯誤，所以可使用預設參數，就是在定義函數時，直接在參數的位置使用 parameter = defaultValue，設定參數預設值。剩餘參數語法，用來將不確定數量的引數(未與定義好的參數匹配的引數)表示為數列，使用剩餘參數需在函數的參數設置時，加上...在參數名稱的前方，而剩餘參數後不能再設值其他參數，
+                        </p>
+                        <h3>arrow functions</h3>
+                        <p>
+                            arrow function expression(又被稱為胖箭頭，用來與->區分)，相比於一般函數有更簡短的語法，並且沒有自己的this、arguments、super、new.target，箭頭函數始終是匿名的，使用箭頭函數的原因有兩個，更簡短的函數寫法和this的非綁定性，第一更簡短的寫法，箭頭函數相較於一般函數不需要function關鍵字，並且在(parameters)和{function body}中間使用=&gt;銜接，且箭頭前面不能換行若只有一個簡單參數時，可省略()，若有多個參數或沒有參數，或有預設參數，或解構參數，或剩餘參數，必須保留括號，當函數只返回一個表達式時，花括號和return關鍵字可省略。箭頭函數的body分成表達式(省略花括號)和傳統區塊，若想使用表達式主體return 一個由花括號包圍的物件，會造成解析錯誤，JS會以為該物件的花括號是該函數的傳統區塊主體，這個時候可以在該物件外再加上一個()解決。第二箭頭函數的this沒有自己的this，一般的函數內部this取決於執行上下文，用作構造函數時this指向新創建的實例，在普通函數時this指向調用者，通常是全局物件，在當作物件方法時，this指向物件，而箭頭函數內部的this會等於本身位於的外部函數作用域的this，所以箭頭函數不能拿來當作建構函數，一是因為它沒有自己的this，第二它無法被new調用，第三它也沒有new.target。
+                        </p>
+                    </section>
+                    <!-- 17.Conditional statements -->
+                    <section id="chapter-17" class="mb-5">
+                        <h2>17.conditional statements</h2>
+                        <p>
+                            任何一個JavaScript表達式也是一個statement，有一個基礎的statement，block statement用來將語句分組，使用{}包括所有語句，block statements通常與控制流程語句使用，例如if、for、while。一些時候若想要在特定條件下，執行某些語句，可使用conditional statements，當條件為true時，才執行語句，有兩種conditional statements，分別是if...else和switch語句。
+                        </p>
+                        <h3>if...else statement</h3>
+                        <p>
+                            首先可使用if statement，設定在某個邏輯條件為true時，執行某個語句，使用if關鍵字接著一個條件用()包括，再接著若是符合條件(任何評估為true or false的表達式。)要執行的語句(若不使用block語句，只有條件後面的一個語句，會與該條件匹配，其他的語句會直接執行，與條件沒有關聯)，接著可選擇是否接著else語句，else關鍵字後接著若前面的if語句的條件不符合時要執行的語句，也可加入else if語句在if語句和else語句中間，語法為關鍵字else if接著用()包括的條件，再接著要若符合條件要執行的語句，但是若要執行需要不符合前面的if或else if語句的條件，else if語句和else語句最前方一定要有if語句。條件的false和true值可能會是從其他類型值轉換，false、undefined、null、0、NaN、""這些值都相當於false，其他值為true。語句的使用如下示範:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+let myAnswer = 90 ;
+let mood ;
+(function(){
+    if(myAnswer === 100 ){
+        mood = "good";
+    }else if(myAnswer &lt; 100 && myAnswer &gt;= 60){
+        mood = "soso";
+    }else{
+        mood = "loser";
+    }
+    return mood;
+})(); // "soso"</pre>
+                        </div>
+                        <h3>switch statement</h3>
+                        <p>
+                            switch語句允許程式評估一個表達式，嘗試將該表達式的值去匹配各個case標籤，若找到匹配項，程式將執行與之相關的語句。
+                            switch語句的結構為，switch關鍵字接著要匹配的表達式，表達式外使用()包括，接著{}，在花掛號內可使用多個case關鍵字，接著要與表達式匹配的標籤，再接著":"字符，在接著若表達式匹配該標籤要執行的語句，最後要再接著break，表示執行完語句後斷開，不然會繼續向下執行語句，直到整個switch語句結束，或遇到break關鍵字，在{}內的最下面(通常寫在最下面，但沒有硬性規定)，可使用關鍵字dafault接":"字符，然後接著若前面所有case標籤都不匹配表達式時要執行的語句。
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+(function(){
+    switch(mood){
+        case "good" :
+            return "haha";
+            break ;
+        case "soso" :
+            return "oh" ;
+            break ;
+        default :
+            return "loser" ;
+    } 
+})(); // "oh"</pre>
+                        </div>
+                    </section>
+                    <!-- 18.Exception handling statements -->
+                    <section id="chapter-18" class="mb-5">
+                        <h2>18.Exception handling statements</h2>
+                        <p>
+                            exception是一種程式出現意外時的一種信號或警報。在JavaScript中，幾乎任何物件都可以被拋出。然而，並非所有被拋出的物件都是一樣的。雖然常見的做法是拋出數字或字串作為錯誤，但更有效的方法通常是使用專門為此目的創建的例外類型:ECMAScript exceptions和DOMExecption。
+                        </p>
+                        <h3>throw statements</h3>
+                        <p>
+                            使用throw statements可拋出例外，語法為throw後接著要拋出的例外(表達式)，表達式可以是各種類型，如:字串、數值、布林值、物件等。
+                        </p>
+                        <h3>try...catch statements</h3>
+                        <p>
+                            try...catch語句，標記一段要執行的語句區塊，並指定區塊內若拋出例外，會中斷執行該區塊後面的語句，捕捉例外的值，並且執行catch語句(可選的，若沒有catch語句，例外會被拋到上層，且需要使用finally語句)。語句的語法為關鍵字try接著{}，{}內包含一個或多個語句，再接著關鍵字catch後接著識別符，並且識別符使用()包括，最後再接著{}包含要執行的語句，catch後的識別符，持有由throw拋出的值，該識別符只能使用於catch語句區塊。一些時候再執行完try...catch語句後，可能需要再執行一些操作，例如:清理資源、關閉文件等，這個時候可在語句後面接著finally語句，無論是否拋出例外，是否有catch語句，最後finally語句都會執行，語法為使用關鍵字finally接著{}，若是finally語句有返回值，將成為整個try...catch語句的返回值，即使try語句或catch語句有返回值(return時該區塊後面的語句不會執行，無論返回值是否被取代)，且finally語句有返回值時，catch的throw會被中止。若使用嵌套的try...catch語句時，且內部的try區塊沒有對應的catch區塊，必須包含一個finally區塊，且需要外層的try...catch語句的catch區塊匹配該內層try拋出的例外，不然會導致程序中止。基於error物件的錯誤類型，會有name property和message property，name property用來表示錯誤的類別，message property用來描述錯誤的具體內容原因，通常是字串，若是自己創造的error實例，可以在創造時輸入參數(可用字串自己描述錯誤原因)，設定message的值。
+                        </p>
+                    </section>
+                    <!-- 19.Loop and iteration -->
+                    <section id="chapter-19" class="mb-5">
+                        <h2>19.Loop and iteration</h2>
+                        <p>
+                            迴圈提供一個快速簡單的方式執行重複的動作，JavaScript有許多不同種類的迴圈語句。
+                        </p>
+                        <h3>for statements</h3>
+                        <p>
+                            for迴圈會重複執行，直到指定的條件被評估為false，語法為關鍵字for接著一個()，該括號內包括三個語句，initialization、condition、afterthought，語句中間要使用";"分隔，在()後面再接迴圈中要執行的語句(若要執行多個語句需要使用{}包括)，如果有initialization(初始化表達式)會先執行，若沒有該表達式也需要再condition前，加上";"字符，該表達式用來初始化一個或多個迴圈計數器，但語法允許任何程度的複雜表達式，也可以用來宣告變數，condition(條件表達式)若該表達式為true，才會執行該回合迴圈的動作(每次執行前判定)，afterthought(更新表達式)，如果有該表達式(若沒有該表達式也要在)，該回合的迴圈語句完成後，會執行它，再繼續評估條件表達式，決定是否要繼續下回合的迴圈動作。
+                        </p>
+                        <h3>do...while statements</h3>
+                        <p>
+                            do...while語句會重複執行，直到指定的條件被評估為false，語法為關鍵字do，接著要執行的語句(若要執行多個語句使用{}包括)，再接著關鍵字while，和要評估的條件表達式使用()包括。該語句的第一次執行動作不進行條件評估，之後每次的執行都需要先評估條件，條件為true才會繼續執行。
+                        </p>
+                        <h3>while statements</h3>
+                        <p>
+                            while語句，只要指定的條件表達式為true，就重複執行語句，直到條件表達式被評估為false，在每次迴圈每回合執行語句前都會評估條件，語法為關鍵字while後面接著條件表達式，該表達式使用()包括，在()後面再接著若條件為true要執行的語句(若為多個使用{}包括)，與do...while語句的差異為while語句，在每一次執行該回合的迴圈語句前，都會評估條件表達式。
+                        </p>
+                        <h3>label statements</h3>
+                        <p>
+                            label語句為帶有識別符作為前綴的語句，可在該label語句內的其他地方使用break語句或continue語句引用該語句，語法為labelName(標籤可以是任何非保留字的 JavaScript 識別符)接著":"字符，再接著要執行的語句(多個語句需使用{}包括)。
+                        </p>
+                        <h3>break statements</h3>
+                        <p>
+                            在沒有label的情況下，break語句會立即中止它所在區塊，最內層的while、do...while、for、switch語句，並將控制權轉交到後續語句，當配合label一起使用時，它會中止指定標籤的語句，break語句語法有兩種，第一種不使用label直接使用關鍵字break，第二種引用label語句，使用關鍵字break後面接著指定的標籤名稱。
+                        </p>
+                        <h3>continue statements</h3>
+                        <p>
+                            continue語句可用來重新開始一個while、do...while、for或label statement。當continue語句不引用label時，會中止目前最內層的迴圈，並從下一次迭代開始執行迴圈，與break語句的差別在於continue語句不會完全中斷迴圈，只會中止該迴圈的當前回合，在while迴圈，使用continue語句會跳回條件評估，在for迴圈，使用continue語句會跳到更新表達式，若引用label語句，中止該迴圈後會跳到該label語句。continue語法為兩種，第一不引用label，直接使用關鍵字continue，第二引用label，在使用關鍵字continue後接著labelName。
+                        </p>
+                        <h3>for...in statements</h3>
+                        <p>
+                            for...in語句會使用指定變數遍歷特定物件的所有可列舉屬性(需為字串屬性，非符號屬性)，包括繼承而來的可列舉屬性，對於每個不同的屬性，都會執行特定的語句。語法為關鍵字for接著()，()內宣告一個變數，接著關鍵字in和指定物件名稱，在()後接著語句(若有多個可使用{}包括)。若使用該語句遍歷數列，除了返回索引值，還會返回使用者自定義的名稱，而不是返回元素。
+                        </p>
+                        <h3>for...of statements</h3>
+                        <p>
+                            for...of語句創造一個迴圈，遍歷可迭代物件(包括數列、Map、Collection等)中的元素(或屬性值)。語法為關鍵字for後面接著()，()內可宣告變數，後面接著關鍵字of和可迭代物件的名稱，()後接著每個元素(屬性值)要執行的語句(若要執行多個語句需使用{}包括)。
+                        </p>
+                    </section>
+                    <!-- 20.Expressions and operators -->
+                    <section id="chapter-20" class="mb-5">
+                        <h2>20.Expressions and operators</h2>
+                        <p>
+                            expressions是一段有效的程式碼單位，會解析一個值，expression分為兩個類型，有副作用(例如:賦值)的表達式，和純粹評估的表達式，第一種類型例如:運算式x=7，"="運算子將值7賦予變數x，並且運算式本身結果為7，第二種類型例如3+4，產生結果為7，若這個表達式沒有被納入更大的結構，該結果會被立刻丟棄，通常是程式設計上的失誤。複雜的表達式會由多個如"="、"+"的operator組成。operator的優先順序決定評估表達式時，operator應用的順序，可使用括號創造一個分組表達式(基本表達式)，藉此覆蓋operator的優先順序。JavaScript擁有unary、binary和ternary表達式，unary運算子可以在operand前或後，operator在前稱為prefix unary operator，operator在後稱為postfix unary operator，JavaScript中只有兩種posrfix運算子(x++和x--)，binary運算子會有兩個運算子在運算元前後。
+                        </p>
+                        <h3>Assignment operators</h3>
+                        <p>
+                            assignment operators根據右邊運算元的值，將一個值賦予左邊運算元，簡單的賦值運算子是"="，此外還有複合賦值運算子，是一種賦值運算子和其他運算子組合的簡寫，如下表:
+                        </p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Shorthand operator</th>
+                                    <th scope="col">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Assignment</td>
+                                    <td>x = f()</td>
+                                    <td>x = f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Addition assignment</td>
+                                    <td>x += f()</td>
+                                    <td>x = x + f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Subtraction assignment</td>
+                                    <td>x -= f()</td>
+                                    <td>x = x - f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Multiplication assignment</td>
+                                    <td>x *= f()</td>
+                                    <td>x = x * f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Division assignment</td>
+                                    <td>x /= f()</td>
+                                    <td>x = x / f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Remainder assignment</td>
+                                    <td>x %= f()</td>
+                                    <td>x = x % f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Exponentiation assignment</td>
+                                    <td>x **= f()</td>
+                                    <td>x = x ** f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Left shift assignment</td>
+                                    <td>x &lt;&lt;= f()</td>
+                                    <td>x = x &lt;&lt; f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Right shift assignment</td>
+                                    <td>x &gt;&gt;= f()</td>
+                                    <td>x = x &gt;&gt; f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Unsigned right shift assignment</td>
+                                    <td>x &gt;&gt;&gt;= f()</td>
+                                    <td>x = x &gt;&gt;&gt; f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Bitwise AND assignment</td>
+                                    <td>x &= f()</td>
+                                    <td>x = x & f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Bitwise XOR assignment</td>
+                                    <td>x ^= f()</td>
+                                    <td>x = x ^ f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Bitwise OR assignment</td>
+                                    <td>x |= f()</td>
+                                    <td>x = x | f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Logical AND assignment</td>
+                                    <td>x &= f()</td>
+                                    <td>x && ( x =f() )</td>
+                                </tr>
+                                <tr>
+                                    <td>Logical OR assignment</td>
+                                    <td>x ||= f()</td>
+                                    <td>x || x = f()</td>
+                                </tr>
+                                <tr>
+                                    <td>Nullish coalesing assignment</td>
+                                    <td>x ??= f()</td>
+                                    <td>x = x ?? f()</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3>Destructuring assignment</h3>
+                        <p>
+                            解構賦值是一種表達式，可以使用與數列和物件字面量結構相似的語法，從數列或物件中提取資料，賦予給指定變數，使用解構賦值，可以在一個語句將多個值提取到不同變數中。如:
+                        </p>
+                        <div class="ex-block">
+                            <pre>
+const arr=[0,1,2,3,4,5,6];
+const [a,b] = arr;
+const [c,,d] = arr;
+const [e=defaultValue,f]=arr;
+const [g,...h];
+const [i,...[j,k]];
+
+const obj ={a:1,b:2,c:3};
+const {a,b}=obj;
+const {a:a1,b:b1}=obj;
+const {a:a1,b:b1,...rest}=obj;</pre>
+                        </div>
+                        <h3>Chaining assignments and evalution</h3>
+                        <p>
+                            即使是賦值表達式也會有一個評估結果，也就是"="字符的右邊數值，這也促成了鏈式賦值，用一個賦值表達式的結果去賦值，又形成了一個賦值表達式，表達式的評估順序是從左到右的，但是賦值表達式的分組是從右到左，也就是right-associative。最好避免const 和let的鏈式賦值，在寬鬆模式下只有第一個變數會被評估為指定的類型，其他變數會隱式宣告成var，在嚴格模式下，其他變數不會被宣告。
+                        </p>
+                        <h3>Comparison operators</h3>
+                        <p>
+                            比較運算符會比較它的運算元，並根據比較結果是否為真返回布林值，運算元可以是數值、string、布林值或物件，string會根據UTF-16 編碼進行比較，如果兩個運算元類型不同，JavaScript會轉換它們為適合比較的類型，通常會導致運算元進行數值比較，但!==和===比較運算符不會進行類型轉換，比較運算符有==(equal)、!=(not equal)、===(strict equal)、!==(strict not equal)、&gt;(greater than)、&gt;=(greater than or equal)、&lt;(less than)、&lt;=(less than or equal)。
+                        </p>
+                        <h3>Arithmetic operators</h3>
+                        <p>
+                            算術運算符將數值(可以是字面量或是變數)作為運算元，返回一個單一的數值，算術運算符與浮點數一起使用時，表現方式與其他大多數程式語言相同，需要特別注意除以0會返回無限。算術運算符有binary +(addition)返回相加後的數值，-(subtraction)binary返回運算元的差值，*(multiplication)返回運算符相乘結果，/(division)返回前綴運算元除以後綴運算元的結果，%(reminder)返回餘數，++(increment)用作前綴時先加1並返回+1後的值，用作後綴時先返回原值後再加1，--(decrement)類似++只是改成-1，unary -(Unary negation)返回運算元的負數，unary +(unart plus)嘗試將運算元轉為數值，如果無法轉換返回1。exponentation(**)返回前綴運算元的後綴運算元次方。
+                        </p>
+                        <h3>Bitwise operators</h3>
+                        <p>
+                            位元運算符將運算元視作一組32位元(超過會刪減，小於會補充)，將使用二進位去執行計算，bitwise運算符有&(bitwise AND)，運算元的位元都為1結果才為1，|(bitwise OR)，運算元的位元至少有一個1結果為1，^(bitwise XOR)，當運算元的位元一樣是結果為0，~(bitwise NOT)對運算元的位元取反值，&lt;&lt;(left shift)，將二進制數向左移動指定的位數，從右側補0，&gt;&gt;(sign-propagating right shift)，將二進制數字向右移動指定的位數，移出的位元被捨棄，&gt;&gt;&gt;(zero-fill right shift)，如同right shift，除了左側會補0。使用^反轉並不是直接將+n轉換成-n，因為這裡使用2的補數+1來表達負數，~x=-x-1，
+                        </p>
+                        <h3>Logical operators</h3>
+                        <p>
+                            邏輯運算符通常與布林值一起使用，並返回布林值，若不是與布林值一起使用，會返回其中一個指定運算元的值，更適合稱為value selection operators，邏輯運算符有&&(Logical AND)，當前綴運算元能轉換成false便返回該運算元，若不是則返回後綴運算元，||(Logical OR)，當前綴運算元能轉換為true，便返回該運算元，若不是則返回後綴運算元，??(Nullish coalescing operator)，只要前綴運算元不是undefined或null就返回該運算元，若是的話返回後綴運算元，!(Logical NOT)如果後綴運算元能被轉換為true，返回false，不能的話返回true。
+                        </p>
+                        <h3>BigInt operators</h3>
+                        <p>
+                            BigInt能使用大部分的運算符，BigInt使用bitwise運算符不會將數值截斷成32位元才進行運算，結果也不會限制在32位元，所以>>>會在左方填滿0的操作，會出現錯誤，BigInt和數值不能在計算中混合使用，但是能夠進行比較，需要混合計算時應該進行明確的轉換。
+                        </p>
+                        <h3>String operators</h3>
+                        <p>
+                            字串除了可以使用比較運算符以外，可以使用+(concatenation operator)連結兩個字串值，只要有一個運算元為字串，另為一個運算元的類型也會轉換成字串，+=簡寫也能夠使用於concatenation operator。
+                        </p>
+                        <h3>Ternary operators</h3>
+                        <p>
+                            條件運算符是唯一一個需要三個運算元的運算符，也被稱為三元運算符，該運算符將根據指定條件，返回兩個指定值之一，語法為condition表達式接著"?"字符，?後接著若條件表達式返回為true，運算符返回的值，再接著":"字符，:後接著若條件表達式返回false十，運算符返回的值。
+                        </p>
+                        <h3>comma operators</h3>
+                        <p>
+                            逗號運算元會依序評估每個運算元(從左到右)，並返回最後一個值，當需要在單一表達式的地方，使用多個表達式便可以使用，常用在for迴圈語句執行多個更新器，逗號運算符的優先級是所有運算符中最低的，如果要將逗號連結的表達式納入更大的表達式中，必須將其包括在括號內，逗號運算符完全不同於語法分隔符，語法分隔符如:數列中不同元素的分隔，call函數時的引數分隔，定義函數時的參數分隔，物件屬性間的分隔，變數宣告的分隔，import list和export list的分隔。
+                        </p>
+                        <h3>Unary operators</h3>
+                        <p>
+                            一元運算是只有一個運算符的運算，一元運算符有delete，關鍵字delete後面接著屬性訪問器，用來刪除指定物件的指定屬性，
+                            如果成功刪除物件屬性，會返回true，若沒有刪除會返回false，若想用來刪除數列的元素，並不建議，因為實際行為不會刪除元素，而是使用undefined賦值於該index，不如直接賦值。typeof運算符，會返回一個字串，表示運算式中運算元未被評估時的類型，語法為關鍵字typeof，後面接著運算元(要判斷類型的值)，數列實際上類型是物件，null值也會返回物件。void運算符，會強制運算元返回undefined，其語法使用關鍵字void，後接著要返回undefined的表達式。
+                        </p>
+                        <h3>Relational operators</h3>
+                        <p>
+                            關聯運算符包括前面提到的比較運算符，此運算符求值結果永遠是布林值，表示運算符所描述的關係是否存在於兩個運算元之間，還有兩個分別是in和instanceof，in運算符表示，指定屬性是否存在於指定物件中，語法為屬性名稱(字串或數值或符號)接著關鍵字in接著物件名稱。instanceof運算符表示指定物件是否屬於指定的class的實例，語法為指定物件名稱接著instancof，再接著指定的class名稱。
+                        </p>
+                        <h3>Basic expression</h3>
+                        <p>
+                            所有運算符都作用於一個或多個基本表達式，這些表達式包括識別符和字面值，但也包含一些其他類型，例如this，this根據其所在函數域的函數的執行上下文會有所不同(箭頭函數是例外，箭頭函數沒有自己的this，會等同於其所在函數作用域或全區作用域的this)，若當作物件的method執行，this等同於該物件，若當作創造實例的構造函數執行，this等同於該實例，若當作事件聆聽器的callback，this為該執行事件監聽器的元素。()為分組運算符，用於控制表達式中的運算優先順序，()內的表達式先計算，例如可以覆蓋乘法和除法的優先順序。optional chaining是一種特別的運算符，用於存取物件的屬性或調用函數，但是函數或物件不能為undefined或null，不然就會短路，返回undefined(不會拋出錯誤)，語法為函數接著"?."字符和()，若為物件可接著"?."和屬性訪問器。new運算符可用來創建自定義物件類型或內建物件類型的實例，語法為關鍵字new 接構造函數或class的名稱。關鍵字super()可在子類別的構造函數中調用父類別的構造函數。
+                        </p>
+                    </section>
+                    <!-- 21.Using Promises -->
+                    <section>
+                        <h2>21.Using Promises</h2>
+                        <p>
+                            
+                        </p>
+                    </section>
+                </main>
+                <aside class="col-lg-3 d-none d-lg-block">
+                    <nav id="chapter-nav" class="nav flex-column flex-nowrap align-items-start justify-content-start sticky-top nav-pills overflow-auto fs-7" >
+                        <a class="nav-link" href="#chapter-1">1.Grammar and types</a>
+                        <a class="nav-link" href="#chapter-2">2.在HTML檔案中使用JavaScript</a>
+                        <a class="nav-link" href="#chapter-3">3.JavaScript Modules</a>
+                        <a class="nav-link" href="#chapter-4">4.JavaScript objects</a>
+                        <a class="nav-link" href="#chapter-5">5.Accessing objects</a>
+                        <a class="nav-link" href="#chapter-6">6.object methods</a>
+                        <a class="nav-link" href="#chapter-7">7.using classes</a>
+                        <a class="nav-link" href="#chapter-8">8.Text Formatting</a>
+                        <a class="nav-link" href="#chapter-9">9.Access HTML element</a>
+                        <a class="nav-link" href="#chapter-10">10.Modify element classes</a>
+                        <a class="nav-link" href="#chapter-11">11.Properties related to attributes</a>
+                        <a class="nav-link" href="#chapter-12">12.Access element style</a>
+                        <a class="nav-link" href="#chapter-13">13.Add DOM elements</a>
+                        <a class="nav-link" href="#chapter-14">14.Variables</a>
+                        <a class="nav-link" href="#chapter-15">15.Arrays</a>
+                        <a class="nav-link" href="#chapter-16">16.Functions</a>
+                        <a class="nav-link" href="#chapter-17">17.Conditional statements</a>
+                        <a class="nav-link" href="#chapter-18">18.Exception handling statements</a>
+                        <a class="nav-link" href="#chapter-19">19.Loop and iteration</a>
+                        <a class="nav-link" href="#chapter-20">20.Expressions and operators</a>
+                    </nav>
+                </aside>
+            </div>
+        </div>
+        <footer>
+        </footer>
+    </body>
+</html>

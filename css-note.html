@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="note of CSS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS Note</title>        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/custom.css">
+        <script src="js/script.js" defer></script>
+        <script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    </head>
+    <body class="bg-fantasy text-primary position-relative" data-bs-target="#chapter-nav" data-bs-spy="scroll" tabindex="0">
+        <header class="sticky-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-scary">
+                <div class="container">
+                    <a class="navbar-brand text-center text-500 h5" href="/">Reuben<br>Send&nbsp;Wishes</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center text-center lh-sm" id="navbarCollapse">
+                        <div class="navbar-nav navbar-nav-scroll ">
+                            <a class="nav-link px-xl-3" aria-current="page" href="/">Home</a>
+                            <a class="nav-link px-xl-3" href="/html-note.html">HTML Note</a>
+                            <a class="nav-link px-xl-3 active" href="/css-note.html">CSS Note</a>
+                            <a class="nav-link px-xl-3" href="/sass-note.html">Sass Note</a>
+                            <a class="nav-link px-xl-3" href="">Bootstrap Note</a>
+                            <a class="nav-link px-xl-3" href="/javascript-note.html">JavaScript Note</a>
+                        </div>
+                    </div>
+                    <span class="navbar-text text-nowrap">魯本的三明治筆記</span>
+                </div>
+            </nav>
+        </header>
+        <div class="container mt-3">
+            <div class="row">
+                <main class="col-12 col-lg-9">
+                    <!-- 1.developer tool中的CSS部分 -->
+                    <section id="chapter1">
+                        <h2>1.developer tool中的CSS部分</h2>
+                        <p>
+                            在開發者工具中，可查看指定元素的CSS設定，每個瀏覽器的位置不一定一樣，在chrome中的element tab中，左半部分是DOM tree，可指定元素，右半部分的style tab即可查看，影響該元素的所有選擇器，若旁邊標註user agent stylesheet，意指預設樣式。
+                        </p>
+                    </section>
+                    <!-- 2.CSS導入HTML檔案的方式 -->
+                    <section id="chapter2">
+                        <h2>2.CSS導入HTML檔案的方式</h2>
+                        <p>
+                            CSS導入HTML檔案的方式有三種類型，external、internal、inline。
+                        </p>
+                        <h3>a.external method</h3>
+                        <p>該類型導入方式有兩種:</p>
+                        <p>第一種，在head元素中，使用<code>&lt;link rel="stylesheet" href="CSS檔案路徑"&gt;</code><br>第二種，在head元素中，使用<code>&lt;style&gt;@import url('CSS檔案路徑');&lt;style&gt;</code></p>
+                        <h3>b.inline method</h3>
+                        <p>該類型導入方式，直接在要導入風格的html元素中加入style屬性，在屬性內放置將要應用在該元素中的CSS屬性和值對，如:<code>&lt;p style="color:red;" &gt;paragraph&lt;/p&gt;</code><p>
+                        <h3>c.internal method</h3>
+                        <p>該類型導入方式，在head元素中，直接放入選擇器，如:</p>
+                        <pre><code>&lt;style&gt;
+            selector{
+                property: value;
+            }
+        &lt;/style&gt;</code></pre>
+                    </section>
+                     <!-- 3.optimizing image and retina display -->
+                    <section id="chapter3">
+                        <h2>3.optimizing image and retina display</h2>
+                        <p>
+                            為了支援高像素濃度的螢幕，如:retina screen，設置圖像時，可以選擇實際渲染的尺寸兩倍、三倍大的檔案。
+                        </p>
+                    </section>
+                    <!-- 4.絕對路徑和相對路徑 -->
+                    <section id="chapter4">
+                        <h2>4.絕對路徑和相對路徑</h2>
+                        <p>
+                            連結檔案的路徑分成絕對路徑和相對路徑。
+                        </p>
+                        <h3>絕對路徑</h3>
+                        <p>不管使用該路徑的檔案在哪裡，該路徑引入的檔案都是一樣的，絕對路徑開頭會加上http or https，若img的url是使用絕對路徑連結到他人網站的檔案(被稱為hotlink)，未經允許消耗他人網站的頻寬(當訪客打開我們的網頁時，嵌入的資源會直接從原始伺服器載入)，以及有可能侵犯版權，需要避免。</p>
+                        <h3>相對路徑</h3>
+                        <p>根據使用該路徑的檔案，該路徑引入的檔案都是可能不一樣，若開頭為/被稱作根相對路徑，開頭的/代表根，以根為出發點去找尋要引入的檔案的路徑。</p>
+                    </section>       
+                    <!-- 5.CSS specification -->
+                    <section id="chapter5">
+                        <h2>5.CSS specification</h2>
+                        <p>
+                            在W3C的網站中，能查詢CSS不同功能的specification，可查看每一種功能的specification不同版本，並且查看該版本的狀態，版本狀態代表如下:
+                        </p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>status</th>
+                                    <th>含義</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Superseded Recommendation</td>
+                                    <td>是已被新版本取代的規範。</td>
+                                </tr>
+                                <tr>
+                                    <td>Recommendation</td>
+                                    <td>所有內容可使用，並且是最新瀏覽器的當前標準。</td>
+                                </tr>
+                                <tr>
+                                    <td>Candidate Recommendation</td>
+                                    <td rowspan="2">將成為正式的 W3C 建議，但需要一些時間進行回饋和批准。此階段的規範通常可以開始實施，但請注意，它們在技術上仍在進行中。</td>
+                                </tr>
+                                <tr>
+                                    <td>Proposed Recommendation</td>
+                                </tr>
+                                <tr>
+                                    <td>Working Draft</td>
+                                    <td rowspan="2">仍處於實驗階段，可能並非所有瀏覽器都支持，並且可能會被更改甚至完全刪除。
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>First Public Working Draft</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!-- 6.CSS syntax and terminlogy -->
+                    <section id="chapter6">
+                        <h2>6.CSS syntax and terminlogy</h2>
+                        <h3>CSS rule構成</h3>
+                        <p>
+                            CSS檔案中，使用selector去指定要改變哪個或哪些html語言的元素，selector後接著以{}包括的declaration block，區域塊內可放置多個declarations(property value pairs)，用來定義元素的各種不同樣式，:前是property，:後是value，每個對後面以;結束。如:
+                        </p>
+                        <pre><code>h1{
+            color:green;    
+        }</code></pre>
+                        <h3>CSS comment</h3>
+                            <p>
+                                CSS檔案中，若有資訊想在程式碼中顯示，但是不想被瀏覽器渲染，例如網頁不同部分的劃分，留給自己或同事的備註，這個時候需要使用comment如:
+                            </p>
+                    </section>
+                    <!-- 7.CSS values and units -->
+                    <section id="chapter7">
+                        <h2>7.CSS values and units</h2>
+                        <p>
+                            每個屬性都有它的值類型，代表它可以被哪些類型的值去定義
+                        </p>
+                        <ul class="grid-container">
+                            <li>值類型</li>
+                            <li>描述</li>
+                            <li>integer</li>
+                            <li>代表整數。</li>
+                            <li>number</li>
+                            <li>十進制可以不包含小數部分，也可以包含小數。</li>
+                            <li>percentage</li>
+                            <li>代表每個值的一小部分。</li>
+                            <li style="grid-column-end:span 2;text-align: center;">dimension:為number加上單位</li>
+                            <li>length</li>
+                            <li>描述距離值。</li>
+                            <li>angle</li>
+                            <li>可描述degrees(deg), gradians(grad), radians(rad), or turns(turn圈數).</li>
+                            <li>time</li>
+                            <li>描述seconds(s)or milliseconds(ms).</li>
+                            <li>resolution</li>
+                            <li>描述設備的解析度， dots per inch(dpi),dots per centimeter(dpc),dots per px unit(dppx or x)</li>
+                        </ul>
+                        <ul class="grid-container">
+                            <li>值類型</li>
+                            <li>描述</li>
+                            <li>strings</li>
+                            <li>字符串表示以兩個引號包括的內容。</li>
+                            <li>identifiers</li>
+                            <li>CSS可理解的關鍵字</li>
+                            <li>function</li>
+                            <li>一段code執行特定任務，語法為functionName(argument)</li>
+                            <li>position</li>
+                            <li>能夠是length或關鍵字(top,right,left,bottom,center)，通常包含兩個值，第一為水平位置，第二為垂直位置，若只有一個值，另一個預設center。</li>
+                            <li>image</li>
+                            <li>能夠是網址function url('圖像檔案位址')，或是漸層function，如linear-gradient(angleType,colorType,colorType)</li>
+                            <li>color</li>
+                            <li>常見的顏色類型值有indentifies, hexadecimal, function等。詳情見<a href="#chapter9">color值介紹</a></li>
+                        </ul>
+                    </section>
+                    <!-- 8.absolute unit and relative unit -->
+                    <section id="chapter8">
+                    </section>
+                    <!-- 9.定義顏色相關屬性的值類型 -->
+                    <section id="chapter9">
+                        <h2>9.定義顏色相關屬性的值類型</h2>
+                        <p>
+                            顏色相關屬性值可以是identifiers，也可以是Hexadecimal或function rgb、function hsl等。
+                        </p>
+                        <h3>color identifiers</h3>
+                        <p class="color-container">基本的color identifiers如:<span style="color:white;">white</span>、<span style="color:black;" >blacks</span>、<span style="color:blue;">blue</span>、<span style="color:yellow;">yellow</span>、<span style="color:red;">red</span>等。進階的color identifiers，如:<span style="color:salmon;">salmon</span>、<span style="color:khaki;">khaki</span>、<span style="color:coral;">coral</span>、<span style="color:beige;">beige</span>等。
+                        </p>
+                        <h3>color Hexadecimal</h3>
+                        <p class="color-container">
+                            color值也可以用#+6個16進位的數字表示。按照RGB字母的順序，前兩個數字代表R、兩個數字代表G、最後兩個數字代表B，若色光值兩個數字一樣，可簡寫，如:<span style="color:white;">#FFFFFF(white)</span>、<span style="color:black;" >#000(black)</span>。
+                        </p>
+                        <h3>rgb function</h3>
+                        <p class="color-container">
+                            color值可以用rgb function，rgb()的引數需要有R、G、B三個數值，數值可是0~255或是0~100%，若需要設定透明值可使用rgba()，只是多一個alpha值(不透明值)，該值可是0~1或0~100%。如:<span style="color:rgba(255,0,0,.5);">rgba(255,0,0,.5)</span>。
+                        </p>
+                        <h3>hsl function</h3>
+                        <p class="color-container">
+                            color值可以用hsl function，hsl()的引數需要有Hue、saturation、lightness三個數值，Hue值範圍為0~360deg(不加單位預設deg，也可用其他angle值)，saturation、lightness值使用0~100%，若需要設定透明值可使用hsla()，只是多一個alpha值(不透明值)，該值可是0~1或0~100%。如:<span style="color:hsla(.5turn,50%,50%,1);">hsla(.5turn,50%,50%,1)</span>。
+                        </p>
+                    </section> 
+                    <!-- 10.類型選擇器和通用選擇器 -->
+                    <section id="chapter10">
+                        <h2>10.類型選擇器和通用選擇器</h2>
+                        <p>
+                            type selector用來定義所有該類型元素的樣式，語法直接輸入該html的元素名稱後面接宣告塊，而universal selector用來定義所有元素的樣式，語法上以*代表後面接宣告塊。
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        p{
+            color: red ;  
+        }</pre>
+                            <pre>
+        *{
+            color: red ;  
+        }</pre>
+                        </div>
+                    </section>      
+                    <!-- 11.class選擇器和id選擇器 -->
+                    <section id="chapter11">
+                        <h2>11.class選擇器和id選擇器</h2>
+                        <p>
+                            class selector選取特定class的元素，語法是.+要選取的class值後面接著宣告塊，id selector選取特定id的元素，語法是#+要選取的id值後面接著宣告塊。id選擇器的specificity大於class選擇器大於類型選擇器。
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        .className{
+            color: red ;  
+        }</pre>
+                            <pre>
+        #idName{
+            color: red ;  
+        }</pre>
+                        </div>
+                        <h3>Compound Class Selector</h3>
+                        <p>
+                            Compound Class Selector指定一個以上特定的class選擇，包含所有指定class的元素才能被選取，語法為兩個以上class選擇器緊接著。type selector搭配class selector也可以用類似用法。如下:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        .className.className2{
+            color: red ;  
+        }</pre>
+                            <pre>
+        p.className{
+            color: red ;  
+        }</pre>
+                        </div>
+                    </section>
+                    <!-- 12.descendant選擇器和group選擇器-->
+                    <section id="chapter12">
+                        <h2>12.descendant選擇器和group選擇器</h2>
+                        <p>
+                            descendant選擇器屬於Combinator selector用來選擇符合特定嵌套關係的元素，藉由兩個以上選擇器名稱中使用空格分開，再接上宣告塊，左邊的選擇器為ancestor，右邊的選擇器為descendant，關係不用是parent-child(可跳層)。group選擇器是讓不同選擇器共用同一宣告塊，不同選擇器名稱間用逗號分隔。兩者示範如:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        main section p{
+            color: red ;  
+        }</pre>
+                            <pre>
+        h1,h2{
+            color: red ;  
+        }</pre>
+                        </div>
+                    </section>    
+                    <!-- 13.inheritance and specificity-->
+                    <section id="chapter13">
+                        <h2>13.inheritance and specificity</h2>
+                        <h3>inheritance</h3>
+                        <p>
+                            如果property具有inheritance，若某個元素擁有該property，子元素也會繼承。
+                        </p>
+                        <h3>specificity</h3>
+                        <p>
+                            specificity決定選擇器的優先權，選擇器的specificity從小到大排列為:繼承的property、universal、type(pseudo-element)、class(pseudo-class)、id selector。若是combinator需要考慮選擇器的數量，先比較id選擇器的數量，若一樣再比較class選擇器數量，最後才是比較類型選擇器數量。若specificity相同以後面出現的選擇器為主。universal selector不影響specificity。
+                        </p>
+                    </section>
+                    <!-- 14.!important and pseudo-class selector-->
+                    <section id="chapter14">
+                        <h2>14.!important and pseudo-class selector</h2>
+                        <h3>!import declaration</h3>
+                        <p>
+                            除了specificity和code順序，內聯CSS有更高的優先權，而有!import declaration的property又更優先，!import宣告用法為，將該宣告附加在property value pair後面。b如:
+                        </p>
+                        <pre>
+        p{
+            color:red !import;
+        }</pre>
+                        <h3>pseudo-class selector 1</h3>
+                        <p>
+                            pseudo-class selector需要與其他selector連結，使用":"在其他選擇器的後面連接，這裡介紹五個pseudo-class selector，分別是link、visited、focus、hover、active。link、visited需要用在含有href屬性的anchor元素，前者代表未拜訪過的連結(預設藍色)，後者是已拜訪過的連結(預設紫色)，使用時普通的anchor類型選擇器要注意覆蓋預設樣式。示範如:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;a class="link11" href="#chapter11"&gt;通往第十一章&lt;/a&gt;
+        </pre>              
+                            <pre>
+        .link11:link{
+            color:red;
+        }
+        .link11:visited{
+            color:beige;
+        }
+            </pre>   
+                            <a class="link11" href="#chapter11">
+                                通往第十一章
+                            </a>
+                        </div>
+                        <h3>pseudo-class selector 2</h3>
+                        <p>
+                            另外三種pseudo-class selector中，focus代表元素在focus狀態，該狀態的觸發是使用滑鼠點擊or tabs or tab key造成。hover則是鼠標在該元素上方觸發。active所應用的元素是需要由用戶啟動的元素，當啟動時(例如按鈕點擊期間)觸發。使用時也要注意覆蓋問題，如以下示範:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;button&gt;abcd&lt;/button&gt;</pre>
+                            <pre>
+        button:active{
+            color:purple;
+        }
+        button:hover{
+            color:white;
+        }
+        button:focus{
+            background:white;
+        }
+        </pre>
+                            <div>
+                                <button>abcd</button>
+                            </div>
+                        </div>   
+                    </section>
+                    <!-- 15.inline element and block element -->
+                    <section id="chapter15">
+                        <h2>15.inline element and block element</h2>
+                        <p>
+                            inline element的高和寬等同content，高和寬無法藉由設定高度和寬度property改變，padding和margin上和下無法影響顯示，inline元素間並排顯示，直到空間不夠才換行；而block element高度同內容，而寬度橫跨它所在的容器，元素之間堆疊排列。屬於inline or block element雖然是預設的，但是可以透過display:inline or block，改變元素行為，也可設定display:inline-block，讓元素能並排顯示，且可設定高度、寬度、padding、margin。
+                        </p>
+                    </section>
+                    <!-- 16.box model -->
+                    <section id="chapter16">
+                        <h2>16.box model</h2>
+                        <p>
+                            box model包含四個部分，content、padding、border、margin，content及元素包含的內容，根據元素類型可能被width和height影響，padding代表在元素內包圍content的空間，margin代表圍繞元素的空間，border是介於padding和margin之間的邊界。
+                        </p>
+                        <h3>padding</h3>
+                        <p>
+                            padding property is shorthand，包含padding-top padding-right padding-bottom padding-left的值，只能是正的數值，當padding只有一個值時，代表上下左右等同該值，只有兩個值時，第一個值代表上下，第二個值代表左右，當有三個值時，分別代表上、左右、下，當有四個值時，按照順時針分別代表上、右、下、左。
+                        </p>
+                        <h3>margin</h3>
+                        <p>
+                            margin property is shorthand，包含margin-top margin-right margin-bottom margin-left的值，可以是正或負的數值，當margin只有一個值時，代表上下左右等同該值，只有兩個值時，第一個值代表上下，第二個值代表左右，當有三個值時，分別代表上、左右、下，當有四個值時，按照順時針分別代表上、右、下、左。
+                        </p>
+                        <h3>border</h3>
+                        <p>
+                            border property is shorthand，包含border-width border-style border-color，可不按照順序，也可只指派其中一部分值，按照此順序去排列shorthand的值。如以下示範:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;span&gt;abcd&lt;/span&gt;</pre>
+                            <pre>
+        span{
+            border:5px dotted white;
+        }</pre>
+                            <div>
+                                <div class="borderTest">abcd</div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 17.margin collapse and align -->
+                    <section id="chapter17">
+                        <h2>17.margin collapse and align</h2>
+                        <p>
+                            margin collapse是CSS的一個重要概念，主要發生在block element的垂直邊距，兩個不同元素的margin合併，保留較大的值，有三種情況，第一種是相鄰的塊狀元素，上面的元素的下邊距與下面的元素的上邊距。第二種狀況是父元素和子元素的同位置邊距合併。第三種情況是空元素的邊距合併，空元素自己的上下邊距會合併。要解決邊距合併有三種方式，第一是在父元素、相鄰元素、空元素會合併邊距的位置加上border或padding。第二是使用float，第三是使用flexbox or grid。
+                        </p>
+                        <h3>使用margin對齊水平中心</h3>
+                        <p>
+                            可以設定margin使元素對齊，只需要將margin-right and margin-left設置為auto。
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;p&gt;
+            經歷前來，軍隊看著大力，通訊一起，定位某種歌手就算，下降
+            模式地位，理解精美家園，選單人體兒童自行互動該公司定義關
+            鍵字，職位員工環節點擊解壓密碼一是設備留言意識設計一週，
+            都市小區性格，年輕基層他的，項。
+        &lt;/p&gt;</pre>    
+                            <pre>
+        p{
+            margin:auto;
+            width:400px;
+        }
+        </pre>
+                        </div>
+                        <p style="margin: auto; width:400px;">
+                            經歷前來，軍隊看著大力，通訊一起，定位某種歌手就算，下降模式地位，理解精美家園，選單人體兒童自行互動該公司定義關鍵字，職位員工環節點擊解壓密碼一是設備留言意識設計一週， 都市小區性格，年輕基層他的，項。
+                        </p>
+                    </section>
+                    <!-- 18.font-family -->
+                    <section id="chapter18">
+                        <h2>18.font-family</h2>
+                        <p>
+                            font-family是用來指定元素使用字體的一個優先清單，可指定多個字體名稱或是通用名稱，以逗號分隔，最左方的字體優先，建議最右方放置一個通用名稱，字體名稱可以是字串或是identifiers﹐若是包含連字號外的標題符號、數字、空格，最好使用字串值，若使用identifiers需要使用\在特殊字符(空格不能)前方轉義。
+                        </p>
+                        <h3>常用的generic-name</h3>
+                        <p>
+                            常用的generic-name有serif,sans-serif,monospace,cursive,fantasy。serif是指字母中一條小線或筆觸，附加在較大的筆觸中，在serif字體中，字型的筆畫末端呈現喇叭型或錐形。sans-serif字體是指沒有serifs的字體，字型的筆畫結尾簡單沒有裝飾。monospace字體指所有字形都有相同的固定寬度，通常用於code。cursive字體，通常具有連接的筆畫、以及超出斜體範圍的草寫特徵，呈現出的效果像是手寫，而非印刷字體。fantasy主要是包含有趣字元的裝飾字體。cursive和fantasy通常用於標題和小部分的文本、以及裝飾。
+                        </p>
+                        <h3>web safe font</h3>
+                        <p>
+                            web safe font指的是一組在大多數操作系統和瀏覽器上都能夠正確顯示的字體。這些字體因其廣泛的可用性和一致的外觀，通常被用於網頁設計。使用這些字體可以減少因為用戶系統中缺少某些字體而導致的顯示問題。
+                        </p>
+                    </section>
+                    <!-- 19.font-weight and font-style -->
+                    <section id="chapter19">
+                        <h2>19.font-weight and font-style</h2>
+                        <h3>font-weight</h3>
+                        <p>
+                            font-weight是用來指定相同字體的不同weight，但需要依賴該字體組有什麼weight上的選擇。font-weight的值可以是數值或identifiers，數值可以是1~1000，數值越高表示越粗，數值400對應identifier normal，而700對應identifier bold。identifiers還有bolder和lighter，根據從父元素繼承值選擇較粗或較細的字體weight。如以下表格:
+                        </p>
+                        <table>
+                            <caption>繼承值對照的的weight絕對值</caption>
+                            <thead>
+                                <tr>
+                                    <th>Inherited value</th>
+                                    <th>bolder</th>
+                                    <th>lighter</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>100</th>
+                                    <td>400</td>
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <th>200</th>
+                                    <td>400</td>
+                                    <td>100</td>
+                                </tr>
+                                    <th>300</th>
+                                    <td>400</td>
+                                    <td>100</td>
+                                </tr>
+                                    <th>400</th>
+                                    <td>700</td>
+                                    <td>100</td>
+                                </tr>
+                                    <th>500</th>
+                                    <td>700</td>
+                                    <td>100</td>
+                                </tr>
+                                    <th>600</th>
+                                    <td>900</td>
+                                    <td>400</td>
+                                </tr>
+                                    <th>700</th>
+                                    <td>900</td>
+                                    <td>400</td>
+                                </tr>
+                                    <th>800</th>
+                                    <td>900</td>
+                                    <td>700</td>
+                                </tr>
+                                    <th>900</th>
+                                    <td>900</td>
+                                    <td>700</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span>若繼承值介於表格提供的值之間，便往下尋找表格中最接近的數值。</span>
+                        <h3>font-style</h3>
+                        <p>
+                            font-style用來設定font是否為斜體樣式，值可以是italic，normal，oblique，oblique+&lt;angle&gt;。italic將選擇分類為italic類型的字體，若沒有italic類型將選擇oblique，normal將選擇分類為normal類型的字體，oblique將選擇分類為oblique類型的字體，若沒有oblique類型將選擇italic，oblique還可以加上指定傾斜角度(預設14度，-90 度到 90 度)，若oblique和italic類型找不到對應的字體，可能會使用人工模擬。使用italic or oblique，且第一個字體沒有內建斜體時，瀏覽器會模擬斜體效果，而不是自動切換到第二個字體的原生斜體版本。如以下示範:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;p&gt;
+            首先名字模組服務免費電影，外資成功，都市此外一下子
+            福州影響毫無兩位清晰人間所在過了吸收，信用行為本。
+        &lt;/p&gt;</pre>
+                            <pre>
+        p{
+            font-style:italic;
+        }</pre>
+                            <p class="obliqueTest">
+                                首先名字模組服務免費電影，外資成功，都市此外一下子<br>福州影響毫無兩位清晰人間所在過了吸收，信用行為本。  
+                            </p>
+                        </div>
+                    </section>   
+                    <!-- 20.@font-face and web font -->
+                    <section id="chapter20">
+                        <h2>20.@font-face</h2>
+                        <p>@font-face是一種CSS @規則，用來指定用於展示文本的定義字體，字體能夠從遠端伺服器裝載，或在使用者電腦上已安裝的本地字體取的。在該規則的區域塊內，使用font-family property去自定體該字體被使用時的名稱。並使用src property定義該字體檔案路徑(可多個路徑)，其值為url()和format() function，如以下示範:
+                        </p>
+                        <pre>
+        @font-face{
+            font-family:"Reuben Font";
+            src:url('檔案路徑') format('woff2'),
+                url('檔案路徑2') format('woff');
+        }
+        h1{
+            font-family:'Reuben Font';
+        }
+        </pre>
+                    <h3>web font</h3>
+                    <p>
+                        Web font是指專門為網頁使用而設計或調整的字體，這些字體是通過網頁的 @font-face 規則動態加載到用戶的瀏覽器中顯示的。常用的提供web fonts平台有Google Fonts、Adobe Fonts(部分需要訂閱)。網頁開發者只需要複製簡單的平台提供的code即可使用，不需要手動輸入@font-face設置。
+                    </p>
+                    </section>   
+                    <!-- 21.font-size -->
+                    <section id="chapter21">
+                        <h2>21.font-size</h2>
+                        <p>
+                            font-size是用來定義字體大小的property，更改字體大小可能影響到在字體相關property中，使用相對長度單位的後代元素。一些元素有預設的font-size，如small元素的字體大小為相對父元素字體的80%，即0.8em，h1元素的字體尺寸為2em or 32px，p元素的字體大小為1em or 16px，code和pre元素的字體大小為13px(除了firefox)。
+                        </p>
+                        <h3>字體尺寸常用單位</h3>
+                        <p>
+                            字體尺寸常用的絕對單位為px(pixel)，常用的相對單位為em、rem，1em等於父元素的字體尺寸，1rem等於根元素&lt;html&gt;的字體大小(預設16px)。字體尺寸設定如以下示範:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;p&gt;預設大小&lt;/p&gt;
+        &lt;p style="font-size:24px;"&gt;24px&lt;/p&gt;
+        &lt;p style="font-size:2em;"&gt;2em&lt;/p&gt;</pre>
+                            <p>預設大小</p>
+                            <p style="font-size:24px;">24px</p>
+                            <p style="font-size:2em;">2em</p>
+                        </div>
+                    </section>
+                    <!-- 22.font property -->
+                    <section id="chapter22">
+                        <h2>22.font property</h2>
+                        <p>
+                            font property是簡寫，包含font-style、font-weight、font-variant、line-height、font-size、font-family，使用簡寫時font-size和font-family是必要的，line-height需要使用/符號接在font-size後，font-family需要在最後的位置，font-variant、font-style、font-weight需要在font-size前面。
+                        </p>
+                        <h3>line-height</h3>
+                        <p>
+                            line-height property在水平書寫的模式下，設置line box的高度，在垂直書寫的模式下，設置line box的寬度，值可以是identifiers normal，也可以是無單位的數值(*font-size)，或&lt;length&gt;或&lt;percentage&gt;單位，通常建議使用無單位數值，因為其子元素也會繼承該倍數，若是使用em或%將計算完後才讓子元素繼承。如以下示範
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="lh-test-em"&gt;
+            &lt;h1&gt;Avoid unexpected results by using unitless line-height.&lt;/h1&gt;
+            Length and percentage line-heights have poor inheritance behavior.
+        &lt;/div&gt;
+        &lt;div class="lh-test-unitless"&gt;
+            &lt;h1&gt;Avoid unexpected results by using unitless line-height.&lt;/h1&gt;
+            Length and percentage line-heights have poor inheritance behavior.
+        &lt;/div&gt;
+        </pre>
+                            <pre>
+        .lh-test-em{
+            line-height:1.2em;
+        }
+        .lh-test-unitless{
+            line-height:1.2;
+        }
+        </pre>
+                            <div>
+                                <div class="lh-test-em">
+                                    <h1>Avoid unexpected results<br> by using unitless line-height.</h1>
+                                    Length and percentage line-heights<br> have poor inheritance behavior.
+                                </div>
+                                <div class="lh-test-unitless">
+                                    <h1>Avoid unexpected results<br> by using unitless line-height.</h1>
+                                    Length and percentage line-heights<br> have poor inheritance behavior.
+                                </div>
+                            </div>
+                        </div>
+                        <h3>font-variant</h3>
+                        <p>
+                            font-variant本身也是簡寫，包含以下font-variant-alternates font-variant-caps font-variant-east-asian font-variant-emoji font-variant-ligatures font-variant-numeric font-variant-position，...alternates為控制替代字形的使用，...caps為控制替代字形對於大小寫的使用，...east-asian為控制替代字形對於east Asian scripts使用，...ligatures為控制應用的元素的文本內容要使用什麼形式的連字或上下文，...numeric為控制替代字形對關於數字的使用，...position控制較小的替代字形的使用。
+                        </p>
+                    </section>
+                    <!--23.text-align and text-decoration-->
+                    <section id="chapter23">
+                        <h2>23.text-align and text-decoration</h2>
+                        <h3>text-align</h3>
+                        <p>text-align用來設定在block element or table-cell box裡面的inline-level content的水平對齊。其值有start、end(根據文本方向)、center、right、left(對齊line box的位置)、justify(文本除了最後一行兩端靠向line box邊緣)、match-parent(類似繼承，若是start or end將根據父元素的文本方向)</p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;p class="text-ali-test1"&gt;a b c d&lt;/p&gt;
+        &lt;p class="text-ali-test2"&gt;a b c d&lt;/p&gt;</pre>
+                            <pre>
+        .text-ali-test1,.text-ali-test2{
+            width:150px;
+            background:red;
+        }
+        .text-ali-test1{
+            text-align:end;
+        }
+        .text-ali-test2{
+            text-align:justify;
+        }</pre>
+                            <div>
+                                <p class="text-ali-test1">a b c d</p>
+                                <p class="text-ali-test2">Lorem ipsum dolor sit ameta abc def ghi</p>
+                            </div>
+                        </div>
+                        <h3>text-decoration</h3>
+                        <p>text-decoration用來設定文本的裝飾線外觀是shorthand，包含text-decoration-line、text-decoration-color、text-decoration-style、text-decoration-thickness，text-decoration-color的值可以是&lt;color&gt;值，text-decoration-line用來設置裝飾線的類型如:overline、underline、line-through(可同時使用多個值)，text-decoration-thickness用來設定裝飾線的厚度，值可以是絕對或相對長度、percentage、identifier auto、identifier form-font(若是字體檔案有相關厚度偏好，可以使用此值。)</p>
+                    </section>
+                    <!-- 24.float -->
+                    <section id="chapter24">
+                        <h2>23.float</h2>
+                        <h3>float property</h3>
+                        <p>float是一種property，float支援舊瀏覽器版本，較久以前也用來製作佈局，常用來製作文繞圖。float使元素速脫離正常的flow，讓在它後方的其他元素忽略它，但其他元素的內容仍然會繞過它，值有none、right(靠右)、left(靠左)。</p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="floatTest1"&gt;abcd&lt;/div&gt;
+        &lt;p&gt;
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit
+            Inventore,molestiae voluptatibus! Cupiditate beatae.
+        &lt;/p&gt;
+        &lt;div class="floatTest2"&gt;abcd&lt;/div&gt;
+        &lt;p&gt;
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit
+            Inventore,molestiae voluptatibus! Cupiditate beatae.
+        &lt;/p&gt;</pre>
+                            <pre>
+        .floatTest1{
+            background:red;
+            padding:20px ;
+            float:left ;
+        }
+        .floatTest2{
+            background:red;
+            padding:20px ;
+            float:right ;
+        }</pre>
+                            <div>
+                                <div class="floatTest1">abcd</div>
+                                <p class="floatTest3">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit Inventore,molestiae voluptatibus! Cupiditate beatae.
+                                </p>
+                                <div class="floatTest2">abcd</div>
+                                <p class="floatTest3">
+                                    <img src="image/float-test.png" height="50px">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit Inventore,molestiae volupt atibus! Cupiditate beatae.
+                                </p>
+                            </div>
+                        </div>
+                        <h3>clear property</h3>
+                        <p>
+                            若要讓其他元素，不會忽略float元素，只需要使用clear property，其值可以是right(不忽視float:right的元素)、left(不忽視float:left的元素)、both(不忽視兩種float元素)。如以下:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="floatTest1"&gt;abcd&lt;/div&gt;
+        &lt;p&gt;
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit
+            Inventore,molestiae voluptatibus! Cupiditate beatae.
+        &lt;/p&gt;
+        &lt;div class="floatTest2"&gt;abcd&lt;/div&gt;
+        &lt;p class="floatTest4"&gt;
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit
+            Inventore,molestiae voluptatibus! Cupiditate beatae.
+        &lt;/p&gt;</pre>
+                            <pre>
+        .floatTest1{
+            background:red;
+            padding:20px ;
+            float:left ;
+        }
+        .floatTest2{
+            background:red;
+            padding:20px ;
+            float:right ;
+        }
+        .floatTest4{
+            padding:10px;
+            background:black;
+            margin:0;
+            clear:left;
+        }</pre>
+                            <div>
+                                <div class="floatTest1">abcd</div>
+                                <p class="floatTest3">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit Inventore,molestiae voluptatibus! Cupiditate beatae.
+                                </p>
+                                <div class="floatTest2">abcd</div>
+                                <p class="floatTest4">
+                                    <img src="image/float-test.png" height="50px">
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit Inventore,molestiae volupt atibus! Cupiditate beatae.
+                                </p>
+                            </div>
+                        </div>
+                        <h3>container collapse</h3>
+                        <p>
+                            當子元素都是float元素時，容器會被折疊。如下
+                        </p>
+                        <div class="floatCollapseTest">
+                            <p class="floatTest1">Lorem ipsum dolor sit amet.</p>
+                            <p class="floatTest1">Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <p style="clear:both;">    
+                            容器因此被折疊時，使用clear property是沒有作用的，有三種方法可以使用，第一是overflow property，用於溢出文字的展示，其值有visible(預設)、scroll(增加滾輪)、auto(內容溢出時才有滾輪)、hidden(剪裁多出的部分)，值不是visible時會創造Block Formatting Context(BFC)，第二是使用display:flow-root，也會創造(BFC)，可用來清除浮動，避免邊距重疊，避免容器折疊。第三是使用clearfix hack，使用如下的選擇器在容器(.clearfix表示該容器的class):
+                        </p>
+                        <pre>
+        .clearfix:after{
+            content:"";
+            display:table;
+            clear:both;
+        }</pre>    
+                    </section>
+                    <!-- 25.border box -->
+                    <section id="chapter25">
+                        <h2>25.border box</h2>
+                        <p>
+                            一般狀況下，padding和border改變將影響整個元素尺寸，也就是使用height和width的無法控制content外的區塊，一些時候將造成麻煩。這個時候能使用border box fix，使height和width的控制範圍包括padding和border。border box fix使用方式如下示範:     
+                        </p>
+                        <pre>
+        html{
+            box-sizing:border-box;
+        } 
+        *,*:after,*:before{
+            box-sizing:inherit;
+        }</pre>
+                    </section>
+                    <!-- 26.positioned elements -->
+                    <section id="chapter26">
+                        <h2>26.positioned elements</h2>
+                        <p>
+                            position property可以用來設置元素如何定位，position property有五種值，static、relative、absolute、fixed、sticky，static是預設值，除了該值，設定為其他值的元素，都會脫離正常flow，成為positioned元素，relative值定位根據當前位置，absolute值定位根據關係最接近的定位祖先元素位置，如果沒有將根據視窗定位，fixed值相對於其初始包含塊進行定位的，對於視覺媒介而言，這通常是視窗，sticky值該元素根據文檔的正常流進行定位，直到滾動行為使元素到達所定義相對滾動祖先的偏移位置，但需要保持在關係最近的塊狀祖先元素內。而top、right、left、bottom等property可設置定位元素的相對偏移位置，top:10px意思指從頂端向內10px，以此類推。定位元素的例子如下:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="stickyTest"&gt;sticky&lt;/div&gt;
+        &lt;p&gt;
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Rem harum quidem sunt quia perspiciatis pariatur amet
+            ratione obcaecati impedit? Sapiente voluptatibus sit 
+            adipisci, quod delectus suscipit enim iure quisquam quia
+            tempore! Laborum voluptatum doloribus laboriosam eveniet 
+            est odit sed unde eius quasi? Neque itaque quisquam at
+            quidem cum, alias nam.
+        &lt;/p&gt;</pre>
+                            <pre>
+        .stickyTest{
+            background:red;
+            position:sticky;
+            padding-left:50px ;
+            border-left:hsl(50, 90%, 75%) dotted 2px;
+        }</pre>
+                        </div>
+                        <div class="stickyTest">sticky</div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Rem harum quidem sunt quia perspiciatis pariatur amet
+                            ratione obcaecati impedit? Sapiente voluptatibus sit 
+                            adipisci, quod delectus suscipit enim iure quisquam quia
+                            tempore! Laborum voluptatum doloribus laboriosam eveniet 
+                            est odit sed unde eius quasi? Neque itaque quisquam at
+                            quidem cum, alias nam.
+                        </p>
+                    </section>
+                    <!-- 27.stack level and z-index -->
+                    <section id="chapter27">
+                        <h2>27.stack level and z-index</h2>
+                        <p>元素會根據堆疊level堆疊在z-axis，對於不同類型元素的堆疊level由低到高為，html background、body background、負z-index元素，區塊元素的background/border、block box(包含body和html元素的content)、float元素、inline元素、0/auto z-index元素、正z-index元素。上述提到的z-index元素，是指z-index property能作用的元素，為positioned元素和positioned元素的後代元素，以及flex-item和grid-item。z-index會指定該元素在堆疊上下文的堆疊等級，並決定這個元素是否建立本地堆疊上下文(值為數值將建立)，若建立本地堆疊上下文，其子元素的堆疊level不會作用於容器外。在上述提到的不同類型元素的堆疊level中，若為同類型，且為z-index可作用的元素將比較z-index值，更高的數值的為更上層，若值也相當，最後就按照在檔案上順序。堆疊上下文層次如以下示範:</p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div&gt;neg-z-index&lt;/div&gt;
+        &lt;div&gt;zero-z-index&lt;/div&gt;
+        &lt;div&gt;pos-z-index&lt;/div&gt;
+        &lt;div&gt;float&lt;/div&gt;
+        &lt;div&gt;block &lt;span&gt;inline&lt;/span&gt;&lt;/div&gt;</pre>
+                            <pre>
+        .z-indexTest div:first-of-type{
+            width:500px;
+            position:relative;
+            z-index:-1;
+            background:red;
+            top:60px;
+        }
+        .z-indexTest div:nth-of-type(2){
+            width:300px;
+            position:relative;
+            z-index:0;
+            background:orange;
+            top:50px;
+        }
+        .z-indexTest div:nth-of-type(3){
+            width:300px;
+            position:relative;
+            z-index:1;
+            background:yellow;
+            top:40px;
+        }
+        .z-indexTest div:nth-of-type(4){
+            width:200px;
+            padding-top:20px ;
+            padding-bottom:20px ;
+            float:left;
+            background:green;
+        }
+        .z-indexTest div:last-of-type {
+            width:400px;
+            background:blue;
+            padding-top:30px ;
+            padding-bottom:30px ;
+        }
+        .z-indexTest div:last-of-type span{
+            background:purple;
+            padding-top:30px ;
+            padding-bottom:30px ;
+        }</pre>
+                    </div>
+                        <div class="z-indexTest" style="color:black">
+                            <div>neg-z-index</div>
+                            <div>zero-z-index</div>
+                            <div>pos-z-index</div>
+                            <div>float----</div>
+                            <div><span>inline</span>block</div>
+                        </div>
+                    </section>
+                    <!-- 28.flexbox -->
+                    <section id="chapter28">
+                        <h2>28.flexbox</h2>
+                        <p>flexbox是一種模組，用於排列item在同一軸上，使用方式為在item的容器上使用，display:flex(該容器成為block元素)，或是display:inline-flex(該容器成為inline元素)，接著該容器將成為flex-container，而子元素將成為flex-item，item寬度會等同內容，item高度會等於所有items裡最高的content高度，flex-conatiner尺寸根據display的設定，按造inline元素或block元素的模式。
+                        </p>
+                        <h3>flex-container setting</h3>
+                        <p>
+                            在預設上main-axis是水平的，代表item的排列方向，而cross-axis是垂直於main-axis，會影響換行方向，可藉由在容器上使用flex-direction改變main-axis方向，該值有row(預設，文字排列方向)、row-reverse(與row相反)、column(從上到下)、column-reverse(從下到上)。flex-wrap property能夠設定元素是否換行(當item總寬度超出容器寬度後，且flex-shrink:0;)，以及換行方向(cross-axis方向)，其值有no-wrap(預設)，wrap(上到下)，wrap-reverse(與wrap反向)。flex-direction和flex-wrap，可簡寫成flex-flow。
+                        </p>
+                        <h3>flex-item setting</h3>
+                        <p>
+                            flex-item有三種property可以設置不同狀況的item size，分別是flex-grow、flex-shrink、flex-basis，flex-grow的值為0(預設)、1、更高的數值，非0時代表當容器有空間時，會擴大元素填滿空間，而數值越大代表該元素填滿的比例越重。flex-shrink的值為0、1(預設)、更高的數值，非0時代表當items超出該容器，將縮減所有item的尺寸以符合容器，數值高代表縮減的比例高。flex-basis代表該item沒有特別狀況時的尺寸，會覆蓋寬度或高度，上述item的尺寸指主軸方向上的尺寸。上述提到三個屬性可以使用flex當作簡寫，其值按照順序應為，flex-grow、flex-shrink、flex-basis，如以下示範:
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="flex-containerTest"&gt;
+            &lt;div class="flex-itemTest"&gt;flex-item1&lt;/div&gt;
+            &lt;div class="flex-itemTest"&gt;flex-item2&lt;/div&gt;
+        &lt;/div&gt;</pre> 
+                            <pre>
+        .flex-containerTest{
+            background:green;
+            display:flex;
+        
+        }
+        
+        .flex-itemTest{
+            background:red;
+            padding:10px;
+            border:2px solid black;
+            flex:0 1 300px;
+        }</pre>
+                        </div>
+                        <h3>flex:0(預設) 1(預設) 300px;</h3>
+                        <div class="flex-containerTest">
+                            <div class="flex-itemTest">flex-item1</div>
+                            <div class="flex-itemTest">flex-item2</div>
+                        </div>
+                        <h3>flex:1 1(預設) 300px;</h3>
+                        <div class="flex-containerTest">
+                            <div class="flex-itemTest" style="flex:1 1 300px;">flex-item1</div>
+                            <div class="flex-itemTest" style="flex:1 1 300px;">flex-item2</div>
+                        </div>
+                        <h3>flex:0(預設) 0 550px;</h3>
+                        <div class="flex-containerTest">
+                            <div class="flex-itemTest" style="flex:0 0 550px;">flex-item1</div>
+                            <div class="flex-itemTest" style="flex:0 0 550px;">flex-item2</div>
+                        </div>
+                        <h3>flex:0(預設) 0 550px;且容器設置flex-wrap:wrap;</h3>
+                        <div class="flex-containerTest" style="flex-wrap:wrap;">
+                            <div class="flex-itemTest" style="flex:0 0 550px;">flex-item1</div>
+                            <div class="flex-itemTest" style="flex:0 0 550px;">flex-item2</div>
+                        </div>
+                        <h3>控制flex-item align</h3>
+                        <p>
+                            若要控制flex-item在容器內的對齊，可在容器使用align-items(cross-axis)和justify-content(main-axis)。aligns-item其值有normal(預設，在flexbox相當於stretch)、start(上，根據writing-mode或文本起始邊)、center(該row or col的中心)、end(下，根據writing-mode或文本結束邊)、flex-start(cross-start邊)、flex-end(cross-end邊)、stretch(如果item cross軸上的尺寸小於容器會自動增加)、baseline(每個item對齊基線
+                            baseline離自身的cross-start最遠的item 其邊緣貼齊該row or col的cross-start)、
+                            last baseline(每個item對齊基線
+                            baseline離自身cross-end最遠的item 其邊緣貼齊cross-end)，關於baseline基線對齊，若cross-axis是水平的，似乎會假設有一條垂直基線在文字的最左邊，元素會根據該條垂直基線對齊。justify-content其值有start(上，根據writing-mode或文本起始邊)、center(容器的中心)、end(下，根據writing-mode或文本結束邊)、left(當cross-axis是垂直時，等同start)、right(當cross-axis是垂直時，等同start)、flex-start(main-start邊)、flex-end(main-end邊)、space-between(第一item靠main-start,最後item靠main-end 平均分配間隔)、space-evenly(item不靠邊、平均分配間隔、每個item間隔可重疊)、space-around(item不靠邊平均分配間隔 每個item間隔不可重疊)、stretch(在flexbox中 =flex-start 因為該功能被flex-grow取代)
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="flex-containerTest flex-align-test">
+            &lt;div&gt;123456&lt;/div&gt;
+            &lt;div&gt;123456&lt;/div&gt;
+        &lt;/div&gt;</pre>
+                            <pre>
+        .flex-containerTest{
+            background:green;
+            display:flex;
+        
+        }
+        .flex-align-test{
+            justify-content: center;
+        }
+        .flex-align-test *{
+            background:orangered; 
+            border:2px solid black;
+        }</pre>
+                        </div>
+                        <div class="flex-containerTest flex-align-test">
+                            <div>123456</div>
+                            <div>123456</div>
+                        </div>
+                    </section>
+                    <!-- 29.grid -->
+                    <section id="chapter29">
+                        <h2>29.grid</h2>
+                        <p>
+                            grid是一個CSS模組，可將頁面劃分為主要區域，或定義 HTML的元素構建的控件各部分之間的關聯，就尺寸和位置和層級而言。grid layout是一種二維佈局，對齊item在rows and cols。與flexbox差別在於grid佈局較關注父元素。要使用grid模組，需在父元素上設定display:grid，此時父元素會成為grid-container、子元素會成為grid-item。
+                        </p>
+                        <h3>grid結構</h3>
+                        <p>
+                            grid line是劃分cell or track的垂直線或水平線， 用於定位grid-item，可用正負index(grid最左邊或最頂邊是1)來指定grid column(row)line。grid cell(兩條相鄰垂直和兩條相鄰水平grid line之間的空間)是網格的最小單位，用來放置grid-item，grid track是兩條相鄰grid-line之間的通道，水平的是grid row，垂直的是grid-column。grid area是由任意數量cell組成的空間，grid gap(gutter)是相鄰track間的間距。
+                        </p>
+                        <h3>grid-container</h3>
+                        <p>
+                            要讓item在網格上排列前，需要設置網格的大小、數量，網格有分為顯示網格和隱式網格(有需要才顯示)。設置顯示網格需在網格容器上使用grid-template-columns、grid-template-rows
+                            property，可包含多個值，值之間需用空格分隔，其值可以是&lt;length&gt;值或fr值(表示一個分段比例)，也可以搭配repeat()function 來表示多個值，repeat()funtcion 可輸入兩個引數，第一個引數用來表示重複的數量，第二個引數用來表示重複的值。設置隱式網格使用grid-auto-columns和grid-auto-rows property其值類型與顯示網格的值一樣。要定義track之間的距離使用column-gap and row-gap property，可簡寫成gap property，第一個值表示row-gap，第二個值表示column-gap，值類型為&lt;length&gt;。
+                        </p>
+                        <h3>grid-item</h3>
+                        <p>
+                            若要設定grid-item排列在網格的位置，佔據的cell數量，可在grid-item中使用grid-column-start、grid-column-end、grid-row-start、grid-row-end，表示item佔據的grid cell組成的grid line，其值為代表起始或結束的水平或垂直grid-line的index。grid-column-end、grid-row-end的值也可以是span identifiers加上數字表示橫跨的軌道數。grid-column-start、grid-column-end 可簡寫成grid-column，第一個值為start，第二個值為end，中間使用/間隔。
+                        </p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="grid-container-test"&gt;
+            &lt;div&gt;1&lt;/div&gt;
+            &lt;div&gt;2&lt;/div&gt;
+            &lt;div&gt;3&lt;/div&gt;
+            &lt;div&gt;4&lt;/div&gt;
+            &lt;div class="grid-item-test"&gt;5&lt;/div&gt;
+        &lt;/div&gt;</pre>
+                            <pre>
+        .grid-container-test{
+            display: grid;
+            grid-template-columns:repeat(2,150px);
+            grid-template-rows:1fr 1fr;
+            gap:10px;
+            grid-auto-rows:200px;
+            background:blueviolet;
+        }
+        .grid-container-test *{
+            background:red;
+            border:1px solid black;
+        }
+        .grid-item-test{
+            grid-column:1/span 2;
+        }</pre>
+                        </div>
+                        <div class="grid-container-test">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div class="grid-item-test">5</div>
+                        </div>
+                        <h3>grid對齊</h3>
+                        <p>
+                            當網格小於該容器時，要使網格對齊容器定位置，可在容器上使用justify-content和align-content。若要使item對齊所佔據的cell特定位置，可在容器上使用justify-items和align-items，若要使單個item對齊所佔據的cell特定位置，在該item上使用align-self和justify-self。normal為*-content系列和*-items系列的預設值，auto為*-self的預設值。這些屬性有些通用的值如:normal值在有設定網格欄寬值的狀況下，在*-content property中相當start，在*-item和*-self中相當stretch，但若是items有定義尺寸也將相當於start。(flex-start在grid裡同start)start值將使item對齊所佔據的網格或使網格對齊容器的起始邊。(flex-end在grid裡同start)end值將使item對齊所佔據的網格或使網格對齊容器的結束邊。center值將使item對齊所佔據的網格或使網格對齊容器的中心。stretch值在*-content系列 property中，當網格高度(row)或寬度(col)未定義，且網格高度或寬度低於容器時作用，而在*-items、*-self系列 property中，當item尺寸未定義，且item寬度或高度小於網格cell時作用。
+        
+                        </p>
+                        <p>
+                            不通用的值有:baseline(last baseline)值不能使用在justify-content，在align-content時，會變成start(last不起作用)，在align-items和align-self時，會讓同一track的元素根據水平基線對齊，並讓[水平基線與item本身垂直軸start邊距離]最遠的元素該邊貼齊該track垂直軸start邊，若是last baseline值則將上述start邊改成end邊，在jusitify-items和justify-self時則將上述水平改成垂直，而垂直基線等同於水平軸start邊。left和right值只適用於justify-*系列，即為靠左和靠右。auto只能作用在*-self系列，該效果將等同於父容器的*-items值。space-between、space-evenly、space-around只能作用在*-content系列，space-between值會讓最外圍的網格cell，往兩邊靠，且網格cell間的距離一樣，space-evenly值會讓最外圍網格cell不靠邊，網格cell間的距離一樣(重疊)，space-around值會讓，外圍網格cell不靠邊，每個網格cell旁的空間一樣(不重疊)。
+                        </p>
+                    </section>
+                    <!-- 30.CSS combinator -->
+                    <section id="chapter30">
+                        <h3>30.CSS combinator</h3>
+                        <p>CSS combinator是一種選取器，用來選取有特定關係的元素，將定義該選取元素與其他元素的關係。如網頁前面部分提過的descendant combinator，使用空格來表示ancestor(左邊元素)和descendant(右邊元素)關係。還有一些常見的combinator，如:adjacent sibling combinator、ganeral sibling combinator、child combinator。adjacent sibling combinator使用+表示關係，A+B{}表示選取[在A元素後、最接近A]的sibling B元素。genaral sibling combinator使用~表示關係，A~B{}表示選取在A元素後所有的sibling B元素。child combinator使用>表示關係，A>B{}表示選取A元素的直接子元素、B元素。如以下示範:</p>
+                        <div class="flex-container">
+                            <pre>
+        &lt;div class="combinator-test"&gt;
+            &lt;div class="combinator-test2"&gt;A&lt;/div&gt;
+            &lt;div&gt;A adjacent sibling&lt;/div&gt;
+            &lt;div&gt;A general sibling&lt;/div&gt;
+            &lt;div&gt;A general sibling&lt;/div&gt;
+        &lt;/div&gt;</pre>
+                            <pre>
+        .combinator-test>div{
+            color:pink;
+        }
+        .combinator-test2 ~ div{
+            background-color: black;
+        }
+        
+        .combinator-test2 + div{
+            border:2px solid white;
+        }</pre>
+                        </div>
+                        <div class="combinator-test">
+                            <div class="combinator-test2">A</div>
+                            <div>A adjacent sibling</div>
+                            <div>A general sibling</div>
+                            <div>A general sibling</div>
+                        </div>
+                    </section>
+                    <!-- 31.more pseudo-class selector -->
+                    <section id="chapter31">
+                        <h2>31.more pseudo-class selector</h2>
+                        <p>
+                            除了第14節提到的pseudo-class selector，還有一些常用的pseudo-class selector，用來挑選特定位置的元素。A:first-child，該選擇器用來選取所有容器中，第一個子元素，且該子元素必須是A元素。A:last-child，該選擇器用來選取所有容器中，最後一個子元素，且該子元素必須是A元素。A:first-of-type，該選擇器用來選取所有容器中，第一個A元素。A:last-of-type，該選擇器用來選取所有容器中，最後一個A元素。
+                        </p>
+                    </section>
+                </main>
+                <aside class="d-none d-lg-block col-lg-3">
+                    <nav id="chapter-nav" class="nav nav-pills overflow-auto sticky-top  flex-column flex-nowrap align-items-start justify-content-start fs-7">
+                        <a class="nav-link" href="#chapter1">1.developer tool中的CSS部分</a>
+                        <a class="nav-link" href="#chapter2">2.CSS導入HTML檔案的方式</a>
+                        <a class="nav-link" href="#chapter3">3.optimizing image and retina display</a>
+                        <a class="nav-link" href="#chapter4">4.絕對路徑和相對路徑</a>
+                        <a class="nav-link" href="#chapter5">5.CSS specification</a>
+                        <a class="nav-link" href="#chapter6">6.CSS syntax and terminlogy</a>
+                        <a class="nav-link" href="#chapter7">7.CSS values and units</a>
+                        <a class="nav-link" href="#chapter8">8.absolute unit and relative unit</a>
+                        <a class="nav-link" href="#chapter9">9.定義顏色相關屬性的值類型</a>
+                        <a class="nav-link" href="#chapter10">10.類型選擇器和通用選擇器</a>
+                        <a class="nav-link" href="#chapter11">11.class選擇器和id選擇器</a>
+                        <a class="nav-link" href="#chapter12">12.descendant選擇器和group選擇器</a>
+                        <a class="nav-link" href="#chapter13">13.inheritance and specificity</a>
+                        <a class="nav-link" href="#chapter14">14.!important and pseudo-class selector</a>
+                        <a class="nav-link" href="#chapter15">15.inline element and block element</a>
+                        <a class="nav-link" href="#chapter16">16.box model</a>
+                        <a class="nav-link" href="#chapter17">17.margin collapse and align</a>
+                        <a class="nav-link" href="#chapter18">18.font-family</a>
+                        <a class="nav-link" href="#chapter19">19.font-weight and font-style</a>
+                        <a class="nav-link" href="#chapter2">20.@font-face and web font</a>
+                        <a class="nav-link" href="#chapter21">21.font-size</a>
+                        <a class="nav-link" href="#chapter22">22.font property</a>
+                        <a class="nav-link" href="#chapter23">23.text-align and text-decoration</a>
+                        <a class="nav-link" href="#chapter24">24.float</a>
+                        <a class="nav-link" href="#chapter25">25.border box</a>
+                        <a class="nav-link" href="#chapter26">26.positioned elements</a>
+                        <a class="nav-link" href="#chapter27">27.stack level and z-index</a>
+                        <a class="nav-link" href="#chapter28">28.flexbox</a>
+                        <a class="nav-link" href="#chapter29">29.grid</a>
+                        <a class="nav-link" href="#chapter30">30.CSS combinator</a>
+                        <a class="nav-link" href="#chapter31">31.more pseudo-class selector</a>
+                    </nav>
+                </aside>
+            </div>
+            
+        </div>
+        
+    </body>    
+</html>
